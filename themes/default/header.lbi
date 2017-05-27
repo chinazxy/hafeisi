@@ -1,0 +1,296 @@
+<div class="lo_miao_yin">
+<div class="lo_miao_yin_t"></div>
+<div class="yin_san"></div>
+</div>
+
+	<div class="pageWidth clearfix">
+  <div id="hiddenTopLayer" class="open" style="height: 374px;">
+    <div class="hiddenTopLayerDescription" style="width: 322px;">
+      <h2 class="layerTitle">{$lang.l_my_bolon}</h2>
+      <div class="topLayerDescriptionContent">
+        <div id="registration-toolbar-cnt">
+          <div class="reg-subtitle">{$lang.l_immediately}</div>
+          <div class="reg-descr">{$lang.l_regeist_service}:</div>
+          <ol>
+            <li>{$lang.l_save_l_c}</li>
+            <li>{$lang.l_account_info}</li>
+            <li>{$lang.l_c_s_p}</li>
+          </ol>
+          <a class="registrationLink" href="user.php?act=register">{$lang.l_registered}</a></div>
+      </div>
+    </div>
+    <div class="hiddenTopLayerContent logincontent">
+      <div class="clearfix" id="login-toolbar-cnt">
+        <h2>MY BOLON</h2>
+        <div class="login-subtitle">{$lang.l_e_y_e_a}</div>
+        <span class="error serverSideError hidden">{$lang.l_p_c_e_m}</span>
+          <div class="fieldRow clearfix" id="emailWrapper">
+            <div class="fieldValue">
+              <div class="inputWrapper">
+                <input type="email" autocapitalize="off" class="bl_co_email" placeholder="{$lang.l_email}" maxlength="120" id="email" data-required="true" data-input-type="email" name="email">
+              </div>
+            </div>
+          </div>
+          <div class="fieldRow clearfix" id="passwordWrapper">
+            <div class="fieldValue">
+              <div class="inputWrapper">
+                <input type="password" placeholder="{$lang.l_password}" minlength="6" class="bl_co_pass" maxlength="15" id="password" data-required="true" data-input-type="password" name="password">
+                <a href="javaScript:void(0);" class="forgetPass">{$lang.l_you_forgot_your_password}</a></div>
+            </div>
+          </div>
+          <div class="clearfix">
+            <div class="fieldRow" id="rememberMeContainer">
+              <div class="fieldValue">
+                <div class="inputWrapper">
+                  <div class="i-checkbox rembercheck">
+                    <input type="checkbox" class="checkbox inline " tabindex="3" value="0" name="rememberme" id="rememberme">
+                    <span class="i-checkbox-inside"></span></div>
+                  <label for="rememberme" class="rememberMe">{$lang.l_remember_me}</label>
+                </div>
+							<div class="miao_mima1_ts1 login_com" >
+<span class="ti_error"></span>
+</div>
+              </div>
+			  
+            </div>
+
+            <div class="buttonsRow clearfix">
+              <button id="buttonSubmit" class="bl_submit_login">{$lang.l_login}</button>
+			   <a class="sinal" href="sinaLogin/redirect_to_login.php">	
+			<span class="yy-ssina"></span>{$lang.l_weibo_login}
+				</a>
+				<a class="qql" href="qqLogin/redirect_to_login.php">
+					<span class="yy-sqq"></span>{$lang.l_qq_login}
+				</a>
+				
+            </div> 
+          </div>
+     
+      </div>
+    </div>
+	
+	    <div class="hiddenTopLayerContent loginforget" style="display:none;">
+      <div class="clearfix" id="login-toolbar-cnt">
+		<div class="forget-cnt"> 
+		<h2>{$lang.l_have_you_forget_pass}</h2>
+		{$lang.L_email_reset_pass}
+		</div>
+       <div class="fieldRow">
+		    <div class="fieldLabel">
+		        <label for="Email">E-mail*</label>
+		     </div>
+		    <div class="fieldValue">
+	            <input type="text" value="" name="Email" id="Email" class="fg_email" >
+	           <span data-valmsg-replace="true" data-valmsg-for="Email" class="field-validation-valid"></span>
+		    </div>
+				<div class="miao_mima3_ts forget_state" style=""></div>
+		</div>
+	
+       <div class="buttonsRow">
+			        <button class="btnCancels" id="buttonBackLogin">{$lang.l_bank}</button>
+			        <button id="buttonSubmit" class="forget_submit">{$lang.l_send}</button>
+		</div>
+        
+      
+      </div>
+    </div>
+    <div class="closeIcon"><span class="closeImg"><!----></span></div>
+  </div>
+</div>
+						 <?php
+						 $_SESSION['currency'] = 'USD';
+				 $cart_info=get_cart_list_goods();
+
+$cart_goods_list=$cart_info['goods_list'];
+
+
+$cart_real_count=$cart_info['total']['real_goods_count'];
+
+if(empty($cart_real_count)){
+
+$cart_real_count=0;
+}
+if(empty($_SESSION['name'])){
+
+$session_name=$_SESSION['email'];
+}else{
+
+$session_name=$_SESSION['surname'].$_SESSION['name'];
+}
+
+						 ?>
+	<div class="gh ie">
+		<div class="ghd {$hasd} ">
+			<div class="s_d menu_off"><img  date-src="themes/default/images/s_d.png" src="themes/default/images/s_d.svg" class="svg_class" /></div>
+			<div class="s_b">Bag</div>
+			<div class="s_s s_off"><img  date-src="themes/default/images/sou.png" src="themes/default/images/sou.svg" class="svg_class"/></div>
+			<div class="logo"><a   href="index.php"><img style="position:relative;top:50%; margin-top:-62px;"  date-src="images/logo.jpg" src="images/logo.svg" class="svg_class"/></a></div>
+			<div class="gdh">
+			
+				<ul>
+				    <li class="pad2 bag bagoff"><img  date-src="themes/default/images/gw.png" src="themes/default/images/gw.svg" class="svg_class"  /><span class="bag_shu"><?php echo $cart_real_count;?></span>
+					           <div class="miao_bao1">
+          	 <div class="deng_box2 clearfix">
+                <div class="deng_san"></div>
+				<div class="deng_cart_list">
+				<?php if($cart_real_count == 0){ ?>
+                <div class="miao_bao1_box tex_left">
+                	<a href="javaScript:void(0);">{$lang.l_cart_empty}</a>
+                </div>
+				<?php }else{ ?>
+				
+			  <?php
+            $cg=0;
+			  for($g=0;$g<$cart_real_count;$g++){ 
+			     if($cg>1){
+				 
+				   break;
+				   }
+				
+			  ?>
+			  <?php if($cart_goods_list[$g]['extension_code']=="dingzhi"){ ?>
+			     <div class="miao_bao1_box">
+                  	<a href="<?php echo $cart_goods_list[$g]['dingzhi_url']; ?>">
+                	<div class="miao_bao1_box2_l"><img src="../<?php echo $cart_goods_list[$g]['dingzhi_thumb']; ?>" /></div>
+                    <div class="miao_bao1_box2_r"><?php echo $cart_goods_list[$g]['goods_name']; ?><br/><span>定制产品</span></div>
+				
+                    </a>
+                </div>
+			  <?php }else{ ?>
+			   <div class="miao_bao1_box">
+                  	<a href="goods.php?id=<?php echo $cart_goods_list[$g]['goods_id']; ?>">
+                	<div class="miao_bao1_box2_l"><img src="../<?php echo $cart_goods_list[$g]['goods_color_thumb']; ?>" /></div>
+                    <div class="miao_bao1_box2_r"><?php echo $cart_goods_list[$g]['goods_name']; ?><br /><span><?php echo $cart_goods_list[$g]['goods_sn']; ?></span><br /><span><?php echo $cart_goods_list[$g]['attr_name'].":".$cart_goods_list[$g]['attr_value'] ; ?></span></div>
+				
+                    </a>
+                </div>
+		      <?php } ?>
+				<?php
+               $cg++;
+				 } } ?>
+				  </div>
+          <?php if(empty($user_id)){ ?>
+                <!-- <div class="miao_bao1_box">
+                	<a href="user.php?act=register">{$lang.l_have_account}</a><br /><br />
+                    <a href="user.php?act=login">{$lang.l_login}</a>
+                </div>-->
+		 <?php } ?>
+                 <div class="miao_bao1_box">
+                 	<div class="miao_bao1_but">
+                    	<a href="flow.php?step=checkout">{$lang.l_checkout_immediately}</a>
+                    </div>
+                	<a href="flow.php?step=cart">{$lang.l_view_shopping_cart}</a>
+                </div>     
+             </div>
+          </div>
+					</li>
+					 <?php
+       $act_type=$_GET['act'];
+  	  $user_id=$_SESSION['user_id'];
+	  if(empty($user_id)){
+  ?>
+  <li class="signIn"><a class="sing"  href="javaScript:void(0);">LOG IN</a><span>/</span><a  href="user.php?act=register">{$lang.l_register}</a> </li>
+  <?php }else{?>
+   <li class="mybl mybl_off <?php if(empty($user_id)){ echo "no_login login_off";} ?> <?php if($act_type=="login"){ echo "login_type"; } ?>"><div class="mybl_img"></div>
+			 <?php if(empty($user_id)){?>
+		 	<div class="mybl_b"><a href="user.php?act=login"></a></div><div class="mbs"></div>
+		 <?php }else{ ?>
+		 	<div class="mybl_b"><?php echo $session_name;?></div><div class="mbs"></div>
+		 <?php } ?>
+		 		 
+		         
+				           <div class="deng_box clearfix">
+            <div class="deng_box2 clearfix">
+             <!--<div class="deng_close"></div>-->
+              <div class="deng_san"></div>
+			       <div class="miao_deng_box">
+                 	<a href="user.php?act=user_person">个人中心<br><span>了解你的信息</span></a>
+                 </div>
+				 <div class="miao_deng_box">
+                 	<a href="user.php?act=collection_list">个人收藏<br><span>查看已收藏项目</span></a>
+                 </div>
+                 <div class="miao_deng_box">
+                 	<a href="user.php?act=order_list">查看订单状态<br><span>了解你的订单现在的状态</span></a>
+                 </div>
+            
+                 <div class="miao_deng_box">
+                 	<a href="user.php?act=address_list">地址簿<br><span>取消最近提交的订单</span></a>
+                 </div>
+                 <div class="miao_deng_box">
+                 	<a href="user.php?act=profile">查看账户<br><span>管理账户设置、付款和订单信息</span></a>
+                 </div>
+                 <div class="miao_deng_but"><a href="user.php?act=logout">退出</a></div>
+				 	         <div class="miao_deng_zhu"></div>
+			        
+            </div>
+          </div>
+		         </li>
+  <?php } ?>
+				</ul>
+			</div>
+		</div>
+		<div class="s_nav" style="height:0px;overflow:hidden;">
+			<div class="s_nbox">
+				<input type="text" class="s_in search" value="Search..." placeholder="Search..."/>
+				<div class="ss">Search</div>	
+			</div>
+		</div>
+	</div>
+	<div class="gh1 ie" >
+		<div class="ghd1 {$hasd} ">
+			<div class="gdh1">
+				<ul>
+						<li class="pad1"><a  href="index.php">HOME</a></li>
+					<li><a  href="category.php">MAN</a></li>
+					<li><a  href="woman.php">WOMAN</a></li>
+					<li><a  href="kids.php">KIDS</a></li>
+					<li><a  href="brand.php">BRAND</a></li>
+					<li><a  href="zx.php">NEWS</a></li>
+				</ul>
+			</div>
+			<div class="gsou">
+				<input type="text" class="gs_in search" value="{$lang.l_search}"  placeholder="{$lang.l_search}"/>
+				<div class="gs_img"><img date-src="themes/default/images/sou.png" src="themes/default/images/sou.svg" class="svg_class"/></div>
+			</div>
+		</div>
+	</div>
+	<div class="shou_head menu_div">
+	<ul>
+     <li><a href="index.php">HOME</a></li>
+     <li><a href="category.php">MAN</a></li>
+     <li><a href="woman.php">WOMAN</a></li>
+     <li><a href="kids.php">KIDS</a></li>
+	       <li><a href="brand.php">BRAND</a></li>
+	 <li><a href="zx.php">NEWS</a></li>
+	 <li class="mybolon"><a href="javaScript:void(0);">{$lang.l_my_bolon}</a>
+     	<div class="shou_dengbox">
+		<div class="shou_bao clearfix">
+     	<div class="shou_deng">{$lang.l_member_login}</div>
+        <div class="shou_deng_title2">{$lang.l_i_have_account}</div>
+        <div class="shou_deng_b">
+        <div class="shou_deng_title3">{$lang.l_e_mail}<exp>*</exp></div>
+        <input type="text" placeholder="{$lang.l_e_mail}" class="shou_deng_in mp_account">
+        </div>
+        <div class="shou_deng_b">
+        <div class="shou_deng_title3">{$lang.l_password}<exp>*</exp></div>
+        <input type="password" placeholder="{$lang.l_password}" class="shou_deng_in mp_password">
+        </div>
+        <div class="deng_left_t3"><a href="user.php?act=get_password">{$lang.l_forget_pass}</a></div>
+		 <div class="miao_mima1_ts1 login_mp_ti"></div>
+        <div class="deng_anniu deng_mp_lu">
+		<a href="javaScript:void(0);">Login</a>
+			    <a class="sinal" href="sinaLogin/redirect_to_login.php">
+					<span class="yy-ssina"></span><span class="w_fff">{$lang.l_weibo_login}</span>
+				</a>
+				<a class="qql" href="qqLogin/redirect_to_login.php">
+					<span class="yy-sqq"></span><span class="w_fff">{$lang.l_qq_login}</span>
+				</a>
+		</div>
+        <div class="shou_deng_title2">{$lang.l_not_account}</div>
+        <div class="deng_left_t4">{$lang.l_create_person_account}</div>
+        <div class="deng_anniu2"><a href="user.php?act=register">{$lang.l_create_my_account}</a></div>
+		</div>
+        </div>
+     </li>
+    </ul>
+</div>

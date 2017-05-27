@@ -1,0 +1,233 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+ {insert_scripts files='../js/region.js,../js/shopping_flow.js'}
+
+  <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+
+function deletImg(din,id){
+
+  if(confirm("您确定要删除该图片吗?")){
+    if(din=='b'||din=='s'){
+
+    location.href="xinwen_p.php?act=deleteimg&id="+id+"&din="+din;
+     }  
+
+}
+}
+function im_show(obj){
+//alert("变");
+    if(obj.value==1){
+	  document.getElementById('small_im').style.visibility='visible';
+      document.getElementById('small_imposition').style.visibility='visible';
+	 
+	}else{
+	document.getElementById('small_im').style.visibility='collapse';
+	  document.getElementById('small_imposition').style.visibility='collapse';
+	}
+}
+
+</script>
+<div class="main-div">
+<form action="xinwen_p.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table" >
+     <caption style="text-align:left;font-size:16px;padding-left:10px">新闻页</caption>
+
+    <tr>
+	
+      <td  class="label">
+       标题：</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+        
+      </td>
+    </tr>
+	
+	    <tr>
+      <td  class="label">
+       描述：</td>
+      <td>
+	     <textarea name="content" cols="60" rows="5">{$ads.content}</textarea><br/>
+
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+       排序：</td>
+      <td>
+        <input type="text" name="ogv" value="{$ads.resort}" size="35" style="width:80px"/>
+ 
+      </td>
+	  </tr>
+	    <tr>
+	   <td  class="label">
+       文字层位置：</td>
+      <td>
+	  {if $action eq "add"}
+        <select name="content_position">
+		<option value="0" selected>左上</option>
+		<option value="1">左下</option>
+		<option value="2">右上</option>
+		<option value="3">右下</option>
+		</select>
+		 {else}
+		<select name="content_position">
+		<option value="0" {if $ads.content_position eq 0} selected {/if}>左上</option>
+		<option value="1" {if $ads.content_position eq 1} selected {/if}>左下</option>
+		<option value="2" {if $ads.content_position eq 2} selected  {/if}>右上</option>
+		<option value="3" {if $ads.content_position eq 3} selected {/if}>右下</option>
+		</select>
+		 {/if}
+      </td>
+    </tr>
+	<!--   <tr>
+	   <td  class="label">
+       文字层背景颜色：</td>
+      <td>
+	<input type="text" name="content_backcolor" value="" size="35"/>
+      </td>
+    </tr>-->
+	    <tr>
+	   <td  class="label">是否显示小图：</td>
+      <td>
+ 	  {if $action eq "add"}
+	    <select name="sim_show" onchange="im_show(this)">
+	    <option value="1" selected >显示</option>
+		 <option value="0">不显示</option>
+	   </select>
+	  {else}
+	       <select name="sim_show" onchange="im_show(this)">
+	    <option value="1" {if $ads.sim_show eq 1} selected {/if}>显示</option>
+		 <option value="0" {if $ads.sim_show eq 0} selected {/if}>不显示</option>
+	   </select>
+	  {/if}
+      </td>
+	  </tr>
+	  {if $action eq "add"}
+	   <tr style="visibility:visible" id="small_imposition" >
+	  {else}
+	 <tr {if $ads.sim_show eq 0} style="visibility:collapse" {else} style="visibility:visible" {/if} id="small_imposition" >
+	 {/if}
+	  <td  class="label">
+       小图片位置：</td>
+      <td>
+	  {if $action eq "add"}
+        <select name="sim_position">
+		<option value="0" selected>左上</option>
+		<option value="1">左下</option>
+		<option value="2">右上</option>
+		<option value="3">右下</option>
+		</select>
+		 {else}
+		 <select name="sim_position">
+		<option value="0" {if $ads.sim_position eq 0} selected {/if}>左上</option>
+		<option value="1" {if $ads.sim_position eq 1} selected {/if}>左下</option>
+		<option value="2" {if $ads.sim_position eq 2} selected  {/if}>右上</option>
+		<option value="3" {if $ads.sim_position eq 3} selected {/if}>右下</option>
+		</select>
+		 {/if}
+      </td>
+    </tr>
+	 {if $action eq "add"}
+	 <tr style="visibility:visible" id="small_im">
+	 {else}
+	   <tr {if $ads.sim_show eq 0} style="visibility:collapse" {else} style="visibility:visible" {/if} id="small_im">
+	   {/if}
+      <td  class="label">小图片：</td>
+      <td>
+        <input type="file" name="small_file" size="35" />
+		
+		{if $ads.small_im neq ''}
+		   <img src="../{$ads.small_im_m}" /> <!--<input type="hidden" value="{$ads.images}" name="hideimg" />-->  <input type="button" value="删除图片" onclick="deletImg('s',{$ads.id})" >
+		{/if}
+		<br/>
+		<span style="color:#FF0000">图片宽320*高320</span>
+		
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">背景图片：</td>
+      <td>
+        <input type="file" name="big_file" size="35" />
+		
+		{if $ads.big_im neq ''}
+		   <img src="../{$ads.big_im_m}" /> <!--<input type="hidden" value="{$ads.images}" name="hideimg" /> --> <input type="button" value="删除图片" onclick="deletImg('b',{$ads.id})" >
+		{/if}
+		<br/>
+		<span style="color:#FF0000">图片宽640*高640</span>
+      </td>
+    </tr>
+	
+	
+
+		
+
+	
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

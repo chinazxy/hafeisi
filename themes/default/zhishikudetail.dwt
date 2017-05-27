@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- #BeginLibraryItem "/library/content_header.lbi" --><!-- #EndLibraryItem -->
+<link type="text/css" rel="stylesheet" href="themes/default/css/style.css" />
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+ {insert_scripts files='minified/plugins/CSSPlugin.min.js,minified/TweenMax.min.js,jquery.easing.1.3.js,cos.js,zhishiku.js'}
+</head>
+
+<body>
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="shop_bigbox">
+<div class="shop_cont clearfix">
+	<div class="shop_title">当前位置：<span><a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="knowledge.php">知识库</a>&nbsp;&gt;&nbsp;<a href="zhishiku.php?id={$catinfo.cat_id}">{$catinfo.cat_name}</a></span>&nbsp;&gt;&nbsp;<a href="zhishiku.php?id={$matas.cat_id}">{$matas.cat_name}</a>{if $tid gt 0}&nbsp;&gt;&nbsp;<a href="zhishiku.php?id={$articleinfos.article_id}">{$articleinfos.title}</a> {/if}</div>
+    <div class="shop_imgbox clearfix">
+  		<div class="sport_left clearfix">
+        	<div class="sport_left_nav clearfix">
+                   	 {foreach from=$articles item=ars}
+            	<div class="product_p_line"></div>
+                <div class="sport_left_nav1 clearfix">
+                	<a {if $ars.count gt 0} href="JavaScript:void(0);" {else} href="zhishiku.php?id={$ars.id}" {/if}{if $ars.id eq $parent_id || $ars.id eq $cat_id} class="current" {/if}>{$ars.name}</a>
+					 {if $ars.count gt 0}
+                	<div class="sport_left_nav2box clearfix"{if $ars.id eq $parent_id} style="display:block;" {else} style="display:none;" {/if} >
+					  {foreach from=$ars.childrens item=ac}
+                    	<div class="sport_left_nav2 clearfix">
+							{if $ac.count gt 1}
+                         <a class="nav_second" href="JavaScript:void(0);" {if $ac.cat_id eq $cat_id} class="current" {/if} >{$ac.cat_name}</a>
+						 {else}
+						       <a  href="zhishiku.php?id={$ac.cat_id}" {if $ac.cat_id eq $cat_id} class="current" {/if} >{$ac.cat_name}</a>
+						 {/if}
+							{if $ac.count gt 1}
+							<div class="sport_left_nav3box clearfix" {if $ac.cat_id eq $cat_id}style="display:block;"{else}style="display:none;"{/if} >
+							{foreach from=$ac.articles item=arti}
+<div class="sport_left_nav3">
+<a {if $arti.article_id eq $cid}class="current" {/if}   href="zhishiku.php?id={$arti.cat_id}&cid={$arti.article_id}">{$arti.title}</a>
+</div>
+{/foreach}
+
+</div>
+{/if}
+                        </div>
+					  {/foreach}
+                    
+                    </div>
+					{/if}
+                </div>
+			{/foreach}
+  
+             <div class="product_p_line"></div>
+             
+             
+           </div>
+        </div>
+        
+        <div class="sport_right">
+        	<div class="sport_right_img1"><a href="#"><img src="{$articleinfos.file_url}" /></a></div>
+            <div class="sport_right_txtbox clearfix p_bot110">
+				  {$articleinfos.content}
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+</div>
+<input type="hidden" value="4" class="nowpage" />
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+ALTER TABLE  `ecs_brand_p` ADD  `URL` VARCHAR( 255 ) NOT NULL AFTER  `position` ;

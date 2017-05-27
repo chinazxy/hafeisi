@@ -1,0 +1,445 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+ {insert_scripts files='../js/region.js,../js/shopping_flow.js'}
+
+  <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+function delet(id){
+
+  if(confirm("您确定要删除该条数据吗?")){
+   
+	 location.href="book.php?act=delet&id="+id;
+  }
+}
+
+function deletImg(din,id){
+
+  if(confirm("您确定要删除该图片吗?")){
+    if(din=='p'||din=='s'||din=='tp'||din=='ts'||din=='f'){
+
+    location.href="book.php?act=deleteimg&id="+id+"&din="+din;
+     }else{
+	
+	 location.href="book.php?act=deleteimgz&id="+id+"&din="+din;
+	 }
+  }
+ 
+
+}
+function vi_show(obj){
+    if(obj.value==0){
+		document.getElementById('tanchuan_p').style.visibility='collapse';
+		document.getElementById('tanchuan_s').style.visibility='collapse';
+	    document.getElementById('vi_url').style.visibility='visible';
+		document.getElementById('vi_url1').style.visibility='visible';
+		document.getElementById('vi_url2').style.visibility='visible';
+		document.getElementById('bkimage_p_ms').style.visibility='visible';
+		document.getElementById('bkimage_s_m').style.visibility='collapse';
+		document.getElementById('bkimage_s_ms').style.visibility='collapse';
+	}else if(obj.value==1){
+
+		
+	  document.getElementById('vi_url').style.visibility='collapse';
+	  document.getElementById('vi_url1').style.visibility='collapse';
+	  document.getElementById('vi_url2').style.visibility='collapse';
+	  document.getElementById('tanchuan_p').style.visibility='collapse';
+	  document.getElementById('tanchuan_s').style.visibility='collapse';
+	  document.getElementById('bkimage_p_ms').style.visibility='collapse';
+	  document.getElementById('bkimage_s_m').style.visibility='visible';
+	  document.getElementById('bkimage_s_ms').style.visibility='collapse';
+		
+	}else if(obj.value==2){
+	     document.getElementById('vi_url').style.visibility='collapse';
+	  document.getElementById('vi_url1').style.visibility='collapse';
+	  document.getElementById('vi_url2').style.visibility='collapse';
+	  document.getElementById('tanchuan_p').style.visibility='visible';
+		document.getElementById('tanchuan_s').style.visibility='visible';
+		document.getElementById('bkimage_p_ms').style.visibility='collapse';
+		document.getElementById('bkimage_s_m').style.visibility='collapse';
+		document.getElementById('bkimage_s_ms').style.visibility='collapse';
+
+	}else if(obj.value==3){
+	  document.getElementById('vi_url').style.visibility='collapse';
+	  document.getElementById('vi_url1').style.visibility='collapse';
+	  document.getElementById('vi_url2').style.visibility='collapse';
+	  document.getElementById('tanchuan_p').style.visibility='collapse';
+	  document.getElementById('tanchuan_s').style.visibility='collapse';
+	  document.getElementById('bkimage_p_ms').style.visibility='collapse';
+	  document.getElementById('bkimage_s_m').style.visibility='collapse';
+	  document.getElementById('bkimage_s_ms').style.visibility='visible';
+
+	}
+	
+	
+}
+
+</script>
+<div class="main-div">
+<form action="book.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table" >
+     <caption style="text-align:left;font-size:16px;padding-left:10px">轮播页</caption>
+  <tr style="display:none">
+  <td  class="label">
+	   中文标题:
+	   </td>
+	   <td>
+	    <input type="text" name="theme_title" value="{$ads.theme_title}" size="35" />
+	   </td>
+  </tr>
+  <tr style="display:none">
+    <td  class="label">
+	   英文标题:
+	   </td>
+	   <td>
+	    <input type="text" name="theme_entitle" value="{$ads.theme_entitle}" size="35" />
+	   </td>
+  </tr>
+    <tr>
+	
+      <td  class="label">
+       中文标题</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+        
+      </td>
+    </tr>
+	  <tr>
+	
+      <td  class="label">
+       英文标题</td>
+      <td>
+        <input type="text" name="entitle" value="{$ads.entitle}" size="35" />
+        
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+       描述：</td>
+      <td>
+	     <textarea name="content" cols="60" rows="5">{$ads.content}</textarea>
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+       英文描述：</td>
+      <td>
+	     <textarea name="encontent" cols="60" rows="5">{$ads.encontent}</textarea>
+      </td>
+    </tr>
+	<tr style="display:none">
+      <td  class="label">
+       URL：</td>
+      <td>
+        <input type="text" name="url" value="{$ads.URL}" size="35"  />
+ 
+      </td>
+    </tr>
+	    <tr style="display:none">
+      <td  class="label">
+       偏移速度：</td>
+      <td>
+        <input type="text" name="sudu" value="{$ads.offset_sudu}" size="35" style="width:80px" />(文字层相对浏览器滚动的速度，默认是1.3，值越大速度越快。)
+ 
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+       排序：</td>
+      <td>
+        <input type="text" name="ogv" value="{$ads.resort}" size="35" style="width:80px"/>
+ 
+      </td>
+	  </tr>
+	  <tr style="display:none">
+	   <td  class="label">是否显示文字层：</td>
+      <td>
+ 	  {if $action eq "add"}
+	         <select name="isshow">
+	    <option value="1" selected >显示</option>
+		 <option value="0">不显示</option>
+	   </select>
+	  {else}
+	         <select name="isshow">
+	    <option value="1" {if $ads.isshow eq 1} selected {/if}>显示</option>
+		 <option value="0" {if $ads.isshow eq 0} selected {/if}>不显示</option>
+	   </select>
+	  {/if}
+      </td>
+	  </tr>
+	  <tr style="display:none">
+	  
+	   <td  class="label">
+       文字层位置：</td>
+      <td>
+	  {if $action eq "add"}
+        <select name="position">
+		<option value="0" selected>center</option>
+		<option value="1">left</option>
+		<option value="2">right</option>
+		</select>
+		 {else}
+		 <select name="position">
+		<option value="0" {if $ads.position eq 0} selected {/if}>center</option>
+		<option value="1" {if $ads.position eq 1} selected {/if}>left</option>
+		<option value="2" {if $ads.position eq 2} selected  {/if}>right</option>
+		</select>
+		 {/if}
+      </td>
+    </tr>
+	    <tr style="display:none">
+	   <td  class="label">是否隐藏更多：</td>
+      <td>
+ 	  {if $action eq "add"}
+	         <select name="hide">
+	    <option value="1" selected >不隐藏</option>
+		 <option value="0">隐藏</option>
+	   </select>
+	  {else}
+	         <select name="hide">
+	    <option value="1" {if $ads.hide eq 1} selected {/if}>不隐藏</option>
+		 <option value="0" {if $ads.hide eq 0} selected {/if}>隐藏</option>
+	   </select>
+	  {/if}
+      </td>
+	  </tr>
+
+	 
+	  <tr>
+      <td  class="label">背景图片:</td>
+      <td>
+        <input type="file" name="tanchuan_p" size="35" />
+		
+		{if $ads.tanchuan_p neq ''}
+		   <img src="../{$ads.tanchuan_p_m}" /> <!--<input type="hidden" value="{$ads.images}" name="hideimg" /> --> <input type="button" value="删除图片" onclick="deletImg('tp',{$ads.id})" >
+		{/if}
+		<br/>
+		<span style="color:#FF0000">背景图片960*高440</span>
+		
+      </td>
+    </tr>
+		    <tr>
+      <td  class="label">手机图:</td>
+      <td>
+        <input type="file" name="tanchuan_s" size="35" />
+		
+		{if $ads.tanchuan_s neq ''}
+		   <img src="../{$ads.tanchuan_s_m}" /> <!--<input type="hidden" value="{$ads.images}" name="hideimg" />-->  <input type="button" value="删除图片" onclick="deletImg('ts',{$ads.id})" >
+		{/if}
+		<br/>
+		<span style="color:#FF0000">手机端960*高600</span>
+		<!--<span style="color:#FF0000">手机端宽640*高800</span>-->
+      </td>
+    </tr>
+	  {if $action eq "add"}
+	   <tr style=" visibility: collapse;" id="vi_url">
+      <td  class="label">
+       mp4视频URL地址：</td>
+      <td>
+        <input type="text" name="vi_url"  size="35"/>
+      </td>
+	  </tr>
+	    <tr style=" visibility: collapse;" id="vi_url1">
+      <td  class="label">
+       webm视频URL地址：</td>
+      <td>
+        <input type="text" name="vi_url1"  size="35"/>
+      </td>
+	  </tr>
+	    <tr style=" visibility: collapse;" id="vi_url2">
+      <td  class="label">
+       ogv视频URL地址：</td>
+      <td>
+        <input type="text" name="vi_url2" size="35"/>
+      </td>
+	  </tr>
+	  <tr>
+	  {else}
+	   <tr {if $ads.model eq 0}style=" visibility:visible;"{else}style="visibility: collapse;"{/if} id="vi_url">
+      <td  class="label">
+       mp4视频URL地址：</td>
+      <td>
+        <input type="text" name="vi_url" value="{$ads.vi_url}" size="35"/>
+      </td>
+	  </tr>
+	    <tr {if $ads.model eq 0}style=" visibility:visible;"{else}style="visibility: collapse;"{/if} id="vi_url1">
+      <td  class="label">
+       webm视频URL地址：</td>
+      <td>
+        <input type="text" name="vi_url1" value="{$ads.vi_url1}" size="35"/>
+      </td>
+	  </tr>
+	    <tr {if $ads.model eq 0}style=" visibility:visible;"{else}style="visibility: collapse;"{/if} id="vi_url2">
+      <td  class="label">
+       ogv视频URL地址：</td>
+      <td>
+        <input type="text" name="vi_url2" value="{$ads.vi_url2}" size="35"/>
+      </td>
+	  </tr>
+	  {/if}
+
+	   <tr style="display:none">
+      <td  class="label">标题图片</td>
+      <td>
+        <input type="file" name="file[]" size="35" />
+		
+		{if $ads.bkimage_p_m neq ''}
+		   <img src="../{$ads.bkimage_p_m}" /> <!--<input type="hidden" value="{$ads.images}" name="hideimg" /> --> <input type="button" value="删除图片" onclick="deletImg('p',{$ads.id})" >
+		{/if}
+		<br/>
+		<span style="color:#FF0000">视频背景图919*高520</span>
+		
+      </td>
+    </tr>
+		
+		  <tr style="display:none">
+      <td  class="label">标题图片svg</td>
+      <td>
+        <input type="file" name="file[]" size="35" />
+		
+		{if $ads.bkimage_s neq ''}
+		   <img src="../{$ads.bkimage_s_m}" /> <!--<input type="hidden" value="{$ads.images}" name="hideimg" /> --> <input type="button" value="删除图片" onclick="deletImg('s',{$ads.id})" >
+		{/if}
+		<br/>
+		<span style="color:#FF0000">轮播小图PC端680*高430</span>
+		
+      </td>
+    </tr>
+
+
+		    <tr style="display:none">
+      <td  class="label">第一张背景图：</td>
+      <td>
+        <input type="file" name="file[]" size="35" />
+		
+		{if $ads.first_p_m neq ''}
+		   <img src="../{$ads.first_p_m}" /> <!--<input type="hidden" value="{$ads.images}" name="hideimg" /> --> <input type="button" value="删除图片" onclick="deletImg('f',{$ads.id})" >
+		{/if}
+		<br/>
+		<span style="color:#FF0000">第一张背景图宽371*高517</span>
+      </td>
+    </tr>
+	
+	
+
+	
+    <tr> <td colspan="2" class=".tianjia">
+	{if $action eq "add"}
+       <table width="90%" id="gallery-table"  align="center">
+	   <caption style="text-align:left;font-size:16px">轮播内页</caption>
+          <tr>
+            <td style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+			
+              <a href="javascript:;" onclick="addOrder(this)">[+]</a>
+			   标题：<input type="text" name="zj_title[]" size="20"/><br/>
+			   英文标题：<input type="text" name="zj_enttitle[]" size="20"/>	<br/>		 
+			   显示排序：<input  type="text" name="zj_resort[]" size="20"/><br/>			   			
+               <input style="display:none" type="file" name="zj_file[]"/><span style="color:#FF0000"></span><br/>
+			   <input style="display:none" type="file" name="zj_file[]" /><span style="color:#FF0000"></span><br/>
+			      </td>
+             </tr>
+        </table>
+		{else}
+	       <table  width="90%" id="gallery-table"  align="center">
+		      <caption style="text-align:left;font-size:16px">轮播内页</caption>
+		     <tr>
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" onclick="addOrder(this)">[+]</a>
+			   标题：<input type="text" name="zj_ttitle[]" size="20"/><br/>
+			   英文标题：<input type="text" name="zj_enttitle[]" size="20"/>
+			   显示排序：<input type="text" name="zj_tresort[]" size="20" /><br/>
+				
+               <input style="display:none"  type="file" name="zj_tfile[]"/><span style="color:#FF0000"></span><br/>
+			   <input style="display:none"  type="file" name="zj_tfile[]" /><span style="color:#FF0000"></span><br/>
+			      </td>
+             </tr>
+		  {foreach from=$child item=ch}  
+          <tr>
+            <td style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+			   <a href="javascript:;" onclick="delet({$ch.id})">[-]</a>
+			   标题：<input type="text" name="zj_title[]" size="20" value="{$ch.title}"/><br/>
+			   英文标题：<input type="text" name="zj_entitle[]" size="20" value="{$ch.entitle}"/><br/>
+			   显示排序：<input type="text" name="zj_resort[]" size="20"  value="{$ch.resort}"/><br/>						  				
+               {if $ch.child_imp_m}<img src="../{$ch.child_imp_m}"/><input type="button" value="删除图片" onclick="deletImg('p_z',{$ch.id})" /><br/>{/if}
+			   <input type="file" name="zj_file[]"/><span style="color:#FF0000"></span><br/>
+			  {if $ch.child_ims_m}<img src="../{$ch.child_ims_m}"/><input style="display:none"  type="button" value="删除图片" onclick="deletImg('s_z',{$ch.id})"/><br/>{/if}
+			   <input style="display:none" type="file" name="zj_file[]" /><span style="color:#FF0000"></span><br/>
+			      </td>
+             </tr>		
+			 {/foreach}
+        </table>
+
+		{/if}
+	</td>
+</tr>
+	
+
+		
+
+	
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

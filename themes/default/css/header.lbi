@@ -1,0 +1,102 @@
+<div class="head">
+	<div class="header">
+		<div class="shouji_nav menu menu_off"></div>
+    	<div class="logo"><a href="index.php"><img class="svg_class" src="images/bolon_logo.svg" date-src="images/logo.png" style="width:120%; margin-top:-90px; margin-left:-25px; display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;"  /></a></div>
+        <div class="head_nav">
+        	<ul>
+            	<li><a href="index.php">首页<div class="he_line"></div></a></li>
+                <li><a href="category.php">男士<div class="he_line"></div></a></li>
+                <li><a href="wmcategory.php">女士<div class="he_line"></div></a></li>
+                <li><a href="brand.php">品牌<div class="he_line"></div></a></li>
+                <li><a href="news.php">资讯<div class="he_line"></div></a></li>
+            </ul>
+        </div>
+        <div class="head_gouwu">
+             <div class="search hasOff"> <div class="he_line2" ></div></div>
+            <div class="bag"><div class="bag_shu">2</div></div>
+            <div class="wenhao hasOff"></div>
+			
+                  <div class="mybl mybl_off"><a href="javaScript:void(0);">MY BOLON</a>
+            	<div class="deng_box clearfix">
+                      <div class="deng_box2 clearfix">
+                        <div class="deng_close"></div>
+                        <div class="deng_san"></div>
+                        <div class="deng_box3 clearfix">
+                          <div class="deng_title">会员登录</div>
+                          <div class="deng_title2">
+                            <div class="deng_title2_left">我已有一个账户</div>
+                            <div class="deng_title2_right">我没有注册过任何账户</div>
+                          </div>
+						  
+                          <div class="deng_left clearfix">
+						  <div class="deng_false"></div>
+                            <div class="deng_left_b">
+                              <div class="deng_left_t u_left_t">用户名
+                                <exp>*</exp>
+                              </div>
+                              <input type="text" class="deng_left_t2 email">
+                            </div>
+                            <div class="deng_left_b">
+                              <div class="deng_left_t p_left_t">密码
+                                <exp>*</exp>
+                              </div>
+                              <input type="password" class="deng_left_t2 password">
+                            </div>
+                            <div class="deng_left_t3">忘记密码？</div>
+                          </div>
+                          <div class="deng_right clearfix">创建个人账户，以获取更多专属特权和丰富体验。</div>
+                          <div class="deng_title3">
+                            <div class="deng_title4">
+                              <div class="deng_anniu"><a href="javaScript:void(0);">登录</a>
+                                
+                              </div>
+                            </div>
+                            <div class="deng_title4">
+                              <div class="deng_anniu2"><a href="user.php?act=register">创建我的BOLON账户</a>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+        </div>
+        <div class="dianhua_nav">
+          <div class="dianhua_box"><a href="tel:400-885-8586">客服热线:400-885-8586</a></div>
+          </div>
+        <div class="search_nav">
+            <div class="search_box">
+              <input type="text" class="search_box1" placeholder="产品，专卖店..."/>
+              <div class="search_box2"><a href="#">搜索</a></div>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="shou_head menu_div">
+	<ul>
+     <li><a href="index.php">首页</a></li>
+     <li><a href="category.php">男士</a></li>
+     <li><a href="wmcategory.php">女士</a></li>
+     <li><a href="brand.php">品牌</a></li>
+     <li><a href="news.php">资讯</a></li>
+     	<div class="shou_dengbox">
+     	<div class="shou_deng">会员登录</div>
+        <div class="shou_deng_title2">我已有一个账户</div>
+        <div class="shou_deng_b">
+        <div class="shou_deng_title3">用户名<exp>*</exp></div>
+        <input type="text" class="shou_deng_in" />
+        </div>
+        <div class="shou_deng_b">
+        <div class="shou_deng_title3">密码<exp>*</exp></div>
+        <input type="text" class="shou_deng_in" />
+        </div>
+        <div class="deng_left_t3"><a href="#">忘记密码？</a></div>
+        <div class="deng_anniu"><a href="login.html">登录</a></div>
+        <div class="shou_deng_title2">我没有注册过任何账户</div>
+        <div class="deng_left_t4">创建个人账户，以获取更多专属特权和丰富体验。</div>
+        <div class="deng_anniu2"><a href="register.html">创建我的BOLON账户</a></div>
+        </div>
+     </li>
+    </ul>
+</div>

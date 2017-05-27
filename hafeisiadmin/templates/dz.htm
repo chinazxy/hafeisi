@@ -1,0 +1,249 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\添加)/i, "$1removeImg$3$4移除");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletItem(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+     Ajax.call('jk.php', 'id=' + id+'&act=deleteitem', removeItem, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeItem(result){
+
+    if(result.err==0){
+	
+	  alert("删除失败!");
+	
+	}else{
+	
+	 if(result.id>0){
+	
+	 	 var obj=document.getElementById("item_"+result.id);
+	
+	var row = rowindex(obj);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+	 }
+
+	}
+
+
+}
+
+
+
+function deletImg2(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg2&id="+id;
+  
+  }
+ 
+
+}
+function deletImg3(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg3&id="+id;
+  
+  }
+ 
+
+}
+
+
+function vi_show(obj){
+    if(obj.value==0){
+	  dc('vi_url1').style.visibility='collapse';
+	  dc('vi_url2').style.visibility='collapse';
+	  dc('vi_url3').style.visibility='collapse';
+
+	}else{
+
+	    dc('vi_url3').style.visibility='visible';
+		dc('vi_url1').style.visibility='visible';
+		dc('vi_url2').style.visibility='visible';
+
+	}
+}
+function dc(id){
+    return document.getElementById(id);
+}
+
+
+function removeDz(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+  var args = "act=remove&id=" + id;
+     Ajax.call('dz.php', args, removeCate, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeCate(result){
+
+ window.parent.frames["main-frame"].location="dz.php?act=add";
+
+}
+
+</script>
+<div class="list-div" id="listDiv">
+  <table width="100%" cellspacing="1" cellpadding="3">
+     <tr>
+	   <th> ID</th>
+	
+      <th>名称</th>
+      <th>名称(英)</th>
+	        <th>图标</th>
+			  <th>选项类型</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+  {foreach from=$res item=list}
+    <tr align="center">
+	 <td align="center">{$list.id}</td>
+      <td align="center">{$list.name}</td>
+     <td align="center">{$list.enname}</td>
+	    <td align="right">{if $list.menu_set eq 0}默认选项{/if}{if $list.menu_set eq 1}可配置选项{/if}</td>
+	      <td align="center"><img src="../{$list.images}" style="width:50px;height:auto;" /></td>
+      <td align="center">{$list.resort}</td>
+	      <td align="center"><span>
+      <a href="dz.php?act=edit&cid={$list.id}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:;" onclick="removeDz({$list.id})" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a></span>
+    </td>
+    </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="11">{$lang.no_records}</td></tr>
+  {/foreach}
+  </table>
+
+</div>
+<div class="main-div">
+
+<form action="dz.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+      名称：</td>
+      <td>
+        <input type="text" name="cat_name" value="{$ads.name}" size="35" />
+ 
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">
+     名称(英)：</td>
+      <td>
+        <input type="text" name="cat_enname" value="{$ads.enname}" size="35" />
+ 
+      </td>
+    </tr>
+	
+	    <tr>
+      <td  class="label">
+     图标：</td>
+      <td>
+        <input type="file" name="images"  /> <input type="hidden" value="{$ads.images}" name="hide_img" /> {if $ads.images neq ""} <img src="../{$ads.images}" /> {/if}
+ 
+      </td>
+    </tr>
+	
+		    <tr>
+      <td  class="label">
+     类型：</td>
+      <td>
+   <select name="menuset">
+   
+        <option value="0" {if $ads.menu_set eq 0}selected="selected"{/if}>默认选项</option>
+	    <option value="1" {if $ads.menu_set eq 1}selected="selected"{/if}>可配置选项</option>
+   </select>
+ 
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">显示顺序</td>
+      <td>
+        <input type="text" name="resort" value="{$ads.resort}" size="35" />
+      </td>
+    </tr>	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+       {if $form_act neq "update"} <input type="submit" value="添加" class="button" /> {else} <input type="submit" value="修改" class="button" /> {/if}
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+		<input type="hidden" name="cid" value="{$ads.id}" />
+		<input type="hidden" name="ids" value="{$ids}" />
+		
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

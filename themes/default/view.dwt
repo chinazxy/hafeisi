@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+    		 <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/> 
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/css.css" />
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/auto.css" />
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/flexslider.css" />
+<link type="text/css" rel="stylesheet" href="js/2016/video-js.css" />
+ <script type="text/javascript" src="js/2016/transport.js"></script>
+ <script type="text/javascript" src="js/2016/utils.js"></script> 
+ <script src="js/jq2.0.js"></script>
+   <script type="text/javascript">
+var lang_search='{$lang.l_search}';
+</script>
+  <script type="text/javascript" src="js/2016/jquery-easing-1.3.js"></script>
+    <script type="text/javascript" src="js/2016/video.js"></script>
+  	<script src="js/2016/modernizr.js"></script> <!-- Modernizr -->
+	<script type="text/javascript" src="js/2016/common.js"></script>  
+		<script type="text/javascript" src="js/2016/pranddetail.js"></script>  
+	
+	
+</head>
+<body>
+<?php
+
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+$mobile_browser = Array(
+"mqqbrowser", //手机QQ浏览器
+"opera mobi", //手机opera
+"juc","iuc",//uc浏览器
+"fennec","ios","applewebKit/420","applewebkit/525","applewebkit/532","ipad","iphone","ipaq","ipod",
+"iemobile", "windows ce",//windows phone
+"240x320","480x640","acer","android","anywhereyougo.com","asus","audio","blackberry","blazer","coolpad" ,"dopod", "etouch", "hitachi","htc","huawei", "jbrowser", "lenovo","lg","lg-","lge-","lge", "mobi","moto","nokia","phone","samsung","sony","symbian","tablet","tianyu","wap","xda","xde","zte"
+);
+$is_mobile = 0;
+foreach ($mobile_browser as $device) {
+if (stristr($user_agent, $device)) {
+$is_mobile = 1;
+break;
+}
+}
+$mobilestate="true";
+?>
+<div class="gpage clearfix">
+<div class="gb clearfix">
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="dapa clearfix">
+	<div class="daze"></div>
+
+	
+       <div class="move_div">
+		<div class="viw">
+	  	<figure class="cd-image-container">
+		<img src="images/hd2.jpg" alt="Original Image">
+		<span class="cd-image-label" data-type="original">高清偏光</span>
+
+		<div class="cd-resize-img"> 
+			<img src="images/hd.jpg" alt="Modified Image">
+			<span class="cd-image-label" data-type="modified">非偏光</span>
+		</div>
+
+		<span class="cd-handle"></span>
+	  </figure>
+	   </div>
+	   <div class="viewen clearfix">
+			<div class="viewen_b1">
+				<div class="th">高清偏光太阳镜片 7大优势</div>
+			</div>
+			<div class="viewbao clearfix">
+		
+	   	<div class="viewen_b2">
+				<div class="twp"><img src="images/pi1.png"></div>
+				<div class="tw">
+					<div class="th1">真实色彩</div>
+					<div class="th2">呈现人眼所感知的准确色彩</div>
+				</div>
+
+				
+				
+			</div>
+			   	<div class="viewen_b2">
+			<div class="twp"><img src="images/pi2.png"></div>
+				<div class="tw">
+					<div class="th1">高清晰视觉</div>
+					<div class="th2">清晰细节呈现，不错过每一处精彩</div>
+				</div>
+
+				
+				
+			</div>
+					   	<div class="viewen_b2">
+			<div class="twp"><img src="images/pi3.png"></div>
+				<div class="tw">
+					<div class="th1">UV400防护</div>
+					<div class="th2">全面阻隔对人体有害的紫外线UVA & UVB & UVC。</div>
+				</div>
+
+				
+				
+			</div>
+							   	<div class="viewen_b2">
+			<div class="twp"><img src="images/pi4.png"></div>
+				<div class="tw">
+					<div class="th1">易洁耐用</div>
+					<div class="th2">真空易洁镀膜，斥水防污，防刮痕</div>
+				</div>
+
+				
+				
+			</div>
+								   	<div class="viewen_b2">
+			<div class="twp"><img src="images/pi5.png"></div>
+				<div class="tw">
+					<div class="th1">阻隔眩光</div>
+					<div class="th2">实现无眩光视野，缓解眼睛视疲劳。</div>
+				</div>
+
+				
+				
+			</div>
+			
+										   	<div class="viewen_b2">
+			<div class="twp"><img src="images/pi6.png"></div>
+				<div class="tw">
+					<div class="th1">抗冲击力强</div>
+					<div class="th2">与玻璃镜片相比，有效防碎，安全更轻盈</div>
+				</div>
+
+				
+				
+			</div>
+			
+											   	<div class="viewen_b2">
+			<div class="twp"><img src="images/pi7.png"></div>
+				<div class="tw">
+					<div class="th1">舒适视感</div>
+					<div class="th2">卓越抗反射镀膜 放松双眼 舒适视力</div>
+				</div>
+
+				
+				
+			</div>
+			</div>
+	   </div>
+	  </div>
+	  
+	 <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div></div>
+<script src="js/2016/jquery.mobile.custom.min.js"></script> 
+<script src="js/2016/vmain.js"></script> 
+<script src="js/2016/view.js"></script> 
+    <!-- #BeginLibraryItem "/library/page_botter.lbi" --><!-- #EndLibraryItem -->
+</div>
+
+</body>
+</html>

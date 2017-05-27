@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+
+
+  {insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,video.js,bl_common.js,modernizr.js,jquery-picture-min.js,forget.js,login.js'} 
+
+</head>
+
+<body>
+
+
+<div class="page clearfix">
+  <!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+   <div class="cont_personal_wrap clearfix">
+
+   <div class="cont_personal_box clearfix">
+<div class="title">
+退货
+<div class="anquansuo">安全</div>
+</div>
+<div class="neirong">
+</div>
+	 	<form action="user.php" method="post" name="theForm" enctype="multipart/form-data">
+	 <div class="neirong clearfix">
+			<div class="miao_order">
+            	<div class="miao_order_1"><strong>订单日期{$refund_goods.add_time}</strong>&nbsp;&nbsp;&nbsp;&nbsp;<span>订单号:{$refund_goods.order_sn}</span></div>
+                
+            </div>
+            
+            <div class="miao_order_box clearfix">
+            	<div class="miao_order1">
+                	<div class="miao_order1_box">
+                    	<div class="miao_or_name">收货人<br /></div>
+                        <div class="miao_or_add clearfix">
+                        	<div class="miao_add1_2_t pad_none">{$order_address.surname}{$order_address.ming}</div>
+                    		<div class="miao_add1_2_t pad_none">{$order_address.shenshiqu}</div>
+                    		<div class="miao_add1_2_t pad_none" style="width:150px">{$order_address.address}</div>
+							<div class="miao_add1_2_t pad_none">{$order_address.room}</div>
+                   		    <div class="miao_add1_2_t pad_none">{$order_address.zipcode}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="miao_order1_box mar_t20">
+                    	<div class="miao_or_name">发货通知<br /></div>
+                        <div class="miao_or_add clearfix">
+                        	<div class="miao_add1_2_t pad_none">{$order_address.email}</div>
+                            <div class="miao_add1_2_t pad_none">{$order_address.iphone}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="miao_order2 clearfix">
+                	<div class="miao_order2_t">
+                    	<div class="miao_order2_1"><strong>已发货</strong>&nbsp;&nbsp;<span>于{$refund_goods.shipping_time}</span></div>
+                    </div>    
+                    <div class="miao_order2_wrap bor_t">
+					
+                    	<div class="tuihuo_miao_order2_img"><a href="{$refund_goods.url}"><img src="{$refund_goods.goods_attr.attr_thumb}" /></a></div>
+                        <div class="miao_order2_b1"><div class="miao_order2_bt" style="width:180px;"><a href="{$refund_goods.url}">{$refund_goods.goods_sn}&nbsp;/&nbsp;{$refund_goods.goods_name}</a></div></div>
+                        <div class="miao_order2_b2"><div class="miao_order2_bt">{$refund_goods.goods_attr.attr_name}:{$refund_goods.goods_attr.attr_value}</div></div>
+				
+                        <div class="miao_order2_b3"><div class="miao_order2_bt">{$refund_goods.goods_number}幅</div></div>
+                        <div class="miao_order2_b4"><div class="miao_order2_bt">{$refund_goods.shop_price}</div></div>
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+            
+      
+			
+			<div class="tuihuo_miao_order_box1">*退货金额消费不会计算在满额包邮中</div>
+		
+			<div class="tuihuo_miao_order_box1">
+
+			<div class="tuihuo_miao_order_box2">退货原因:</div>
+			
+			<select class="tuihuo_miao_order_box3" name="refund_reason"><option selected="selected" class="first" >请选择退货原因</option>
+			
+			
+			
+			<!--{foreach from=$refund_reason_options item=reason key=key}-->
+			              <option value="{$key}" class="tuihuoyuanyin_123" >{$reason}</option>
+			<!--{/foreach}-->
+			
+			</select>
+			
+			
+			
+			</div>
+			
+			<div class="tuihuo_miao_order_box1">
+            <div class="tuihuo_miao_order_box2">退货说明:</div>
+			
+			<textarea class="tuihuo_miao_order_box5"  name="refund_desc"></textarea>
+			
+            </div>
+			
+			<div class="tuihuo_miao_order_box1_Archives">
+				
+			<div class="tuihuo_miao_order_box1_Archives1">上传档案:</div>
+			<div class="tuihuo_miao_order_box1_Archives2">
+			          <div class="tuihuo_miao_order_box1_Archives2_1">1. <input type="file" name="refund_pic1"/></div>
+			          <div class="tuihuo_miao_order_box1_Archives2_1">2.  <input type="file" name="refund_pic2"/></div>
+			          <div class="tuihuo_miao_order_box1_Archives2_1">3.  <input type="file" name="refund_pic3"/></div>
+			</div>
+			<div class="tuihuo_miao_order_box1_Archives3">(每张图片大小请小于12
+
+ＫＢ）</div>
+			
+
+			
+			</div>
+			
+			<div class="tuihuo_miao_order_box1" style="border-top:0px;">
+			
+			<div class="lijituikuan"><a href="javascript:document.theForm.submit();">立即申请退款</a></div>
+			
+			</div>
+			
+			
+	 </div>
+	 <input type="hidden" name="act" value="{$action}"/>
+	 <input type="hidden" name="rec_id" value="{$refund_goods.rec_id}"/>
+	 </form>
+  </div>
+</div>  
+  
+  
+  
+  
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+   
+   
+  
+
+
+
+  
+</div>
+</body>
+</html>

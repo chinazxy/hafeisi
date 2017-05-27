@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" content="ZOANO v2.7.2" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="Bolon 暴龙眼镜--官方网站" />
+<meta name="Description" content="Bolon 暴龙眼镜--官方网站" />
+<meta content="text/html; charset=iso-8859-1" http-equiv="content-type">
+<meta content="webkit" name="renderer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+{insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,video.js,bl_common.js,modernizr.js,jquery-picture-min.js,forget.js,login.js'} 
+<script type="text/javascript">
+var process_request = "正在处理您的请求...";
+</script>
+<title>{$page_title}</title>
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/personal.css" />
+
+<style type="text/css">
+.footer_up {
+	display:none;
+}
+body{background-color:#f6f6f6}
+</style>
+</head>
+
+<body>
+
+
+<div class="page clearfix">
+   <!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+  <div class="cont_personal_wrap clearfix">
+  <div class="cont_personal_box clearfix">
+     <div class="title"><!--{$refund.title}--><div class="car_box_title"> 
+	 
+	 {foreach from=$shanglanmu item=shang name=lanmu}
+	 
+
+	 <div class="car_box_title1" {if $smarty.foreach.lanmu.index eq 0}style="border-left:0px;"{/if}><a target="_blank" href="{$shang.author_email}">{$shang.title}</a></div> 
+
+	 {/foreach}
+	 </div>
+	 </div>
+	 <div class="neirong">
+	   <div class="miao_mima pad0 clearfix">
+       	  <div class="yunshu clearfix">
+          	<!--运输方式：暴龙官网所有商品都将默认顺丰快递配送<br /><br /><br />
+            如果你对所购商品不甚满意，可申请退货及退款。<br /><br />
+            将你购买的产品寄回<br /><br /><span>如需将产品寄回给 BOLON，请使用 BOLON ID 和密码登录，查看在线 Order Status 订单状态<br /><br />
+
+登录之后，你将在最近的订单中看到该产品。请选定要退货的产品，然后点击 “退货” 链接。在下一页面选择你需要退货的产品，然后点击 “提交” 按钮。<br /><br />
+
+接下来，在退货标签上确认退货产品和退货地址。确认退货详情之后，请点击 “立即打印” 以打印退货标签。请将退货标签粘贴在退货箱子外侧。如果你有多个产品需要退货，或已申请普通发票，你需要将所有产品放在一个包装箱中，并附上装箱单。如果退回的是电脑，我们建议使用最初的包装。<br /><br />
+
+我们提供免费退货。请等待运营商联系你，取走你退回的产品。<br /><br />
+
+如果你所处的位置不在我们货运商的取送货覆盖区域内，你会被告知将待退还的产品送至最近的货运商网点。请参考 运送帮助页面，查看我们的货运商目前提供取送货服务的区域。</span><br /><br />退还普通或增值税发票<br /><br />
+
+如果你索取并收到了普通发票，则须将其与产品一并退回。<br /><br />
+
+如果你索取并收到了增值税发票，请打印适当的退货合同表格并填写个人详细信息。我们需要在办理退货中使用此表格。-->
+           <!--{$refund.content}-->
+          </div>
+          
+       </div>
+	 </div>
+   
+   
+  </div>
+  </div>
+  
+  
+  
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+   
+   
+  
+
+
+
+  
+</div>
+</body>
+</html>

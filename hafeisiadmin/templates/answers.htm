@@ -1,0 +1,224 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+ {insert_scripts files='../js/region.js,../js/shopping_flow.js'}
+<script type="text/javascript" src="../js/calendar.php"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+function t_remove(id){
+if(confirm("您确定要删除该类型吗?"))
+{ 
+   location.href="answers.php?act=t_remove&id="+id;
+
+}
+}
+
+function deletImg(din,id){
+
+  if(confirm("您确定要删除该图片吗?")){
+    if(din=='b'||din=='s'){
+
+    location.href="xinwen_p.php?act=deleteimg&id="+id+"&din="+din;
+     }  
+
+}
+}
+function im_show(obj){
+//alert("变");
+    if(obj.value==1){
+	  //document.getElementById('small_im').style.visibility='visible';
+      //document.getElementById('small_imposition').style.visibility='visible';
+	  document.getElementById('small_imposition').style.display='';
+	  document.getElementById('small_im').style.display='';
+	 
+	}else{
+	   document.getElementById('small_imposition').style.display='none';
+	  document.getElementById('small_im').style.display='none';
+	//document.getElementById('small_im').style.visibility='collapse';
+	  //document.getElementById('small_imposition').style.visibility='collapse';
+	}
+}
+
+</script>
+<div class="main-div">
+{if $action eq "add"}
+<table style="border:1px solid">
+<caption style="text-align:left;font-size:16px;padding-left:10px">类型列表</caption>
+<th style="background-color:#BBDDE5;height:35px"><strong>排序</strong></th>
+<th style="background-color:#BBDDE5;height:35px"><strong>类型标题</strong></th>
+<th style="background-color:#BBDDE5;height:35px"><strong>类型对应type_id</strong></th>
+<th style="background-color:#BBDDE5;height:35px"><strong>对应页面的url</strong></th>
+<th style="background-color:#BBDDE5;height:35px"><strong>是否隐藏类型</strong></th>
+<th style="background-color:#BBDDE5;height:35px"><strong>操作</strong></th>
+{foreach from=$leixing item=lei}
+<tr align="center" style="background-color:#F4FAFB;">
+<td>{$lei.type_resort}</td>
+<td>{$lei.type_name}</td>
+<td>{$lei.type_id}</td>
+<td>{$lei.type_url}</td>
+{if $lei.type_yc eq 0}
+<td>隐藏</td>
+{else}
+<td>显示</td>
+{/if}
+<td> <a href="answers.php?act=t_edit&id={$lei.id}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:void(0)" onclick="t_remove({$lei.id})" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a></span></td>
+</tr>
+{/foreach}
+<tr><td colspan="5" style="background-color:#BBDDE5"></td></tr>
+</table>
+<form action="answers.php" method="post">
+<table>
+<tr><td class="label">类型标题:</td><td><input type="text"  name="type_name" size="35" value="{$ads.type_name}"/></td></tr>
+<tr><td class="label">类型对应type_id:</td><td><input type="text" name="type_id" size="35" style="width:80px" value="{$ads.type_id}"/><span style="color:red">*注意:类型type_id不可重复</span></td></tr>
+<tr><td class="label">排序:</td><td><input type="text" name="type_resort" size="35" style="width:80px" value="{$ads.type_resort}"/></td></tr>
+<tr><td class="label">对应页面的url:</td><td><input type="text" name="type_url" size="35" value="{$ads.type_url}"/></td></tr>
+<tr><td class="label">是否隐藏类型:</td>
+
+<td><select name="type_yc">
+<option value="0" {if $ads.type_yc eq 0}selected{/if}>隐藏</option>
+<option value="1" {if $ads.type_yc eq 1}selected{/if}>显示</option>
+
+</select></td></tr>
+   <input type="hidden" name="act" value="{$t_act}" />
+   <input type="hidden" name="id" value="{$ads.id}" />
+   <tr><td></td><td><input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" /></td></tr>
+</table>
+</form>
+{/if}
+<form action="answers.php" method="post" name="theForm" enctype="multipart/form-data">
+
+  <table width="100%" id="general-table" >
+     <caption style="text-align:left;font-size:16px;padding-left:10px">问答页</caption>
+
+    <tr>
+	
+      <td  class="label">
+       中文问：</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+        
+      </td>
+    </tr>
+	    <tr>
+	
+      <td  class="label">
+       英文问：</td>
+      <td>
+        <input type="text" name="en_title" value="{$ads.en_title}" size="35" />
+        
+      </td>
+    </tr>
+	
+	    <tr>
+      <td  class="label">
+       中文答：</td>
+      <td>
+	     <textarea name="content" cols="60" rows="5">{$ads.content}</textarea><br/>
+
+      </td>
+    </tr>
+		    <tr>
+      <td  class="label">
+       英文答：</td>
+      <td>
+	     <textarea name="en_content" cols="60" rows="5">{$ads.en_content}</textarea><br/>
+
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+       排序：</td>
+      <td>
+        <input type="text" name="resort" value="{$ads.resort}" size="35" style="width:80px"/>
+ 
+      </td>
+	  </tr>
+	    <tr>
+	   <td  class="label">
+       问答类型：</td>
+      <td>
+	  {if $action eq "add"}
+        <select name="as_type">
+	{foreach from=$leixing item=lei key=key}
+		<option value="{$lei.type_id}" {if $key eq 0} selected {/if}>{$lei.type_name}</option>
+		{/foreach}
+		</select>
+		 {else}
+		<select name="as_type">
+		{foreach from=$leixing item=lei}
+		<option value="{$lei.type_id}" {if $ads.as_type eq lei.type_id} selected {/if}>{$lei.type_name}</option>
+		{/foreach}
+		</select>
+		 {/if}
+      </td>
+    </tr>		
+
+	
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+	
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

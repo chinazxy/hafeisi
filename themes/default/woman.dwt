@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+
+
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+ {insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,bl_common.js,modernizr.js,jquery-picture-min.js,login.js,category.js'} 
+ 
+
+</head>
+
+<body>
+<div class="page clearfix">
+<div class="pages" style="width:100%;min-height:100%;margin:0px auto;">
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+  <div class="cont_box clearfix pad_bot0">
+    <div class="chan_fen clearfix">
+	{foreach from=$products item=vo}
+    	<div class="chan_fen_1 clearfix" data-src="{$vo.cat_photo}" style="background-image:url(themes/default/images/chan_img.jpg);background-repeat:no-repeat;background-size:cover;background-position:center center;">
+        	
+            <div class="chan_fen_2">
+            	<a href="woman.php?id={$vo.cat_id}">{$vo.cat_enname}<br /><span>{$vo.cat_name}</span></a>
+            </div>
+			{if $states eq 0}
+            <div class="chan_fen_3"><a href="woman.php?id={$vo.cat_id}" style="width:100%;height:100%;display:block;"></a></div>
+			 <div class="loadding"></div>
+			{/if}
+        </div>
+		{/foreach}
+    </div>
+  </div>
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+	   <script src="js/assets/js/modernizr.js"></script>
+
+    <script src="js/hammer.js"></script>
+
+
+</div>
+</div>
+</body>
+</html>

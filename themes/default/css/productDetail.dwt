@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<title>{$page_title}</title>
+
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/xiaoluo.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+	<link href="themes/default/css/jquery.fs.zoomer.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="js/owl.carousel.css">
+<link href="../../js/smallbig/cloudzoom.css" rel="stylesheet" type="text/css" />
+  {insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,bl_common.js,modernizr.js,jquery-picture-min.js,owl.carousel.min.js,common.js'}
+  <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&style=-1"></script>
+{if $ismobile eq 2}
+ {insert_scripts files='cloud-zoom.1.0.2.min.js,product_pc_detail.js'}
+{else}
+ {insert_scripts files='jquery.fs.zoomer.js,product_detail.js'}
+{/if}
+
+
+	
+
+
+</head>
+
+<body>
+
+<div class="page clearfix">
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="cont_box clearfix">
+    <div class="pro_main clearfix pad_b40">
+    	<div class="content clearfix xin_prod over_none">
+        <div class="prode_bor"></div>
+        
+        <div class="prode clearfix">
+        	<div class="prode_left clearfix">
+            <div class="prode_fan"><a href="javaScript:void(0);" onclick="history.back(-1);">返回</a></div>
+            <div class="prode_limgbox clearfix">
+         	<div class="prode_img clearfix">
+			{if $ismobile eq 2}
+			<a class="cloud-zoom" id="zoom1" href="{$colorfirst.attr_org}" rel="tintOpacity:0.5,zoomWidth:351,zoomHeight:351, adjustY:-4, adjustX:154">
+
+             <img src="{$colorfirst.attr_thumb}" />
+               </a>
+			   {else}
+			    <div class="fangda"></div>
+			    <div class="bd_imgs">
+			   <div class="bd_img"><img src="{$colorfirst.attr_thumb}" /></div>
+			   </div>
+			   {/if}
+			  
+            <div class="prode_tl">{$goods.goods_name}</div>
+            </div>
+         
+            </div>
+			{if $ismobile eq 2}
+			<div class="miao_prokong"><div class="drags">点击图片放大</div></div>
+			{/if}
+           </div>
+		   
+		   
+		   <div class="prode_right m_prode_right clearfix prode_right1">
+        	<div class="prode_right_box1 clearfix">
+            	<div class="prode-rh1">{$goods.goods_sn}</div>
+                <div class="prode-rh2">{$goods.goods_name}</div>
+                
+
+                
+                
+                <div class="pro_rbox1 clearfix">
+                	
+					<!-- {foreach from=$specification item=spec key=spec_key} -->
+				   {if $spec.name eq "颜色"}
+                    <div class="pro_rbox2 clearfix  pro_rbox2_on" style="display:block">
+                        	<div class="pro_rbox2_t">
+                            <div class="pro_rbox2_t1">颜色<span class="show_color">{$colorfirst.label}</span></div>
+                               <ul>
+                                        <!-- {foreach from=$spec.values item=value key=key} -->
+                            	   	{if $ismobile eq 2}
+						           <li style="background-color:{$value.color}"><a class="cloud-zoom-gallery"  href="{$value.attr_org}" title="55" rel="useZoom: 'zoom1', smallImage: '{$value.attr_thumb}' "><div class="p_color" data_title="{$value.label}"></div></a></li>
+							   {else}
+							   	   <li style="background-color:{$value.color}" class="color-pic"   ><div class="p_color"  data-big="{$value.attr_org}" data-src="{$value.attr_thumb}"  data_title="{$value.label}"></div></li>
+							   {/if}
+								<!--{/foreach}-->
+                               </ul>
+                            </div>
+                        </div> 
+						{/if}  
+				
+				    <!-- {/foreach} -->  
+                </div>
+                	
+             <div class="pro_price">￥699</div>
+            <div class="priceButton">
+              <a href="#">加入购物车</a>
+            </div>       
+            </div>
+            
+              <div class="prode_right_box1 right_box3 clearfix prode_right1" style="padding-bottom:0px;">
+            <div class="pro_rbox1 topb clearfix">
+              <div class="pro_rb1 ">详细特征</div>
+              <div class="pro_rbox2 clearfix">
+                <div class="pro_rbox2_t">
+                  <div class="pro_rbox2_t2">{$goods.goods_desc}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+          <div class="prode_right_box1 right_box3 clearfix">
+            <div class="pro_rbox1 topb clearfix">
+   	<!-- {foreach from=$specification item=spec key=spec_key} -->
+				   {if $spec.name eq "尺寸"} 	 
+              <div class="pro_rb1">尺寸</div>
+			  <div class="pro_rbox2 clearfix">
+                <div class="pro_rbox2_t">
+                  <div class="pro_rbox2_t2">
+                  		   <!-- {foreach from=$spec.values item=value key=key} -->
+                  	<div class="pro_chicun">
+                    	<div class="pro_chicun1">{$value.label}</div>
+                        <div class="pro_chicun2">{$value.color}</div>
+                    </div>
+                	<!--{/foreach}-->
+                  </div>
+                </div>
+              </div>
+			  	{/if}
+				   {/foreach}
+              <div class="xin_fenxiang">
+          	<div class="xin_fenxiang1">分享:</div>
+      		<ul>
+            	<li><a title="新浪" onClick="javascript:bShare.share(event,'sinaminiblog',10);return false;"><img class="svg_class" src="themes/default/images/p_xw.svg" date-src="themes/default/images/p_xw.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;" title="新浪" id="Sina"/></a></li>
+                <li><a title="微信" onClick="javascript:bShare.share(event,'weixin',10);return false;"><img class="svg_class" src="themes/default/images/p_wx.svg" date-src="themes/default/images/p_wx.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;" title="微信" id="Sina"/></a></li>
+                <li><a title="腾讯微博" onClick="javascript:bShare.share(event,'qqmb',10);return false;"><img class="svg_class" src="themes/default/images/p_tw.svg" date-src="themes/default/images/p_tw.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;" title="腾讯微博" id="Sina" /></a></li>
+                <li><a title="qq空间" onClick="javascript:bShare.share(event,'qzone',10);return false;"><img class="svg_class" title="qq空间" id="Sina" src="themes/default/images/p_kong.svg" date-src="themes/default/images/p_kong.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;"/></a></li>
+            </ul>
+          </div>
+            </div>
+          </div>
+
+            
+        </div>
+           
+           <div class="prode_push clearfix">
+         <div class="completeTheLook clearfix">
+		     	  {if $count_related_goods gt 0}
+         	<div class="linebox clearfix">
+            	<div class="titleTheLook">浏览其他相关产品</div>
+                <div class="sub_til">为您提供更多搭配建议</div>
+            </div>
+        
+                <div class="pro_qi clearfix ">
+            	<div id="owl-demo" class="owl-demo">
+			
+				     {foreach from=$related_goods item=goods}
+                	<div>
+                    	<a href="goods.php?id={$goods.goods_id}">
+                        	<div class="qi_img"><img src="{$goods.goods_thumb}" /></div>
+                            <div class="qi_txt">{$goods.goods_name}</div>
+                        </a>
+                        <div class="qi_price">{$goods.shop_price}</div>
+                    </div>
+                        {/foreach}
+					
+                
+					
+                </div>
+                
+                <div class="jianbian1 jian owl-prev"><div class="jianbian1_left "></div></div>
+                <div class="jianbian2 jian2 owl-next"><div class="jianbian2_right"></div></div>
+                
+                
+            </div>
+            	{/if}
+				{if $hiscount neq 0}
+            <div class="liulan clearfix">
+            	<div class="liulan_til">曾经浏览过的产品</div>
+                <div class="liulanimg clearfix">
+                    <div  id="owl-his" class="owl-his">
+					 {foreach from=$historygoods item=goods}
+						{if $goods.goods_id gt 0}
+                        <div>
+                            <a href="goods.php?id={$goods.goods_id}"><div class="liulan_ibox"><img src="{$goods.goods_thumb}" /></div></a>
+                        </div>
+                    	{/if}
+                         {/foreach}
+				
+                    </div>
+                    
+                    
+                    <div class="jianbian1 his_prev"><div class="jianbian1_left "></div></div>
+                    <div class="jianbian2 his_next"><div class="jianbian2_right"></div></div>
+                    
+                    
+                </div>
+            </div>
+            {/if}
+            
+            
+         </div>
+       </div>
+                 
+        </div>
+        
+        <div class="prode_right prode_right_pc clearfix">
+        	<div class="prode_right_box1 clearfix">
+            	<div class="prode-rh1">{$goods.goods_sn}</div>
+                <div class="prode-rh2">{$goods.goods_name}</div>
+                
+   
+                
+                	 <!-- {foreach from=$specification item=spec key=spec_key} -->
+				   {if $spec.name eq "颜色"}  
+                  <div class="pro_rbox1 clearfix">
+ 
+                    <div class="pro_rbox2 clearfix pro_rbox2_on" style="display:block">
+                  	
+				   <div class="pro_rbox2_t">
+                            	<div class="pro_rbox2_t1">颜色<span class="show_color">{$colorfirst.label}</span></div>
+                         <ul>
+                                   <!-- {foreach from=$spec.values item=value key=key} -->
+                            	   	{if $ismobile eq 2}
+						           <li style="background-color:{$value.color}" ><a class="cloud-zoom-gallery"  href="{$value.attr_org}" title="{$value.label}" rel="useZoom: 'zoom1', smallImage: '{$value.attr_thumb}' "><div data_title="{$value.label}" class="p_color"></div></a></li>
+							   {else}
+							   	   <li style="background-color:{$value.color}" class="color-pic"   ><div data-big="{$value.attr_org}" data-src="{$value.attr_thumb}"  data_title="{$value.label}" class="p_color"></div></li>
+							   {/if}
+								<!--{/foreach}-->
+                               </ul>
+                            </div>
+                        </div>   
+					
+                   </div>  
+					{/if}
+				   {/foreach}
+				
+                
+            <div class="pro_price">￥699</div>
+            <div class="priceButton">
+              <a href="#">加入购物车</a>
+            </div>
+                
+ 
+                
+            </div>
+            
+                <div class="prode_right_box1  right_box3 clearfix" style="padding-bottom:0px;">
+            <div class="pro_rbox1 topb clearfix">
+              <div class="pro_rb1 ">详细特征</div>
+              <div class="pro_rbox2 clearfix">
+                <div class="pro_rbox2_t">
+                  <div class="pro_rbox2_t2">{$goods.goods_desc}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+                 <div class="prode_right_box1 right_box3 clearfix">
+            <div class="pro_rbox1 topb clearfix">
+			<!-- {foreach from=$specification item=spec key=spec_key} -->
+				   {if $spec.name eq "尺寸"} 	 
+              <div class="pro_rb1">尺寸</div>
+			  <div class="pro_rbox2 clearfix">
+                <div class="pro_rbox2_t">
+                  <div class="pro_rbox2_t2">
+                  		   <!-- {foreach from=$spec.values item=value key=key} -->
+                  	<div class="pro_chicun">
+                    	<div class="pro_chicun1">{$value.label}</div>
+                        <div class="pro_chicun2">{$value.color}</div>
+                    </div>
+                	<!--{/foreach}-->
+                  </div>
+                </div>
+              </div>
+			  	{/if}
+				   {/foreach}
+              <div class="xin_fenxiang">
+          	<div class="xin_fenxiang1">分享:</div>
+       
+				
+			<ul>
+            	<li><a title="新浪" onClick="javascript:bShare.share(event,'sinaminiblog',10);return false;"><img class="svg_class" src="themes/default/images/p_xw.svg" date-src="themes/default/images/p_xw.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;" title="新浪" id="Sina"/></a></li>
+                <li><a title="微信" onClick="javascript:bShare.share(event,'weixin',10);return false;"><img class="svg_class" src="themes/default/images/p_wx.svg" date-src="themes/default/images/p_wx.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;" title="微信" id="Sina"/></a></li>
+                <li><a title="腾讯微博" onClick="javascript:bShare.share(event,'qqmb',10);return false;"><img class="svg_class" src="themes/default/images/p_tw.svg" date-src="themes/default/images/p_tw.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;" title="腾讯微博" id="Sina" /></a></li>
+                <li><a title="qq空间" onClick="javascript:bShare.share(event,'qzone',10);return false;"><img class="svg_class" title="qq空间" id="Sina" src="themes/default/images/p_kong.svg" date-src="themes/default/images/p_kong.png" style="width:100%;display:block;" date-style="width:100%; margin-top:0px; margin-left:0px;"/></a></li>
+            </ul>
+		
+          </div>
+            </div>
+          </div>
+
+
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+
+		
+    </div>
+</div>
+
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+
+
+
+
+
+
+
+
+<div class="zezao clearfix wishbak" >
+	<div class="zezao_color">
+	
+    	<div class="wishlist_nav">
+         <div class="wishlist_box clearfix">
+            <div class="wishlist_box2 clearfix">
+            	<div class="wishlist_san"></div>
+                <div class="wishlist_close"></div>
+                <div class="wishlist_img">
+                	<div class="wishlist_img_left"><img src="" /></div>
+                    <div class="wishlist_img_right">
+                    	<div class="wishlist_img_right1"></div>
+                        <div class="wishlist_img_right2"><span>已添加至愿望单</span><!-- <a href="#">进入愿望单</a> --></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    	
+		</div>
+    </div>
+</div>
+</div>
+<div class="viewer" style="display:none;">
+    <img src="{$colorfirst.attr_org}">
+</div>
+</body>
+</html>

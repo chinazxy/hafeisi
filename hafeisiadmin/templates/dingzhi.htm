@@ -1,0 +1,367 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\添加)/i, "$1removeImg$3$4移除");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletItem(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+     Ajax.call('jk.php', 'id=' + id+'&act=deleteitem', removeItem, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeItem(result){
+
+    if(result.err==0){
+	
+	  alert("删除失败!");
+	
+	}else{
+	
+	 if(result.id>0){
+	
+	 	 var obj=document.getElementById("item_"+result.id);
+	
+	var row = rowindex(obj);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+	 }
+
+	}
+
+
+}
+
+
+
+function deletImg2(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg2&id="+id;
+  
+  }
+ 
+
+}
+function deletImg3(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg3&id="+id;
+  
+  }
+ 
+
+}
+
+
+function vi_show(obj){
+    if(obj.value==0){
+	  dc('vi_url1').style.visibility='collapse';
+	  dc('vi_url2').style.visibility='collapse';
+	  dc('vi_url3').style.visibility='collapse';
+
+	}else{
+
+	    dc('vi_url3').style.visibility='visible';
+		dc('vi_url1').style.visibility='visible';
+		dc('vi_url2').style.visibility='visible';
+
+	}
+}
+function dc(id){
+    return document.getElementById(id);
+}
+
+
+function removeDz(id,tid,tc,gid){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+  var args = "act=remove&id=" + id +"&ids=" + tid +"&ctype=" + tc+"&gid=" + gid
+     Ajax.call('jk.php', args, removeCate, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeCate(result){
+
+ window.parent.frames["main-frame"].location="jk.php?act=add&id="+result.id+"&type_c="+result.c_type+"&gid="+result.gid;
+
+}
+
+function checkItem(obj){
+
+ if(obj.checked==true){
+obj.checked=true;
+obj.nextSibling.value=obj.value;
+}else{
+obj.checked=false;
+obj.nextSibling.value="";
+
+}
+
+}
+
+</script>
+
+<div class="main-div">
+
+<form action="dingzhi.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table">
+      <tr>
+      <td  class="label">
+     产品代码：</td>
+      <td>
+        <input type="text" name="number" value="{$ads.number}" size="35" />
+ 
+      </td>
+    </tr>
+	
+
+	
+    <tr>
+      <td  class="label">
+      名称：</td>
+      <td>
+        <input type="text" name="cat_name" value="{$ads.cat_name}" size="35" />
+ 
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">
+     名称(英)：</td>
+      <td>
+        <input type="text" name="cat_enname" value="{$ads.cat_enname}" size="35" />
+ 
+      </td>
+    </tr>
+					      <tr>
+      <td  class="label">
+      品牌：</td>
+      <td>
+  <input type="text" name="brand" value="{$ads.brand}" size="35" />
+      </td>
+    </tr>
+				      <tr>
+      <td  class="label">
+      市场价：</td>
+      <td>
+  <input type="text" name="price" value="{$ads.price}" size="35" />
+      </td>
+    </tr>
+		      <tr>
+      <td  class="label">
+    款式：</td>
+      <td>
+        <input type="radio" name="style" value="0" {if $ads.style eq 0} checked="checked" {/if} size="35" />男款
+     <input type="radio" name="style" value="1" size="35" {if $ads.style eq 1}  checked="checked" {/if} />女款
+      </td>
+    </tr>
+	      <tr>
+      <td  class="label">
+    年份：</td>
+      <td>
+        <input type="text" name="year" value="{$ads.year}" size="35" />
+ 
+      </td>
+    </tr>
+	
+				    <tr>
+      <td  class="label">单眼瞳距：</td>
+      <td>
+          最大值：<input type="text" name="max_pd" value="{$ads.max_pd}" size="35" />最小值： <input type="text" name="min_pd" value="{$ads.min_pd}" size="35" />
+      </td>
+    </tr>
+				    <tr>
+      <td  class="label">瞳距：</td>
+      <td>
+          最大值：<input type="text" name="tg_max" value="{$ads.tg_max}" size="35" />最小值： <input type="text" name="tg_min" value="{$ads.tg_min}" size="35" />
+      </td>
+    </tr>
+	
+					    <tr>
+      <td  class="label">柱镜：</td>
+      <td>
+          最大值：<input type="text" name="max_c" value="{$ads.max_c}" size="35" />
+      </td>
+    </tr>
+	
+	
+
+	<!--  <tr>
+      <td  class="label">球镜：</td>
+      <td>
+          最大值：<input type="text" name="max_sph" value="{$vo.max_sph}" size="35" />最小值：<input type="text" name="min_sph" value="{$vo.min_sph}" size="35" />
+      </td>
+    </tr>
+						    <tr>
+      <td  class="label">柱镜：</td>
+      <td>
+          最大值：<input type="text" name="max_cyl" value="{$vo.max_cyl}" size="35" />最小值： <input type="text" name="min_cyl" value="{$vo.min_cyl}" size="35" />
+      </td>
+    </tr>-->
+			
+	    <tr>
+      <td  class="label">
+     镜框图片：</td>
+      <td>
+        <input type="file" name="images"  /> <input type="hidden" value="{$ads.images}" name="hide_img" /> {if $ads.images neq ""} <img src="../{$ads.images}" width="50px" height="auto" /> {/if}
+ 
+      </td>
+    </tr>
+			    <tr>
+      <td  class="label">是否显示：</td>
+      <td>
+       <select name="isshow">
+	    <option value="1" {if $ads.isshow eq 1} selected {/if}>显示</option>
+		 <option value="0" {if $ads.isshow eq 0} selected {/if}>不显示</option>
+	   </select>
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">显示顺序</td>
+      <td>
+        <input type="text" name="resort" value="{$ads.resort}" size="35" />
+      </td>
+    </tr>
+		    <tr>
+      <td  class="label">大图镌刻文字层偏移百分比(内侧)</td>
+      <td>
+       距右侧:<input type="text" style="text-align:center;" name="right_val" value="{$ads.right_val}" size="5" />%&nbsp;&nbsp;&nbsp;&nbsp;距底部:<input style="text-align:center;" type="text" name="bottom_val" value="{$ads.bottom_val}" size="5" />%（镜腿镌刻文字层偏移百分比）
+      </td>
+    </tr>
+
+			    <tr>
+      <td  class="label">大图镌刻文字层偏移百分比(外侧)</td>
+      <td>
+       距右侧:<input type="text" style="text-align:center;" name="right_val_w" value="{$ads.right_val_w}" size="5" />%&nbsp;&nbsp;&nbsp;&nbsp;距底部:<input style="text-align:center;" type="text" name="bottom_val_w" value="{$ads.bottom_val_w}" size="5" />%（镜腿镌刻文字层偏移百分比）
+      </td>
+    </tr>
+	
+	
+			    <tr>
+      <td  class="label">小图镌刻文字层偏移百分比(内侧)</td>
+      <td>
+       距右侧:<input type="text" style="text-align:center;" name="s_right_val" value="{$ads.s_right_val}" size="5" />%&nbsp;&nbsp;&nbsp;&nbsp;距底部:<input style="text-align:center;" type="text" name="s_bottom_val" value="{$ads.s_bottom_val}" size="5" />%（镜腿镌刻文字层偏移百分比）
+      </td>
+    </tr>
+
+			    <tr>
+      <td  class="label">小图镌刻文字层偏移百分比(外侧)</td>
+      <td>
+       距右侧:<input type="text" style="text-align:center;" name="s_right_val_w" value="{$ads.s_right_val_w}" size="5" />%&nbsp;&nbsp;&nbsp;&nbsp;距底部:<input style="text-align:center;" type="text" name="s_bottom_val_w" value="{$ads.s_bottom_val_w}" size="5" />%（镜腿镌刻文字层偏移百分比）
+      </td>
+    </tr>
+	
+	
+	    <tr>
+      <td  class="label">
+     分享标题：</td>
+      <td>
+        <input type="text" name="share_title" value="{$ads.share_title}" size="35" />(如腾讯、新浪等平台分享标题)
+ 
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+     分享内容：</td>
+      <td>
+        <textarea  name="share_content" rows="10" cols="60" />{$ads.share_content}</textarea>(如腾讯、新浪等平台分享描述)
+ 
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">可配置选项</td>
+      <td>
+          <table style="background:#ccc;width:400px">
+		  {foreach from=$menulist item=vo key=i}
+		  
+		   
+		    <tr style="{if $vo.menu_set eq 0}display:none;{/if}">
+			  <td>{$vo.name}</td>
+			  <td><img src="../{$vo.images}" /></td>
+			  <td><input type="checkbox" name="pztype" {if $vo.menu_set eq 0} checked="checked" {else} {if $vo.checked eq "checked"}  checked="checked" {/if} {/if} value="{$vo.id}" onchange="checkItem(this);" /><input type="hidden" {if $vo.menu_set eq 0} value="{$vo.id}" {else} {if $vo.checked eq "checked"}  value="{$vo.id}" {else}  value="" {/if} {/if} name="navval[]" /></td>
+			</tr>
+		
+		   {/foreach}
+		  </table>
+      </td>
+    </tr>		
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+       {if $form_act neq "update"} <input type="submit" value="添加" class="button" /> {else} <input type="submit" value="修改" class="button" /> {/if}
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+		<input type="hidden" name="cid" value="{$ads.id}" />
+		<input type="hidden" name="ids" value="{$ids}" />
+		
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

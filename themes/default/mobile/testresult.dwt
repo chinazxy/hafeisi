@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="qc:admins" content="417303730346274766367164506000" />
+<meta property="qc:admins" content="417303730346274766367164506000" />
+<meta content="text/html; charset=iso-8859-1" http-equiv="content-type">
+<meta content="webkit" name="renderer">
+<meta name="viewport" content=" initial-scale=1.0, minimum-scale = 1, maximum-scale = 1" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+
+<title>韩菲诗-测试结果</title>
+<link type="text/css" rel="stylesheet" href="themes/default/mobile/css/css.css" />
+<link type="text/css" rel="stylesheet" href="themes/default/mobile/css/pagescss.css" >
+    <link type="text/css" rel="stylesheet" href="themes/default/mobile/css/lgcss.css" media="screen">
+<script src="themes/default/mobile/js/jquery-1.6.0.min.js"></script>
+<script src="themes/default/mobile/js/mob.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?4e3ecdb5c097aa7bce45a4667f9470c7";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+
+<div id="div1" class="sy_page ">
+<!--头部-->
+ <!-- #BeginLibraryItem "/mobile/library/mobile_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="max-w">
+<div class="mar-1"><img src="themes/default/mobile/img/title.png" alt="你的护肤顾问"></div>
+<div class="max-w1">
+		
+		<div class="w_zhu">
+		<div class="best-1"><h2>第一步 洁净</h2></div>
+		<div class="best-2"><p>选择类型：</p><div class="best-3 sever">洁面乳</div></div>
+		<div class="w_chan bo_opq">
+                    <ul>
+                    {foreach from=$one item=v key=k name=name}
+                        {if $smarty.foreach.name.iteration % 3 neq 0}
+                            <li class="">
+					        <a href="goods.php?id={$v.goods_id}">
+                                <div class="w_tuo"><img src="{$v.pic}" /></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$v.goods_name}</span><span class="cha_s1">￥{$v.price} - {$v.name}</span></div>
+                            </a>
+							</li>
+                            {else}
+                            <li class="sever">
+							 <a href="goods.php?id={$v.goods_id}">
+                                <div class="w_tuo"><img src="{$v.pic}" /></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$v.goods_name}</span><span class="cha_s1">￥{$v.price} - {$v.name}</span></div>
+                            </a>
+							</li>
+                        {/if}
+                    {/foreach}
+                            
+
+                    </ul>
+                </div>
+		</div>
+
+		<div class="w_zhu">
+		<div class="best-1"><h2>第二步 滋养</h2></div>
+		<div class="best-2"><p>选择类型：</p><div class="best-3 sever">滋润 护理</div></div>
+		<div class="w_chan bo_opq">
+                    <ul>
+                        {foreach from=$two item=v key=k name=name}
+                        
+                        {if $smarty.foreach.name.iteration % 3 neq 0}
+                            <li class="">
+                           <a href="goods.php?id={$v.goods_id}">
+                                <div class="w_tuo"><img src="{$v.pic}" /></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$v.goods_name}</span><span class="cha_s1">￥{$v.price} - {$v.name}</span></div>
+                            </a>
+                            </li>
+                            {else}
+                            <li class="sever">
+                            <a  href="goods.php?id={$v.goods_id}">
+                                <div class="w_tuo"><img src="{$v.pic}" /></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$v.goods_name}</span><span class="cha_s1">￥{$v.price} - {$v.name}</span></div>
+                            </a>
+                            </li>
+                        {/if}
+                    {/foreach}
+
+                    </ul>
+                </div>
+		</div>
+
+		<div class="w_zhu">
+		<div class="best-1"><h2>第三步 防护</h2></div>
+		<div class="best-2"><p>选择类型：</p><div class="best-3 sever">隔离霜</div></div>
+		<div class="w_chan bo_opq">
+                    <ul>
+                     {foreach from=$three item=v key=k name=name}
+                        {if $smarty.foreach.name.iteration % 3 neq 0}
+                            <li class="">
+                           <a  href="goods.php?id={$v.goods_id}">
+                                <div class="w_tuo"><img src="{$v.pic}" /></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$v.goods_name}</span><span class="cha_s1">￥{$v.price} - {$v.name}</span></div>
+                            </a>
+                            </li>
+                            {else}
+                            <li class="sever">
+                            <a href="goods.php?id={$v.goods_id}">
+                                <div class="w_tuo"><img src="{$v.pic}" /></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$v.goods_name}</span><span class="cha_s1">￥{$v.price} - {$v.name}</span></div>
+                            </a>
+                            </li>
+                        {/if}
+                    {/foreach}
+
+                    </ul>
+                </div>
+		</div>
+
+    </div>
+ </div>
+
+  <!--底部-->
+ <!-- #BeginLibraryItem "/mobile/library/footer.lbi" --><!-- #EndLibraryItem -->
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+ {insert_scripts files='../js/region.js,../js/shopping_flow.js'}
+
+  <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+function delet(id){
+
+  if(confirm("您确定要删除该条数据吗?")){
+   
+	 location.href="goods_p.php?act=delet&id="+id;
+  }
+}
+
+function deletImg(din,id){
+
+  if(confirm("您确定要删除该图片吗?")){
+    if(din=='p'||din=='s'){
+	/*alert('不你好');*/
+    location.href="goods_p.php?act=deleteimg&id="+id;
+     }else{
+	/* alert('你好');*/
+	 location.href="goods_p.php?act=deleteimgz&id="+id+"&din="+din;
+	 }
+  }
+ 
+
+}
+
+
+</script>
+<div class="main-div">
+<form action="goods_p.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table" >
+
+	
+    <tr> <td colspan="2" class="tianjia">
+	{if $action eq "add"}
+       <table width="90%" id="gallery-table"  align="center">
+	   <caption style="text-align:left;font-size:16px">产品角度图</caption>
+          <tr>
+            <td style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+			
+              <a href="javascript:;" onclick="addOrder(this)">[+]</a>
+			   标题：<input type="text" name="zj_title[]" size="20"/><br/>		  
+			   显示排序：<input type="text" name="zj_resort[]" size="20" style="width:80px"/><br/>			
+               电脑背景图片：<input type="file" name="zj_file[]"/><span style="color:#FF0000">PC端宽720*高365</span><br/>
+			   手机背景图片：<input type="file" name="zj_file[]" /><span style="color:#FF0000">手机端宽640*高800</span><br/>
+			      </td>
+             </tr>
+        </table>
+		{else}
+	       <table  width="90%" id="gallery-table"  align="center">
+		      <caption style="text-align:left;font-size:16px">品牌内页</caption>
+		     <tr>
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" onclick="addOrder(this)">[+]</a>
+			   标题：<input type="text" name="zj_ttitle[]" size="20"/><br/>
+               产品颜色对应其它角度图选择:<select name="zj_ccolor[]">
+			      {foreach from=$spe item=vs}
+				
+				     {if $vs.name eq "颜色"}
+					  
+					   {foreach from=$vs.values item=cs}
+					   
+					    <option value="{$cs.id}">{$cs.label}<img src="{$cs.attr_thumb}" width="50px" height="50px" /></option>
+					   
+					   {/foreach}
+					 
+					 {/if}
+				  
+				  {/foreach}
+			   </select>
+			   显示排序：<input type="text" name="zj_tresort[]" size="20" style="width:80px"/><br/>
+               电脑背景图片:<input type="file" name="zj_tfile[]"/><span style="color:#FF0000">PC端宽720*高365</span><br/>
+			   手机背景图片:<input type="file" name="zj_tfile[]" /><span style="color:#FF0000">手机端宽640*高800</span><br/>
+			      </td>
+             </tr>
+		  {foreach from=$child item=ch}  
+          <tr>
+            <td style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+			   <a href="javascript:;" onclick="delet({$ch.id})">[-]</a>
+			   标题：<input type="text" name="zj_title[]" size="20" value="{$ch.title}"/><br/>
+               产品颜色对应其它角度图选择:<select name="zj_color[]">
+			      {foreach from=$spe item=vs}
+				
+				     {if $vs.name eq "颜色"}
+					  
+					   {foreach from=$vs.values item=cs}
+					   
+					    <option value="{$cs.id}" {if $cs.id eq  $ch.color_id  } selected {/if} >{$cs.label}<img src="{$cs.attr_thumb}" width="50px" height="50px" /></option>
+					   
+					   {/foreach}
+					 
+					 {/if}
+				  
+				  {/foreach}
+			   </select>
+			   显示排序：<input type="text" name="zj_resort[]" size="20" style="width:80px" value="{$ch.resort}"/><br/>
+               {if $ch.child_imp_m}<img src="../{$ch.child_imp_m}"/><input type="button" value="删除图片" onclick="deletImg('p_z',{$ch.id})"/><br/>{/if}
+			   电脑背景图片:<input type="file" name="zj_file[]"/><span style="color:#FF0000">PC端宽720*高365</span><br/>
+			  {if $ch.child_ims_m}<img src="../{$ch.child_ims_m}"/><input type="button" value="删除图片" onclick="deletImg('s_z',{$ch.id})"/><br/>{/if}
+			   手机背景图片:<input type="file" name="zj_file[]" /><span style="color:#FF0000">手机端宽640*高800</span><br/>
+			      </td>
+             </tr>		
+			 {/foreach}
+        </table>
+
+		{/if}
+	</td>
+</tr>
+	
+	
+
+		
+
+	
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ids}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

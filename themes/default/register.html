@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<title>{$page_title}</title>
+
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+<link type="text/css" rel="stylesheet" href="themes/default/css/website.css" />
+ {insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,jquery.tinyscrollbar.js,bl_common.js,register.js'} 
+
+</head>
+
+<body>
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+
+<div class="page clearfix">
+
+
+
+  <div class="cont_personal_wrap clearfix">
+  {if $shop_reg_closed eq 0}
+  <div class="cont_personal_box mar_b60 clearfix">
+     <div class="title">BOLON账户注册<div class="anquansuo">安全</div>
+	 </div>
+	 <div class="neirong">
+		<div class="miao_log_nei clearfix">
+			<div class="miao_log_de clearfix">
+				<div class="miao_log_de1 clearfix">
+					<div class="miao_log_de_t">请于下方注册建立BOLON账户</div>
+
+                    	<span class="miao_log_de_inw field-with-placeholder">
+                        	<label class="placeholder">登录邮箱</label>
+                            <input type="text" class="miao_log_de_in account" />
+                        </span>
+              
+					
+         
+					<span class="miao_log_de_inw field-with-placeholder">
+                        	<label class="placeholder">密码</label>
+                            <input type="password" class="miao_log_de_in  bl_password" />
+                    </span>
+                    <span class="miao_log_de_inw field-with-placeholder">
+                        	<label class="placeholder">确认密码</label>
+                            <input type="password" class="miao_log_de_in conpasswords" />
+                    </span>
+                    <div class="register_box1_down mar_t20 ">
+        	<div style="display:block;" class="register_box1_down_right wid_100 ">
+			<input type="checkbox" checked="checked" class="regi_butbox register_but regi_butbox">
+            
+                <div class="register_bu_t zcxy showxeiyi">我已阅读并同意《<a class="showxeiyi" href="JavaScript:void(0);">BOLON会员注册协议</a>》</div>
+            </div>
+        </div>
+					
+					<div class="miao_mima1_ts1"></div>
+					 <div class="miao_log_t3 mar_t40">
+                    	<div class="miao_log_t3_1 regi_title6_b"><a href="javaScript:void(0);">注&nbsp;册</a></div>
+                        <div class="miao_log_t3_2"></div>
+                    </div>
+				</div>
+			</div>
+			<div class="miao_log_de bor_r clearfix">
+				<div class="miao_log_de2 clearfix">
+					<div class="miao_log_de_t">创建您的BOLON账号</div>
+					<div class="miao_log_de2_tb">注册一个帐号成为会员，您将获得更多关于品牌 的专属服务。同时您能通过此帐号任意购买您所心仪的产品。 并将关注的商品分享至任意社交媒体上。</div>
+					<div class="miao_log_t12"><a href="user.php?act=login">我已有BOLON账号</a></div>
+				</div>
+			</div>
+
+		</div>
+	 </div>
+  </div>
+  {else}
+    <div class="cont_personal_box mar_b60 clearfix">
+     <div class="title">BOLON账户注册<div class="anquansuo">安全</div>
+	 </div>
+	 <div class="neirong">
+		<div class="miao_log_nei clearfix">
+	  					  <div class="usBox" style="font-size: 20px;
+
+   
+    position: absolute;
+    text-align: center;
+    width: 100%;">
+      <div class="usBox_2">
+        <div class="f1 f5" align="center">{$lang.shop_register_closed}!</div>
+      </div>
+    </div>
+
+		</div>
+	 </div>
+  </div>
+
+  {/if}
+  
+  </div>
+ 
+ 
+  
+  
+  
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+  
+   
+   
+  
+
+
+
+  
+</div>
+
+<div class="register_alert_box">
+<div class="register_xieyi_box">
+<div class="guanbi"></div>
+<div class="xieyi_box">
+<div class="title">{$articleinfo.title}<span>/ {$articleinfo.entitle}</span></div>
+<div class="xieyi_box_t">
+<div class="searchContain " style="height:100%;width:100%">
+		<div class="live-research no-select" id="scrollbar1" style="height:300px;width:100%;"> 
+	    <div class="scrollbar" style="top:0px"><div class="track"><div class="thumb"></div></div></div>
+		<div class="live-content no-select viewport" style="padding-left:10px; text-indent:0px;width:95%"> 
+		<div class="live-item no-select fashion-store overview">
+	    {$articleinfo.content}
+	    </div> 
+		
+		
+		</div>  
+
+		</div> 
+		</div>
+
+</div>
+</div>
+
+</div>
+<div class="register_bg"></div>
+</div>
+</body>
+</html>

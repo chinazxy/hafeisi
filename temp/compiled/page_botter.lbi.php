@@ -1,0 +1,3 @@
+<div class="cbbfixed"  style="bottom: 40px;">
+<a href="javascript:void(0);" class="cbbtn cweixin"><span class="yy-icon yy-weixin"><img  date-src="themes/default/images/erwm.png" src="themes/default/images/erwm.svg" class="svg_class" /></span><div></div></a>
+<a href="javascript:void(0);" class="cbbtn cweixin fan_top"><span class="yy-icon yy-gt"><img  date-src="themes/default/images/xs.png" src="themes/default/images/xs.svg" class="svg_class" /></span></a></div>

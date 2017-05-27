@@ -1,0 +1,181 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletImg(id,pid,type){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="yjzy.php?act=deleteimg&id="+id+"&pid="+pid+"&t"+type
+  
+  }
+ 
+
+}
+</script>
+<div class="main-div">
+<form method="post" action="yjzy.php" enctype="multipart/form-data" name="theForm" )">
+<table width="100%" >
+
+<tr>
+  <td>
+ 
+  <table>
+  <!--<tr>
+    <td class="label">地区:</td>
+    <td><input type="text" name="area" maxlength="60" value="" /></td>
+  </tr>
+
+  <tr>
+    <td class="label">描述:</td>
+    <td><textarea   rows="3" cols="60" name="des"></textarea></td>
+  </tr>-->
+  
+  <tr>
+    <tr style="display:none;">
+    <td class="label">背景图片:</td>
+	{if $bg.id gt 0}
+	<td><img src="../{$bg.thump_m}" width="100px" height="100px" ><input type="button" onclick="deletImg({$bg.id},{$id},'yjzy')" value="删除"><input type="file" name="bgimg"></td>
+	{else}
+    <td><input type="file" name="bgimg"></td>
+	
+	{/if}
+  </tr>
+  
+  <tr>
+    
+    <td class="label">首页轮播图集:</td>
+   <td>
+      <font color="red">（注：图片宽:475px 高:240px）</font>
+   <table id="gallery-table">  
+   {foreach from=$imgarray item=img} 
+   <tr>
+  
+ 
+	<td>
+	  <input type="hidden" value="{$img.title}" name="edit_title[]">
+	  图片:<img src="../{$img.thump_m}" width="50px" height="50px" >
+	  显示顺序:<input type="text" value="{$img.resort}" size="5" name="edit_resort[]">
+	  
+	  <input type="button" value="删除" onclick="deletImg({$img.id},{$id},'yjzy')" >
+	  <input type="file"  name="edit_file[]" />
+	  <input type="hidden" value="{$img.id}" name="edit_id[]"></td>
+
+	
+   </tr>	{/foreach}
+   <tr>
+	<td>
+	  <a href="javascript:;" onclick="addOrder(this)" >[+]</a>
+	<input type="hidden" value="" name="title[]">显示顺序:<input type="text" size="5" value="" name="resort[]">图片:<input type="file"  name="file[]" />
+	</td>
+	</tr>
+	</table>
+   </td>
+  </tr>
+  
+
+ 
+
+  
+
+  </td>
+  </tr>
+  </table>
+   {if $user.parent_id}
+  <tr>
+    <td class="label">{$lang.parent_user}:</td>
+    <td><a href="users.php?act=edit&id={$user.parent_id}">{$user.parent_username}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="users.php?act=remove_parent&id={$user.user_id}">{$lang.parent_remove}</a></td>
+  </tr>
+  {/if}
+  {if $affiliate.on eq 1 && $affdb}
+  <tr>
+    <td class="label">{$lang.affiliate_user}:</td>
+    <td>[<a href="users.php?act=aff_list&auid={$user.user_id}">{$lang.show_affiliate_users}</a>][<a href="affiliate_ck.php?act=list&auid={$user.user_id}">{$lang.show_affiliate_orders}</a>]</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>   
+    <table border="0" cellspacing="1" style="background: #dddddd; width:30%;">
+    <tr>
+    <td bgcolor="#ffffff">{$lang.affiliate_lever}</td>
+    {foreach from=$affdb key=level item=val0}
+    <td bgcolor="#ffffff">{$level}</td>
+    {/foreach}
+    </tr>
+    <tr>
+    <td bgcolor="#ffffff">{$lang.affiliate_num}</td>
+    {foreach from=$affdb item=val}
+    <td bgcolor="#ffffff">{$val.num}</td>
+    {/foreach}
+    </tr>
+    </table>
+    </td>
+  </tr> 
+  {/if}
+  
+ 
+  <tr>
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="{$lang.button_submit}" class="button" />
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+      <input type="hidden" name="act" value="add_yjzy" />
+        </td>
+  </tr>
+</table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

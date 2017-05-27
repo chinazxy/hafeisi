@@ -1,0 +1,261 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\添加)/i, "$1removeImg$3$4移除");
+
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletImg(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="push.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+
+
+
+function vi_show(obj){
+    if(obj.value==0){
+	  dc('vi_url1').style.visibility='collapse';
+	  dc('vi_url2').style.visibility='collapse';
+	  dc('vi_url3').style.visibility='collapse';
+
+	}else{
+
+	    dc('vi_url3').style.visibility='visible';
+		dc('vi_url1').style.visibility='visible';
+		dc('vi_url2').style.visibility='visible';
+
+	}
+}
+function dc(id){
+    return document.getElementById(id);
+}
+
+
+
+function deletItem(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+     Ajax.call('push.php', 'id=' + id+'&act=deleteitem', removeItem, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeItem(result){
+
+    if(result.err==0){
+	
+	  alert("删除失败!");
+	
+	}else{
+	
+	 if(result.id>0){
+	
+	 	 var obj=document.getElementById("item_"+result.id);
+	
+	   var row = rowindex(obj);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+	 }
+
+	}
+
+
+}
+</script>
+<div class="main-div">
+<form action="push.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%">
+    <tr>
+      <td  class="label">
+       中文标题：</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+ 
+      </td>
+    </tr>
+
+	
+	    <tr>
+      <td  class="label">
+       英文标题：</td>
+      <td>
+        <input type="text" name="entitle" value="{$ads.entitle}" size="35" />
+ 
+      </td>
+    </tr>
+   <tr>
+      <td  class="label">导航分类：</td>
+	  <td>
+	  <table  id="gallery-table">
+  
+    <tr>
+      <td><a href="javascript:;" style="color:blue;" onclick="addOrder(this)">[添加]</a><br/>导航：(中)：<input type="text" name="cat_name[]" value="{$ads.cat_name}" size="20" /> 导航：(英)：<input type="text" name="cat_enname[]" value="{$ads.cat_enname}" size="20" />跳转链接：<input type="text" name="link[]" value="{$ads.link}" size="20" />显示顺序：<input type="text" name="resort[]" value="{$ads.link}" size="5" /></td>
+    </tr>
+
+  {foreach from=$navlist item=vo}	 
+  <tr id="item_{$vo.id}">
+      <td> <a href="javascript:;" onclick="deletItem({$vo.id},this)" style="color:red">删除</a><input type="hidden" value="{$vo.id}" name="e_ids[]"/><br/>导航：(中)：<input type="text" name="e_cat_name[]" value="{$vo.cat_name}" size="20" /> 导航：(英)：<input type="text" name="e_cat_enname[]" value="{$vo.cat_enname}" size="20" />跳转链接：<input type="text" name="e_link[]" value="{$vo.link}" size="20" />显示顺序：<input type="text" name="e_resort[]" value="{$vo.resort}" size="5" /></td>
+    </tr>
+ {/foreach}
+
+     </table>
+	     </td>
+    </tr>
+
+    <tr style="display:none">
+      <td  class="label">中文描述：</td>
+      <td>
+        <input type="text" name="descript" value="{$ads.descript}" size="35" />
+      </td>
+    </tr>
+	
+	    <tr style="display:none">
+      <td  class="label" >英文描述：</td>
+      <td>
+        <input type="text" name="endescript" value="{$ads.endescript}" size="35" />
+      </td>
+    </tr>
+	
+	    <tr style="display:none">
+      <td  class="label">链接地址：</td>
+      <td>
+        <input type="text" name="url" value="{$ads.url}" size="35" />
+      </td>
+    </tr>
+	
+		
+	    <tr>
+      <td  class="label">排序：</td>
+      <td>
+        <input type="text" name="resort" value="{$ads.resort}" size="35" />
+      </td>
+    </tr>
+	  	  <tr>
+	  <td  class="label">是否显示：</td>
+      <td>
+ 	  {if $action eq "add"}
+	         <select name="isshow">
+	    <option value="1" selected >显示</option>
+		 <option value="0">不显示</option>
+	   </select>
+	  {else}
+	         <select name="isshow">
+	    <option value="1" {if $ads.isshow eq 1} selected {/if}>显示</option>
+		 <option value="0" {if $ads.isshow eq 0} selected {/if}>不显示</option>
+	   </select>
+	  {/if}
+      </td>
+	  </tr> 
+
+	
+	
+    <tr>
+	 
+      <td  class="label">背景图片：</td>
+      <td>
+        <input type="file" name="file" size="35" /><span style="color:#FF0000">宽590*高240</span>
+		{if $ads.images neq ''}
+		   <img src="../{$ads.thump_o}" /><input type="hidden" value="{$ads.images}" name="org_img" /> <input type="hidden" value="{$ads.thump_o}" name="thump_img" /> <input type="button" value="删除图片" onclick="deletImg({$ads.id})" > 
+		{/if}
+		
+      </td>
+    </tr>
+
+	  <tr style="display:none">
+	 
+      <td  class="label">手机图：</td>
+      <td>
+        <input type="file" name="img2" size="35" />
+		{if $ads.thump_s neq ''}
+		   <img src="../{$ads.thump_s}" /> <input type="hidden" value="{$ads.thump_s}" name="img2" /> <input type="hidden" value="{$ads.thump_s}" name="img2" /> <input type="button" value="删除图片" onclick="deletImg2({$ads.id})" > 
+		{/if}
+      </td>
+    </tr>
+	
+	  <tr style="display:none">
+	 
+      <td  class="label">手机小图：</td>
+      <td>
+        <input type="file" name="img3" size="35" />
+		{if $ads.thump_sx neq ''}
+		   <img src="../{$ads.thump_sx}" /> <input type="hidden" value="{$ads.thump_sx}" name="img3" /> <input type="hidden" value="{$ads.thump_sx}" name="img3" />  <input type="button" value="删除图片" onclick="deletImg3({$ads.id})" > 
+		{/if}
+      </td>
+    </tr>
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

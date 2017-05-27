@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+<meta name="Generator" content="ZOANO v2.7.2" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="Molsion 陌森眼镜--官方网站" />
+<meta name="Description" content="Molsion 陌森眼镜--官方网站" />
+<title>Molsion 陌森眼镜</title>
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/set1.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/set2.css" />
+  <meta content="textml; charset=iso-8859-1" http-equiv="content-type">
+<meta content="webkit" name="renderer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+<script type="text/javascript">
+var process_request = "正在处理您的请求...";
+</script>
+ <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+ <script type="text/javascript" src="js/jquery.json.js"></script>
+ <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+ <script type="text/javascript" src="js/bl_common.js"></script>
+ <script type="text/javascript" src="js/jquery-picture-min.js"></script>
+ <script type="text/javascript" src="js/index.js"></script>
+
+</head>
+
+<body>
+<div class="page clearfix">
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+
+
+<div class="cont_box clearfix">
+	<div class="content_img1 has_opacity" style="overflow:hidden;">
+		<!-- {foreach from=$photolist item=vo}-->
+    	<div class="content_img1_imgbox" >
+		
+			  		<figure class="effect-apollo" data-media250="{$vo.thump_s}" data-media320="{$vo.thump_s}" data-media480="{$vo.thump_s}"  data-media680="{$vo.thump_s}"  data-media960="{$vo.images}"  title="">
+           		<img  src="" data-src="{$vo.images}" style="visibility:hidden"  />
+			
+              <noscript>
+                   		<img src="" data-src="{$vo.images}" style="visibility:hidden"  />
+            </noscript>
+			<figcaption>
+			
+			</figcaption>
+              </figure>
+		</div>
+<!--{/foreach}-->
+			<div class="loadding "></div>
+    </div>
+
+<div class="content clearfix mar_bot20">  
+	<div class="mol_cont clearfix">
+    	<ul>
+		{foreach from=$hot item=list key=i}
+		{if ($i+1)%3 eq 0}
+            <li  class="mar_r0" >
+            	<div class="mol_img"><a href="{$list.url}"><img src="{$list.goods_img}" /></a></div>
+                <div class="mol_txt"><a href="{$list.url}">{$list.goods_name}<br/>{$list.entitle}<br/>
+rmb:{$list.shop_price}</a></div>
+            </li>
+			{else}
+			 <li>
+            	<div class="mol_img"><a href="{$list.url}"><img src="{$list.goods_img}" /></a></div>
+                <div class="mol_txt"><a href="{$list.url}">{$list.goods_name}<br/>{$list.entitle}<br/>
+rmb:{$list.shop_price}</a></div>
+			{/if}
+			{/foreach}
+           
+        </ul>
+    
+    </div>       
+</div>
+
+<div class="content_img1 has_opacity" style="overflow:hidden;">
+    	
+			<div class="content_img1_imgbox">
+			  		<figure class="effect-jazz"  data-media250="{$shipinim.images}" data-media320="{$shipinim.images}" data-media480="{$shipinim.images}"  data-media680="{$shipinim.images}"  data-media960="{$shipinim.images}"  title="">
+           		<img src="" data-src="{$shipinim.images}" style="visibility:hidden"  />
+			
+              <noscript>
+                   		<img src="" data-src="{$shipinim.images}" style="visibility:hidden"  />
+            </noscript>
+					<div class="content_img1_t"><figcaption><h2>{$shipinim.title}</h2><br/><span style="width:250px;text-align:center">{$shipinim.entitle}</span> </figcaption></div>
+             </figure>
+		</div>
+	           
+       
+			<div class="loadding "></div> 
+			 
+			
+    </div>
+
+
+<div class="content clearfix mar_bot20" > 
+	<div class="fangzhuan">
+    	<div class="fangzhuan_img loadding"><div class="bd_img"><img src="images/momo1.jpg" /></div></div>
+        <div class="fang">
+        	<ul>
+			{foreach from=$imchange item=im key=key}
+			{if $key eq 0}
+            	<li data-src="{$im.bkimage_p}" class="bor_left"><div class="fan_img "><a href="{$im.url}"><img src="{$im.product_p}" /></a></div></li>
+            {/if}
+           	{if $key eq 1}
+			   <li data-src="{$im.bkimage_p}"><div class="fan_img"><a href="{$im.url}"><img src="{$im.product_p}" /></a></div></li>
+			{/if}
+            {if $key eq 2}
+			   <li data-src="{$im.bkimage_p}"><div class="fan_img "><a href="{$im.url}"><img src="{$im.product_p}" /></a></div></li>
+			{/if}
+            {if $key eq 3}
+				<li data-src="{$im.bkimage_p}" class="bor_left bor_bottom"><div class="fan_img "><a href="{$im.url}"><img src="{$im.product_p}" /></a></div></li>
+			{/if}
+            {if $key eq 4}
+				<li data-src="{$im.bkimage_p}" class="bor_bottom"><div class="fan_img "><a href="{$im.url}"><img src="{$im.product_p}" /></a></div></li>
+			{/if}
+            {if $key eq 5}
+				<li data-src="{$im.bkimage_p}" class="bor_bottom"><div class="fan_img "><a href="{$im.url}"><img src="{$im.product_p}" /></a></div></li>
+			{/if}
+			{/foreach}
+			{if $ci eq 1}
+                <li data-src=""><div class="fan_img"></div></li>
+                <li data-src=""><div class="fan_img "></div></li>
+                <li data-src="" class="bor_left bor_bottom"><div class="fan_img "></div></li>
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+			{/if}
+			  {if $ci eq 2}
+                
+                <li data-src=""><div class="fan_img "></div></li>
+                <li data-src="" class="bor_left bor_bottom"><div class="fan_img "></div></li>
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+			{/if}
+				{if $ci eq 3}
+              
+                <li data-src="" class="bor_left bor_bottom"><div class="fan_img "></div></li>
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+			{/if}
+				{if $ci eq 4}
+               
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+			{/if}
+			  {if $ci eq 5}
+           
+                <li data-src="" class="bor_bottom"><div class="fan_img "></div></li>
+			{/if}
+            </ul>
+        </div>
+</div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+</div>
+</body>
+</html>

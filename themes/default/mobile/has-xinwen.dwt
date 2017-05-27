@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >  
+<meta name="Keywords" content="{$keywords}" />
+	<meta name="Description" content="{$description}" />
+<title>韩菲诗-新闻页</title>
+<link type="text/css" rel="stylesheet" href="themes/default/mobile/css/css.css" />
+
+<link rel="stylesheet" media="screen and (max-width: 320px)" href="themes/default/mobile/css/auto.css" />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?4e3ecdb5c097aa7bce45a4667f9470c7";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<script type="text/javascript" src="themes/default/mobile/js/jquery-1.7.2.min.js"></script>
+
+<body>
+<div class="sy_page">
+<!--二维码弹窗-->
+<!-- #BeginLibraryItem "/mobile/library/mobile_header.lbi" --><!-- #EndLibraryItem -->
+    <div class="z_index">
+  <div class="position_fiexd">
+  <img src="themes/default/mobile/img/xw.jpg"/>
+    <div class="gz_w">
+			<div class="gz_line"></div>
+			<div class="gz_t">新闻</div>
+			<div class="gz_t1">News</div>
+		</div>
+  </div>
+  <span class="visibility"><img class="visibility" src="themes/default/mobile/img/xw.jpg"/></span>
+  </div> 
+    <!--导航目录-->
+   
+  <div class="w_zhong padding_back">
+{foreach from=$zxlist item=vo key=k}
+  <div class="zhong"> 
+
+<div class="gz_box4">
+	<div class="w_cptu"><a href="{if $vo.author_email eq ''}zx_detail.php?id={$vo.article_id} {else} {$vo.author_email} {/if}"><img src="{$vo.file_url}"></a></div>
+	<div class="gz_bt">
+	<a href="zx_detail.php?id={$vo.article_id}">
+		<div class="gz_bt1">{$vo.addtime}.{$vo.month}</div>
+	<div class="gz_bt2">{$vo.title}</div>
+							</a>
+						</div>
+					
+  
+  </div>
+</div>
+{/foreach}
+<!--底部-->
+ <!-- #BeginLibraryItem "/mobile/library/mobile_footer.lbi" --><!-- #EndLibraryItem -->
+	 </div>
+
+	
+
+<script type="text/javascript" src="themes/default/mobile/js/mob.js"></script>
+</body>
+</html>

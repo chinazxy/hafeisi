@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="text/html; charset=iso-8859-1" http-equiv="content-type">
+<meta content="webkit" name="renderer">
+<meta name="viewport" content=" initial-scale=1.0, minimum-scale = 1, maximum-scale = 1" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$zxlist.title}-{$page_title}</title>
+    		 <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/> 
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/css.css" />
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/auto.css" />
+<script type="text/javascript" src="js/2016/jquery-1.9.0.min.js"></script>
+<link type="text/css" rel="stylesheet" href="themes/default/css/css.css" />
+   <script type="text/javascript">
+var lang_search='{$lang.l_search}';
+<?php $timestame=time();?>
+var timestamp='<?php echo $timestame;?>';
+var lang_search='{$lang.l_search}';
+var token='<?php $mdstr=$GLOBALS['_CFG']['md5str'].$timestame; echo md5($mdstr);?>';
+</script>
+<script type="text/javascript" src="js/2016/jquery-easing-1.3.js"></script>
+<script type="text/javascript" src="js/2016/jquery-picture-min.js"></script>
+
+
+
+</head>
+<body>
+<div class="gpage clearfix">
+<div class="gb clearfix">
+	<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="dapa clearfix">
+	<div class="daze"></div>
+	<div class="gz_m mar clearfix">
+			<div class="gz_con clearfix">
+				<div class="gp_box">
+					<div class="gz_de"><img src="{$article.bg}"/><div class="gzx">{$article.cat_enname}</div></div>
+					<div class="gz_dw">
+						<h1>{$zxlist.title}</h1>
+							<div class="gz_dw1">
+							<img src="{$zxlist.index_plot}"/>
+							<p><span>{$looks} |  HAFEISI</span><br/></p>
+							<div>{$zxlist.encontent}</div>
+						</div>
+						<div class="gz_dw2 clearfix">
+							
+							<div class="gz_dt clearfix">
+								<div class="gz_dt1">
+									<div class="gz_d1">News</div>
+									<div class="gz_d2">
+									{foreach from=$conference item=vo}
+										<div class="gz_d3"><a  href="zx_detail.php?id={$vo.article_id}"><span class="sj"><img src="images/sj.png"/></span>{$vo.title}</a></div>
+									{/foreach}																			
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				
+				
+				</div>
+			</div>
+			
+	</div>
+		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+	</div>
+</div>
+
+</div>
+<script type="text/javascript" src="js/2016/w.js"></script>
+<script type="text/javascript" src="js/2016/newsdetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- #BeginLibraryItem "/library/content_header.lbi" --><!-- #EndLibraryItem -->
+<link type="text/css" rel="stylesheet" href="themes/default/css/style.css" />
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+ {insert_scripts files='maps.js'}
+</head>
+
+
+    <!--导航开始-->
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+ 
+    <body>
+	
+	<div class="shop_bigbox">
+<div class="shop_cont clearfix">
+	<div class="shop_title">当前位置：<span><a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="about.php">关于佐纳</a>&nbsp;&gt;&nbsp;{if $parent_id gt 0}<a href="about.php?id={$pcatinfo.cat_id}">{$pcatinfo.cat_name}</a>{/if}</span>{if $cat_id gt 0} &nbsp;&gt;&nbsp;<a href="about.php?id={$catinfo.cat_id}">{$catinfo.cat_name}</a>{/if}</div>
+    <div class="shop_imgbox clearfix">
+  		<div class="sport_left clearfix">
+        	<div class="sport_left_nav clearfix">
+			
+            	<div class="product_p_line"></div>
+                <div class="sport_left_nav1 clearfix">
+                	<a  href="JavaScript:void(0);" class="current">佐纳店铺</a>
+					
+                	<div class="store_alert"  style="width:257px">
+
+	<div class="store_box store-locator">
+					
+						<div class="store_box store-locator">
+						<div class="info-panel">	
+						<div class="store_search_v">
+		<input class="store_input zk" type="text" value="请输入城市地点" style="width: 238px; opacity: 1;">
+<form id="myform_search" style="display:none;" name="myform_search" method="get" action="">
+<input type="text" name="q">
+</form>
+<div class="store_search">
+<a href="JavaScript:void(0);">
+<img src="../images/search.png">
+</a>
+</div>
+</div>
+
+					<div class="store-filters"> 
+	<div class="filter-title">按精品店查询</div> 
+	   {foreach from=$typelist item=tl key=i}
+	     {if $i eq $nums-1 }
+		<div id="store-fashion" attr_id="{$tl.id}" class="store-filter store-filter-selected">{$tl.name}</div>
+		
+		{else}
+			<div id="store-fashion" attr_id="{$tl.id}" class="store-filter">{$tl.name}</div>
+		{/if}
+		
+		{/foreach}
+		
+                   
+				
+                    </div>
+		  {if $nums gt 0}
+		
+		<div class="empty" style="height:60%;width:100%;border-top: 1px solid #E2E2E2; margin-top:20px;display:none;">没有搜索到相关数据!</div>
+		 
+		<div class="searchContain " style="height:60%;width:100%">
+		<div class="live-research no-select" id="scrollbar1"> 
+	    <div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>
+		<div class="live-content no-select viewport" > 
+		<div class="live-item no-select fashion-store overview">
+
+	
+	
+	    {foreach from=$list item=ts}
+	 
+		<div class="live-info" x="{$ts.xsize}" y="{$ts.ysize}"> 
+        <div class="live-name">{$ts.title}</div>
+        <div class="live-address">地址：<span class="address">{$ts.address}</span></div>  
+		<div class="live-address">电话：<span class="phone">{$ts.phone}</span></div>  
+		<div class="live-address">传真：<span class="fax">{$ts.fax}</span></div>  
+		<div class="live-address">全国客服服务热线：<span class="hotline">{$ts.onlinephone}</span></div>  
+        </div>
+		
+       {/foreach}
+
+		
+		
+
+		
+
+		
+		
+		</div> 
+		
+		
+		</div>  
+
+		</div> 
+		</div>
+		{else}
+		
+				<div class="empty" style="height:60%;width:100%;border-top: 1px solid #E2E2E2; margin-top:20px;display:show;">暂无数据!</div>
+		 
+		<div class="searchContain " style="height:60%;width:100%;display:none;">
+		<div class="live-research no-select" id="scrollbar1"> 
+	    <div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>
+		<div class="live-content no-select viewport" > 
+		<div class="live-item no-select fashion-store overview">
+
+	
+	
+	   
+	 {foreach from=$list item=ts}
+	
+		<div class="live-info" onclick="item(this)"  x="{$ts.xsize}" y="{$ts.ysize}" > 
+        <div class="live-name"><?php echo $val->getTitle(); ?></div>
+        <div class="live-address">地址：<span class="address">{$ts.address}</span></div>  
+		<div class="live-address">电话：<span class="phone">{$ts.phone}</span></div>  
+		<div class="live-address">传真：<span class="fax">{$ts.fax}</span></div>  
+		<div class="live-address">全国客服服务热线：<span class="hotline">{$ts.onlinephone}</span></div>  
+        </div>
+		
+     {/foreach}
+
+		
+		
+
+		
+
+		
+		
+		</div> 
+		
+		
+		</div>  
+
+		</div> 
+		</div>
+		{/if}
+                    </div>
+				
+                </div>
+			</div>
+         </div>
+		 </div>
+             <div class="product_p_line"></div>
+           </div>
+        </div>
+        
+        <div class="sport_right">
+        	<div class="sport_right_img1"><a href="JavaScript:void(0);"><img src="../images/advocate.png" /></a></div>
+			{if $catinfo.cat_id neq 13}
+            <div class="sport_right_txtbox clearfix p_bot110">
+				<div class="new_main_tlt">佐纳店铺/<span>Zoano Stone</span></div>
+                <div class="sport_right_txt2">	<div class="store_box_right loadding" id="store_box_right" style="height:100%;width:100%;background:white;">
+
+		       <div id="iCenter" class="icenter"></div>  
+       
+		
+		</div></div>
+            </div>
+			{/if}
+        </div>
+        
+        
+    </div>
+</div>
+</div>
+       <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+    </body>     
+    </html>  
+	
+	
+	

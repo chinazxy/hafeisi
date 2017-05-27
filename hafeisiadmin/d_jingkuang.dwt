@@ -1,0 +1,1187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<title>{$page_title}</title>
+
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/jquery.stellar.css" />
+<link rel="stylesheet" type="text/css" href="js/video-js.css" />
+<link type="text/css" rel="stylesheet" href="js/flexslider.css" />
+<link rel="stylesheet" href="js/owl.carousel.css">
+<script type="text/javaScript">
+var cid={$cid};
+var gl_edit=[];
+var gl_p_edit=[];
+var gl_attr_edit=[];
+var glp=[];
+{foreach from=$attr_list item=vo key=i}
+{if $vo eq ""}
+gl_attr_edit["{$i}"]="";
+{else}
+gl_attr_edit["{$i}"]="{$vo}";
+{/if}
+{/foreach}
+{foreach from=$attr_id item=vo key=i}
+{if $vo eq ""}
+gl_edit["{$i}"]="";
+{else}
+gl_edit["{$i}"]="{$vo}";
+{/if}
+{/foreach}
+{foreach from=$img_price item=vo key=i}
+{if $vo eq ""}
+gl_p_edit["{$i}"]="";
+{else}
+gl_p_edit["{$i}"]="{$vo}";
+{/if}
+{/foreach}
+
+
+
+{if $tg_min neq ""}
+var tg_min="{$tg_min}";
+{/if}
+
+{if $tg_max neq ""}
+var tg_max="{$tg_max}";
+{/if}
+{if $union_sc neq ""}
+var union_sc="{$union_sc}";
+{/if}
+
+var jkprice="{$jkprice}";
+
+</script>
+<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+	   {if $ismobile eq 2}
+ {insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,jquery.mousewheel.js,bl_common.js,jquery.stellar.min.js,modernizr.js,jquery-picture-min.js,video.js,bl_brand.js,owl.carousel.min.js'} 
+{else}
+{insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,bl_common.js,modernizr.js,jquery-picture-min.js,jquery-migrate-1.2.1.min.js,video.js,other.js,jquery.imgpreload.js,owl.carousel.min.js,jquery.tinyscrollbar.js,dingzhi.js,jquery.flexslider.js'} 
+{/if}
+
+<style type="text/css"> 
+
+.footer_up{display:none;}
+</style> 
+
+</head>
+
+
+<body>
+
+<div class="s_box" style="display:none;">
+  <div class="s_box1"><img src="#" /></div>
+  <div class="s_box2"></div>
+
+</div>
+	
+
+<div class="page clearfix">
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+
+  <div class="cont_personal_dingzhi clearfix">
+    <div class="jiaz">
+         <div class="tebox"><span></span>%</div>
+    </div>
+    <div class="dingzhi clearfix" style="visibility:hidden">
+      <div class="dingz_box3">
+        <ul>
+		{foreach from=$menulist item=vo}
+		   {if $vo.type_s eq 0}
+		    <li><a href="dingzhishouye.php"><img src="{$vo.images}"/></a></li>
+		   {/if}
+		   		   {if $vo.type_s eq 1}
+		   <li class="li_c_attr li_item lb_c_g"><a href="javaScript:void(0);"><img src="{$vo.images}"/></a></li>
+		   {/if}
+		   	  {if $vo.type_s eq 4}
+	        <li class="li_c_contain li_item lb_c_jt"><a href="javaScript:void(0);"><img src="{$vo.images}"/></a></li>
+		 {/if}
+		 {if $vo.type_s eq 2}
+	        <li class="li_c_contain li_item lb_c_jh"><a href="javaScript:void(0);"><img src="{$vo.images}"/></a></li>
+		 {/if}
+		 
+	
+		 
+		 	 {if $vo.type_s eq 3}
+	        <li class="li_c_item li_item "><a href="javaScript:void(0);"><img src="{$vo.images}"/></a></li>
+		 {/if}
+		{/foreach}
+         
+         
+        </ul>
+      </div>
+      <div class="dingz_box2">
+	   <input type="hidden" value="{$reid}" class="rids" />
+        <div class="dingz_box22 clearfix">
+			{foreach from=$info item=vo key=k name=ikey}
+		 {if $k neq 3}
+          <div class="d_xunh clearfix{if $k eq 0} jk_contain {/if}{if $k eq 1} qk_contain {/if}{if $k eq 2} sj_contain {/if}{if $k eq 3} jp_contain {/if}{if $k eq 4} jt_contain {/if}{if $k eq 5} jtt_contain {/if} {if $k eq 6} wj_contain {/if}" style="display:none;">
+            <div class="san_ding j_t{$smarty.foreach.ikey.index}"></div>
+            <div class="dingz_box2_h">
+			
+			
+			  <div class="dingz_box2_h1">{$vo.menu.name}</div>
+			  <div class="dingz_box2_h2">{$vo.menu.enname}</div>
+			  
+			  </div>
+			  {if $vo.other}
+			  	  <div class="dingz_miao clearfix" >
+				  <div  id="scrollbar_l" class="dingz_{$smarty.foreach.ikey.index}">
+		  <div class="scrollbar disable"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+             <div class="overview ">
+			
+				
+			   {foreach from=$vo.other item=vs name=inc}
+				 
+            <div class="jk_box clearfix">
+              <div class="jk_box1_w clearfix ">
+                <div class="jk_box2">{$vs.cat_name}<span class="infoimg"><img src="themes/default/images/info.png"/></span>
+                </div>
+                <div class="d_yinc  clearfix openon">
+                  <div class="jk_box3">
+                    <ul>
+                     {foreach from=$vs.attr item=vc}
+				
+                	<li onclick="itemAttr(this)" {if $k eq 0} class="jk" {/if}{if $k eq 1} class="qk" {/if}{if $k eq 2} class="sj" {/if}{if $k eq 3} class="jp" {/if}{if $k eq 4} font_color="{$vc.font_color}" class="jt" {/if} {if $k eq 5} class="jtt" {/if} {if $k eq 6} class="wj" {/if}attr_title="{$vc.title}" attr_p="{$vc.price}" attr_id="{$vc.id}" attr_entitle="{$vc.en_title}"  img_c="{$vc.img_c}" img_l="{$vc.img_l}"><a href="javaScript:void(0)">
+					<img src="{$vc.color_img}" {if $act eq "add_dingzhi"} {if $vc.default_show eq 1}  class="select" {/if} {else} {if $k eq 0 && $vc.id eq $jk} class="select" {/if}{if $k eq 1 && $vc.id eq $qk} class="select" {/if}{if $k eq 2 && $vc.id eq $sj} class="select" {/if}{if $k eq 3 && $vc.id eq $jp} class="select" {/if}{if $k eq 4 && $vc.id eq $jt} class="select" {/if} {if $k eq 5 && $vc.id eq $jtt} class="select" {/if}  {if $k eq 6 && $vc.id eq $wj} class="select" {/if} {/if} />
+					</a></li>
+                  {/foreach}
+				  
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			   {/foreach}
+	
+			   {else}
+			     <div class="jk_box clearfix dingzhi_empty">暂无配件!</div>
+			   {/if}
+
+            
+                {if $k eq 0}
+            <div class="jk_box clearfix">
+              <div class="jk_box1_w clearfix ">
+                <div class="jk_box2">尺寸大小&nbsp;&nbsp;<span>标准选择&nbsp;&nbsp;<span class="c_size">{if $sizes eq ""}{foreach from=$size.attr item=vc name=sv}{if $vc.default_show eq 1}{$vc.size}{/if}{/foreach}{else}{$sizes}{/if}</span></span><div class="d_sanx"></div></div>
+                <div class="d_yinc d_yinc_box clearfix openon">
+                  <div class="d_xuanan">
+				      {foreach from=$size.attr item=vc name=sv}
+					  
+                       <div class="d_xuanan1 born"><a href="javaScript:void(0);" {if $act eq "add_dingzhi"}  {if $vc.default_show eq 1} class="select"  {/if} {else} {if $size_id eq ""}  {if $smarty.foreach.sv.index eq 0} class="select" {/if} {else} {if $vc.id eq $size_id } class="select" {/if} {/if} {/if} attr_id="{$vc.id}" attr_value="{$vc.size}">{$vc.title}</a></div>
+             		    {/foreach}
+                  </div>
+                  <div class="jk_box3 ">
+                    <ul>
+						{foreach from=$size.attr item=vc name=sv}
+						
+                   
+                      <li onclick="itemAttr(this)" class="width84 no_s_s {if $smarty.foreach.sv.index%2 eq 0} borrig  {/if}"><a href="javaScript:void(0)"><img src="{$vc.images}"/></a></li>
+					    {/foreach}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/if}
+            </div>
+   </div> </div>
+		  </div>  </div>
+		  {else}
+		  
+		            <div class="d_xunh clearfix jp_contain" style="display:none;">
+            <div class="san_ding j_t{$smarty.foreach.ikey.index}"></div>
+            <div class="dingz_box2_h">
+					  <div class="dingz_box2_h1">{$vo.menu.name}</div>
+			  <div class="dingz_box2_h2">{$vo.menu.enname}</div>
+			</div>
+			  <div class="dingz_miao clearfix"> 
+			  		  <div  id="scrollbar_l" class="dingz_{$smarty.foreach.ikey.index}">
+		  <div class="scrollbar disable"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+             <div class="overview ">
+			<div class="jp_contains">
+			{if $jpcounts gt 1}
+			<div class="jk_box2">镜片选择<span class="infoimg"><img src="themes/default/images/info.png"/></span></div>
+            <div class="d_jpx">
+		             {foreach from=$glarrays item=vs name=jp}
+				
+                 <div class="d_jpx1" attr_id="{$vs.cat_info.cat_id}" jp_type="{$vs.cat_info.jp_type}" ><a href="javaScript:void(0);" {if $jp_id eq ""} {if $vs.cat_info.selected eq "select"} class="select" {/if} {else} {if $vs.cat_info.cat_id eq $jp_id}  class="select" {/if} {/if}>{$vs.cat_info.cat_name}</a></div>
+				 {/foreach}
+                
+             </div>
+		   {/if}
+		  {foreach from=$glarrays item=vs name=jps}
+		
+		   {if $vs.cat_info.jp_type eq 0}
+             <div class="jins clearfix" {if $jp_type eq ""} {if $vs.cat_info.selected eq "select"}  style="display:block;"  {else} style="display:none;" {/if} {else} {if $jp_type eq $vs.cat_info.jp_type} style="display:block;"  {else} style="display:none;"  {/if}{/if}>
+			 {foreach from=$vs.cat_info.child_c item=vsf}
+			   	 {foreach from=$vsf.items item=vp}
+            <div class="jk_box clearfix">
+              <div class="jk_box1_w clearfix">
+                <div class="jk_box2">{$vp.cat_name}
+                  <div class="d_sanx"></div>
+                </div>
+                <div class="d_yinc  clearfix openon">
+                  <div class="jk_box3">
+                    <ul>
+                         {foreach from=$vp.child_item item=vc}
+                	<li  onclick="itemAttr(this)"  {if $k eq 0} class="jk" {/if}{if $k eq 1} class="qk" {/if}{if $k eq 2} class="sj" {/if}{if $k eq 3} class="jp" {/if}{if $k eq 4} font_color="{$vc.font_color}" class="jt" {/if} {if $k eq 5} class="jtt" {/if} {if $k eq 6} class="wj" {/if} attr_title="{$vc.title}" jp_id="{$vs.cat_info.cat_id}" attr_p="{$vc.price}" jp_type="{$vs.cat_info.jp_type}" attr_id="{$vc.id}" attr_entitle="{$vc.en_title}"  img_c="{$vc.img_c}" img_l="{$vc.img_l}"><a href="javaScript:void(0)">
+					<img  src="{$vc.color_img}" {if $jp eq ""} {if $vc.selected eq "select"} class="select" {/if} {else}  {if $jp eq $vc.id} class="select" {/if} {/if}/>
+					</a></li>
+                  {/foreach}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+             {/foreach}
+			     {/foreach}
+            </div>
+			{else}
+            <div class="jins clearfix"  {if $jp_type eq ""}  {if $vs.cat_info.selected eq "select"}  style="display:block;"  {else}   style="display:none;" {/if}{else} {if $jp_type eq $vs.cat_info.jp_type} style="display:block;"  {else} style="display:none;"  {/if}{/if}>
+         {foreach from=$vs.cat_info.child_c item=vsf}
+	
+			   	 {foreach from=$vsf.items item=vp}
+            <div class="jk_box clearfix">
+              <div class="jk_box1_w clearfix">
+                <div class="jk_box2">{$vp.cat_name}
+                  <div class="d_sanx"></div>
+                </div>
+                <div class="d_yinc  clearfix openon">
+                  <div class="jk_box3">
+                    <ul>
+                         {foreach from=$vp.child_item item=vc}
+						
+                	<li  onclick="itemAttr(this)"  {if $k eq 0} class="jk" {/if}{if $k eq 1} class="qk" {/if}{if $k eq 2} class="sj" {/if}{if $k eq 3} class="jp" {/if}{if $k eq 4} font_color="{$vc.font_color}" class="jt" {/if}{if $k eq 5} class="jtt" {/if} {if $k eq 6} class="wj" {/if} attr_title="{$vc.title}" attr_p="{$vc.price}" jp_id="{$vs.cat_info.cat_id}" jp_type="{$vs.cat_info.jp_type}"  attr_id="{$vc.id}" attr_entitle="{$vc.en_title}" img_c="{$vc.img_c}" img_l="{$vc.img_l}"><a href="javaScript:void(0)">
+					<img {if $jp eq ""} {if $vc.selected eq "select"} class="select" {/if} {else}  {if $jp eq $vc.id} class="select" {/if} {/if} src="{$vc.color_img}" />
+					</a></li>
+                  {/foreach}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+			 {/foreach}
+             {/foreach}
+            
+            <div class="jk_box clearfix pab60">
+              <div class="jk_box1_w clearfix">
+                <div class="jk_box2">处方信息
+                  <div class="d_sanx"></div>
+                </div>
+                <div class="d_yinc d_yinc_box clearfix openon">
+                  <div class="j_chuf">
+			
+                  	<div class="j_chuf1">左眼</div>
+					<div class="d_bao">
+						  {foreach from=$cfarray item=vo key=ks}
+				    {if $ks eq 1}
+					<div class="wenzits2">
+		              
+                    <select class="j_chuf2 l_eye l_eye_s">
+					  <option value="">球镜/S</option>
+					   {foreach from=$vo item=vs key=kv}
+					    {if $l_eye_s neq "" && $l_eye_s eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					
+					   {/foreach}
+					</select>
+					</div>
+				   {/if}
+				    {if $ks eq 2}
+                    <div class="wenzits2">
+			       
+                    <select class="j_chuf2 l_eye l_eye_c">
+							  <option value="">柱镜/C</option>
+							  	   {foreach from=$vo item=vs key=kv}
+					       {if $l_eye_c neq "" && $l_eye_c eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					</div>
+						   {/if}
+						     {if $ks eq 3}
+                    <div class="wenzits2">
+			
+                    <select class="j_chuf2 l_eye l_eye_a">
+							  <option value="">轴位/A</option>
+							  			  	   {foreach from=$vo item=vs key=kv}
+					         {if $l_eye_a neq "" && $l_eye_a eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					</div>
+					   {/if}
+					   
+					   	     {if $ks eq 4}
+                    <div class="wenzits2">
+			
+                    <select class="j_chuf2 eye_t l_eye_t">  
+					   <option value="">左眼瞳距</option>
+							  			  	   {foreach from=$vo item=vs key=kv}
+					  	 	            {if $l_eye_t neq "" && $l_eye_t eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					</div>
+					{/if}
+				  {/foreach}
+					 </div>
+                  </div>
+                  <div class="j_chuf">
+                  	<div class="j_chuf1">右眼</div>
+						<div class="d_bao">
+						  {foreach from=$cfarray item=vo key=ks}
+				    {if $ks eq 5}
+                   <div class="wenzits2">
+					
+                    <select class="j_chuf2 r_eye r_eye_s">
+							  <option value="0">球镜/S</option>
+							  			  			  	   {foreach from=$vo item=vs key=kv}
+			         {if $r_eye_s neq "" && $r_eye_s eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					</div>
+					{/if}
+					  {if $ks eq 6}
+                   <div class="wenzits2">
+			
+                    <select class="j_chuf2 r_eye r_eye_c">
+					  <option value="">柱镜/C</option>
+					  			  			  	   {foreach from=$vo item=vs key=kv}
+					            {if $r_eye_c neq "" && $r_eye_c eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					</div>
+					{/if}
+					  {if $ks eq 7}
+                   <div class="wenzits2">
+			
+                    <select class="j_chuf2 r_eye r_eye_a">
+					  <option value="">轴位/A</option>
+					  			  			  	   {foreach from=$vo item=vs key=kv}
+					 	            {if $r_eye_a neq "" && $r_eye_a eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					</div>
+					{/if}
+					   {if $ks eq 8}
+                   <div class="wenzits2">
+				
+                    <select class="j_chuf2 eye_t r_eye_t">  
+							   <option value="">右眼瞳距</option>
+							  			  	   {foreach from=$vo item=vs key=kv}
+						  	 	            {if $r_eye_t neq "" && $r_eye_t eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					</div>
+					{/if}
+					{/foreach}
+                  </div></div>
+                  <div class="j_chuf">
+                  	<div class="j_chuf1">瞳距</div>
+		
+				  	<div class="wenzits2">
+		
+                      <label class="j_chuf2 eye_t pd_eye_t">0</label>
+					</div>
+                  </div>
+				  
+				  <div class="bcc" style="width:100%; font-size:12px; float:left; margin-top:10px; color:#f00;"></div>
+                </div>
+				
+              </div>
+            </div>
+            
+            
+            </div>
+			{/if}
+			{/foreach}
+			</div>
+			</div></div></div></div>
+          </div>
+		  
+		  {/if}
+	   {/foreach}
+
+
+
+
+          
+          <div class="d_xunh clearfix" style="display:none;">
+            <div class="san_ding j_t{math equation='$menucounts'}"></div>
+            <div class="dingz_box2_h">
+					  <div class="dingz_box2_h1">{$dkinf.name}</div>
+			  <div class="dingz_box2_h2">{$dkinf.enname}</div>
+			</div>
+			  <div class="dingz_miao clearfix"> 
+			   		  <div  id="scrollbar_l" class="dingz_{math equation='$menucounts'}">
+		  <div class="scrollbar disable"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+             <div class="overview ">
+            <div class="dingz_box2_1">镜腿外侧</div>
+			<div class="dingz_zuo dingz_font_s_w">
+                 <ul>
+	       
+                <li><a href="javaScript:void(0)" {if $type_w eq 0 || $type_w eq ""} class="select" {/if}>左边</a></li>
+                <li><a href="javaScript:void(0)"  {if $type_w eq 1} class="select" {/if}>右边</a></li>
+                <li class="mar_0 " ><a {if $type_w eq 2} class="select" {/if} href="javaScript:void(0)">两边</a></li>
+              </ul>
+            </div>
+            <div class="dingz_box2_in">
+              <input class="dingz_box2_inb2 jd_w_text" type="text" value="{$type_w_text}" />
+			 <div class="wenzits">还能输入<span>{if $w_strlen neq ""}{$w_strlen}{else}10{/if}</span>个字符</div>
+            </div>
+        
+            
+            
+            
+            <div class="dingz_box2_1">镜腿内侧</div>
+			<div class="dingz_zuo dingz_font_s_n">
+              <ul>
+                <li><a href="javaScript:void(0)" {if $type_n eq 0 || $type_n eq ""} class="select" {/if}>左边</a></li>
+                <li><a href="javaScript:void(0)"  {if $type_n eq 1} class="select" {/if}>右边</a></li>
+                <li class="mar_0"  ><a {if $type_n eq 2} class="select" {/if} href="javaScript:void(0)">两边</a></li>
+              </ul>
+            </div>
+            <div class="dingz_box2_in">
+              <input type="text" class="dingz_box2_inb2 jd_n_text" value="{$type_n_text}" />
+			  <div class="wenzits">还能输入<span>{if $n_strlen neq ""}{$n_strlen}{else}10{/if}</span>个字符</div>
+            </div>
+       </div></div></div></div>
+          </div>
+
+          <div class="d_xunh clearfix" style="display:none;">
+            <div class="san_ding j_t{math equation='$menucounts+1'}"></div>
+            <div class="dingz_box2_h">		<div class="dingz_box2_h1">{$jhinf.name}</div>
+			  <div class="dingz_box2_h2">{$jhinf.enname}</div></div>
+			    <div class="dingz_miao clearfix"> 
+					  <div  id="scrollbar_l" class="dingz_{math equation='$menucounts+1'}">
+		  <div class="scrollbar disable"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+             <div class="overview ">
+            <div class="jk_box clearfix">
+              <div class="jk_box1_w clearfix">
+                <div class="jk_box2">款式选择
+                  <div class="d_sanx"></div>
+                </div>
+                <div class="d_yinc clearfix openon">
+                  <div class="jk_box3">
+                    <ul>
+                 {foreach from=$boxlist item=vc name=bs}
+			
+                	<li attr_title="{$vc.title}" attr_id="{$vc.id}" class="bl_mbox bl_m_pbox bl_box_style "  box_img="{$vc.image}"><a href="javaScript:void(0)"><img class="{if $jh_id eq ""}  {if $vc.moren eq 1} select {/if} {else} {if $jh_id eq $vc.id}select{/if}  {/if}" src="{$vc.image_m}" /></a></li>
+                {/foreach}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+			  {foreach from=$boxlist item=vc name=bf}
+            <div class="jk_box jh_box_cz clearfix" {if $jh_id eq ""} {if $vc.moren eq 1} style="display:block" {else} style="display:none" {/if} {else}  {if $jh_id eq $vc.id} style="display:block" {else} {/if} style="display:none" {/if}>
+              <div class="jk_box1_w clearfix">
+                <div class="jk_box2">材质选择
+                  <div class="d_sanx"></div>
+                </div>
+                <div class="d_yinc d_yinc_box clearfix openon">
+                  <div class="jk_box3">
+                    <ul>
+					 {foreach from=$vc.attr item=vg name=bs}
+                      <li  onclick="itemAttr(this)" attr_title="{$vg.child_title}" font_color="{$vg.font_color}" attr_id="{$vg.id}" box_img="{$vg.image}" class="bl_mbox_cz"><a href="javaScript:void(0)">
+					  <img src="{$vg.image}" {if  $cz_id eq ""} {if $vg.moren eq 1} class="select" {/if} {else} {if $cz_id eq $vg.id}class="select"{/if} {/if} />
+					  </a></li>
+					  {/foreach}
+                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+             {/foreach}
+			   <div class="dingz_box2_1">线一</div>
+			       <div class="dingz_box2_in">
+              <input type="text"  class="dingz_box2_inb2 jh_line_one" value="{$jh_line_one}" />
+			  <div class="wenzits">还能输入<span>{if $line_one_strlen neq ""}{$line_one_strlen}{else}18{/if}</span>个字符</div>
+            </div>
+			  <div class="dingz_box2_1">线二</div>
+			      <div class="dingz_box2_in">
+              <input type="text" class="dingz_box2_inb2 jh_line_two" value="{$jh_line_two}" />
+			  <div class="wenzits">还能输入<span>{if $line_one_strlen neq ""}{$line_one_strlen}{else}18{/if}</span>个字符</div>
+            </div>
+			</div></div></div></div>
+          </div>
+		  
+		   
+		
+          <div class="d_xunh clearfix" style="display:none;">
+            <div class="san_ding j_t{math equation='$menucounts+2'}"></div>
+            <div class="dingz_box2_h">
+			<div class="dingz_box2_h1">{$ddinf.name}</div>
+			  <div class="dingz_box2_h2">{$ddinf.enname}</div>
+			  </div>
+			 <div class="dingz_miao clearfix"> 
+			 	  <div  id="scrollbar_l" class="dingz_{math equation='$menucounts+2'}">
+		  <div class="scrollbar disable"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+             <div class="overview ">
+            <div class="jk_box clearfix">
+              <div class="dk clearfix">
+                <div class="dk_box">
+                  <div class="dk_box3">镜框：</div>
+                  <div class="dk_box1 jk_attr_p">无</div>
+                  <div class="dk_box2 jk_attr_v">无</div>
+                </div>
+					{foreach from=$info item=vo key=k name=ikey}
+							{if $k eq 6}
+                <div class="dk_box">
+                  <div class="dk_box3">五金</div>
+                  <div class="dk_box1 wj_attr_p">无</div>
+                  <div class="dk_box2 wj_attr_v">无</div>
+                </div>
+				
+				{/if}
+					{if $k eq 1}
+                <div class="dk_box">
+                  <div class="dk_box3">前框饰布</div>
+                  <div class="dk_box1 qk_attr_p">无</div>
+                  <div class="dk_box2 qk_attr_v">无</div>
+                </div>
+				
+				{/if}
+				
+					{if $k eq 2}
+                <div class="dk_box">
+                  <div class="dk_box3">前框饰件</div>
+                  <div class="dk_box1 sj_attr_p">无</div>
+                  <div class="dk_box2 sj_attr_v">无</div>
+                </div>
+				{/if}
+				
+				{/foreach}
+                <div class="dk_box">
+                  <div class="dk_box3">镜片</div>
+                  <div class="dk_box1 jp_attr_p">无</div>
+                  <div class="dk_box2 jp_attr_v">无</div>
+				  <div class="js_show" style="display:none;">
+				  <div class="dk_box3">处方信息</div>
+                   <div class="dk_box1 w40 jp_attr_l">左眼</div>
+                   <div class="dk_box2 w60 jp_attr_vs">无</div>
+				          <div class="dk_box1 w40 jp_attr_ri">右眼</div>
+                   <div class="dk_box2 w60 jp_attr_vs">无</div>
+				       <div class="dk_box1 w40 jp_attr_t">瞳距</div>
+                   <div class="dk_box2 w60 jp_attr_vs">无</div>
+				   </div>
+                  </div>
+
+                <div class="dk_box">
+                  <div class="dk_box3">镜腿</div>
+                  <div class="dk_box1 jt_attr_p">无</div>
+                  <div class="dk_box2 jt_attr_v">无</div>
+                </div>
+					{foreach from=$info item=vo key=k name=ikey}
+				
+					{if $k eq 5}
+					     <div class="dk_box">
+                  <div class="dk_box3">脚套</div>
+                  <div class="dk_box1 jtt_attr_p">无</div>
+                  <div class="dk_box2 jtt_attr_v">无</div>
+                </div>
+					
+					{/if}
+					{/foreach}
+                <div class="dk_box">
+                  <div class="dk_box3">尺寸</div>
+                  <div class="dk_box1 size_attr_v">无</div>
+                  <div class="dk_box2"></div>
+                </div>
+                <div class="dk_box">
+                  <div class="dk_box3">刻字</div>
+                 <div class="dk_box1 kz_attr_l">镜腿外侧 <span class="wc_kz">(左边)</span></div>
+                   <div class="dk_box2 kz_attr_w">无</div>
+				          <div class="dk_box1 kz_attr_l">镜腿内侧 <span class="nc_kz">(左边)</span></div>
+                   <div class="dk_box2 kz_attr_n">无</div>
+                </div>
+
+                <div class="dk_box">
+                  <div class="dk_box3">镜盒</div>
+                  <div class="dk_box1 jh_attr_v">默认</div>
+                  <div class="dk_box2"></div>
+                </div>
+				
+				    <div class="dk_box">
+                  <div class="dk_box3">镜盒材质</div>
+                  <div class="dk_box1 jhcz_attr_v">默认</div>
+                  <div class="dk_box2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="dk_box4">共计 RMB <span class="total">{$total}</span></div>
+			</div></div></div></div>
+          </div>
+		  
+		  
+		  
+          <div class="dingz_box2_tj">
+            <div class="ding_baocuo"></div>
+			<div class="ding_tishi">{$maxstr}</div>
+            <div class="dingz_box2_tj1 prev_step"><a href="javaScript:void(0)">上一步</a></div>
+			{if $act=="dingzhi_edit"}
+			 <div class="dingz_box2_tj1 d_do dingzhi_edit mar_r" style="display:none;"><a href="javaScript:void(0)" class="select">修改</a></div>
+			 {else}
+			  <div class="dingz_box2_tj1 d_do done mar_r" style="display:none;"><a href="javaScript:void(0)" class="select">加入购物车</a></div>
+			 {/if}
+            <div class="dingz_box2_tj1 next_step mar_r"><a href="javaScript:void(0)" class="select">下一步</a></div>
+			<!--<a href="javaScript:void(0);" class="qqzone">qqzone</a>
+				<a href="javaScript:void(0);" class="qqweibo">qqweibo</a>
+				<a href="javaScript:void(0);" class="sinaweibo">sinaweibo</a>-->
+				
+                      
+          </div>
+		  <div class="dz_fx">
+				<ul>
+					<li class="d_img1 qqweibo">
+					<div class="sharejiaz">
+					<div class="dingz_guan4"></div>
+					<div class="anbox">您的{$jkdinfo.title}眼镜可以分享啦！</div>
+					<div class="anniu share_link"><a href="#" target="_blank">分享</a></div>
+					<div class="anniu copy_link"><a href="javaScript:void(0);"  onclick="oCopy();" share_link="">复制链接</a></div>
+					</div>
+					</li>
+							<li class="d_img2 sinaweibo">
+					<div class="sharejiaz">
+					<div class="dingz_guan4"></div>
+					<div class="anbox">您的{$jkdinfo.title}眼镜可以分享啦！</div>
+					<div class="anniu share_link"><a href="#" target="_blank">分享</a></div>
+					<div class="anniu copy_link"><a href="javaScript:void(0);"  onclick="oCopy();" share_link="">复制链接</a></div>
+					</div>
+					</li>
+			
+					<li class="d_img3 qzone">
+					<div class="sharejiaz">
+					<div class="dingz_guan4"></div>
+					<div class="anbox">您的{$jkdinfo.title}眼镜可以分享啦！</div>
+					<div class="anniu share_link"><a href="#" target="_blank">分享</a></div>
+					<div class="anniu copy_link"><a href="javaScript:void(0);"  onclick="oCopy();" share_link="">复制链接</a></div>
+					</div>
+					</li>
+				</ul>
+			</div>
+		  
+        </div>
+      </div>
+	  
+
+      <div class="dingz_contain flexslider">
+	  {if $recommcount gt 0}
+	  <div class="tjk">
+	<div class="tjk1">BOLON推荐款</div>
+	<div class="tjk2"><span>开始一个灵感：</span><a class="desinger hasOff" href="javaScript:void(0);">从我们的设计师<span class="upbox"></span></a></div>
+	<div class="tjlun clearfix">
+		<div class="tjpre"><a href="#"></a></div>
+		<div class="tjnext"><a href="#"></a></div>
+		<div class="lunbox">
+		   <div  id="owl-dingzhi" class="owl-dingzhi">
+			    {foreach from=$recommlist item=vo}
+				  <div><a href="{$vo.urls}"><img src="{$vo.dingzhi_thumb}"/></a></div>
+				{/foreach}
+
+		
+			</div>
+		</div>
+	</div>
+	</div>
+	{/if}
+	  <div class="d_contains">
+        <div class="jd_image slides" >
+		
+		 
+          <div class="dingz_img glass_c" style="display:block;">
+		  {if $act=="dingzhi_edit" || $act=="check_dingzhi" || $act=="default_dingzhi" || $act=="share_dingzhi"}
+		  	{foreach from=$img_c_array item=vo key=ks}
+		    {if $ks eq "jk"}
+			  <div class="bl_jk hasimg"><img src="{$vo.img_c}"/></div>
+			{/if}
+			{/foreach}
+          
+            <div class="dingz_img2">
+		 	{foreach from=$img_c_array item=vo key=ks}
+					  {if $ks eq "wj"}
+			  <div class="bl_wj hasimg">
+          {if  $vo.img_c neq ""}
+          <img src="{$vo.img_c}"/>
+          {/if}
+           </div>
+			 {/if}
+			  {if $ks eq "qk"}
+			  <div class="bl_qk hasimg">
+          {if  $vo.img_c neq ""}
+          <img src="{$vo.img_c}"/>
+          {/if}
+           </div>
+			 {/if}
+			 
+			   {if $ks eq "sj"}
+			  <div class="bl_sj hasimg">
+         {if  $vo.img_c neq ""}
+          <img src="{$vo.img_c}"/>
+          {/if}
+        </div>
+
+			 {/if}
+			 	   {if $ks eq "jp" }
+			  <div class="bl_jp hasimg">
+              {if  $vo.img_c neq ""}
+          <img src="{$vo.img_c}"/>
+          {/if}
+        </div>
+      
+			 {/if}
+		
+            {/foreach}
+            </div>
+		  {else}
+		  
+		   <div class="bl_jk hasimg" >
+        {if $defaultinfo.jk.img_c neq ""}
+        <img  src="{$defaultinfo.jk.img_c}"/>
+        {/if}
+      </div>
+		   <div class="dingz_img2"> 
+		   {if $defaultinfo.wj}		   
+			  <div class="bl_wj hasimg"  >
+          {if $defaultinfo.wj.img_c neq ""}<img src="{$defaultinfo.wj.img_c}"/>{/if}
+        </div>
+		{/if}
+{if $defaultinfo.qk}		   
+			  <div class="bl_qk hasimg"  >
+          {if $defaultinfo.qk.img_c neq ""}<img src="{$defaultinfo.qk.img_c}"/>{/if}
+        </div>
+		{/if}
+		  {if $defaultinfo.sj}
+			  <div class="bl_sj  hasimg" >
+          {if $defaultinfo.sj.img_c neq ""}<img src="{$defaultinfo.sj.img_c}"/>{/if}
+        </div>
+		{/if}
+			  <div class="bl_jp hasimg">
+          {if $defaultinfo.jp.img_c neq ""}<img src="{$defaultinfo.jp.img_c}"/>{/if}
+        </div>
+    <!--<div class="bl_jt">{if $defaultinfo.jt.img_c neq ""}<img src="{$defaultinfo.jt.img_c}"/>{/if}</div>-->
+		   </div>
+		  {/if}
+          </div>
+          <div class="dingz_img glass_c" style="display:block;">
+		    {if $act=="dingzhi_edit" || $act=="check_dingzhi" || $act=="default_dingzhi" || $act=="share_dingzhi"}
+		  {foreach from=$img_l_array item=vo key=ks}
+		   {if $ks eq "jk"}
+            <div class="bl_jk hasimg">
+           {if $vo.img_l neq ""}
+              <img src="{$vo.img_l}"/>
+           {/if}
+            </div>
+         
+			   {/if}
+		  {/foreach}
+            <div class="dingz_img2">
+             	{foreach from=$img_l_array item=vo key=ks}
+				
+						  {if $ks eq "wj" }
+			  <div class="bl_wj hasimg">
+          {if  $vo.img_l neq ""}
+          <img src="{$vo.img_l}"/>
+          {/if}
+            </div>
+       
+			 {/if}
+			  {if $ks eq "qk" }
+			  <div class="bl_qk hasimg">
+          {if  $vo.img_l neq ""}
+          <img src="{$vo.img_l}"/>
+          {/if}
+            </div>
+       
+			 {/if}
+			 
+			   {if $ks eq "sj"}
+			  <div class="bl_sj hasimg">
+          {if $vo.img_l neq ""}
+          <img src="{$vo.img_l}"/>
+          {/if}
+        </div>
+       
+			 {/if}
+			 	   {if $ks eq "jp"}
+		    <div class="bl_jp hasimg">
+          {if $vo.img_l neq ""}
+          <img src="{$vo.img_l}"/>
+          {/if}
+        </div>
+       
+			 {/if}
+			 	 	   {if $ks eq "jt"}
+			  <div class="bl_jt hasimg">
+			  		  <div class="jt_wz" style="color:{$jtcolor};" >{$type_w_text}</div>
+		  <div class="jt_wz1" style="color:{$jtcolor};" >{$type_n_text}</div>
+          {if $vo.img_l neq ""}
+	
+          <img src="{$vo.img_l}"/>
+          {/if}
+        </div>
+			    {/if}
+				
+				   {if $ks eq "jtt"}
+		    <div class="bl_jtt hasimg">
+          {if $vo.img_l neq ""}
+          <img src="{$vo.img_l}"/>
+          {/if}
+        </div>
+			 {/if}
+            {/foreach}
+            </div>
+			
+			{else}
+			  <div class="bl_jk hasimg"  >
+          {if $defaultinfo.jk.img_l neq ""}
+          <img  src="{$defaultinfo.jk.img_l}"/>
+          {/if}
+        </div>
+			   <div class="dingz_img2">
+			   			    {if $defaultinfo.wj}
+			   <div class="bl_wj hasimg " >
+          {if $defaultinfo.wj.img_l neq ""}
+          <img  src="{$defaultinfo.wj.img_l}"/>
+          {/if}
+        </div>
+		{/if}
+			    {if $defaultinfo.qk}
+			   <div class="bl_qk hasimg " >
+          {if $defaultinfo.qk.img_l neq ""}
+          <img  src="{$defaultinfo.qk.img_l}"/>
+          {/if}
+        </div>
+		{/if}
+		{if $defaultinfo.sj}
+			  <div class="bl_sj  hasimg ">
+          {if $defaultinfo.sj.img_l neq ""}
+          <img src="{$defaultinfo.sj.img_l}"/>
+          {/if}
+        </div>
+		{/if}
+			  <div class="bl_jp  hasimg ">
+          {if $defaultinfo.jp.img_l neq ""}
+          <img src="{$defaultinfo.jp.img_l}"/>
+          {/if}
+        </div>	 
+			  <div class="bl_jt hasimg ">
+			   <div class="jt_wz" style="color:{$jtcolor};" >{$type_w_text}</div>
+		  <div class="jt_wz1" style="color:{$jtcolor};" >{$type_n_text}</div>
+          {if $defaultinfo.jt.img_l neq ""}
+		 
+          <img src="{$defaultinfo.jt.img_l}"/>
+          {/if}
+        </div>
+		
+			{if $defaultinfo.jtt}
+			  <div class="bl_jtt  hasimg ">
+          {if $defaultinfo.jtt.img_l neq ""}
+          <img src="{$defaultinfo.jtt.img_l}"/>
+          {/if}
+        </div>
+		{/if}
+              </div>
+			{/if}
+          </div>
+   
+  </div>
+           <div class="dingz_img qingdan" style="display:none;">
+          	<div class="qingdan1"> 
+			  {if $act=="dingzhi_edit" || $act=="check_dingzhi" || $act=="default_dingzhi" || $act=="share_dingzhi"}
+			  	{foreach from=$img_c_array item=vo key=ks}
+				 {if $ks eq "jk"}
+			    <div class="bl_jk bl_qk4 hasimg_t"><img src="{$vo.img_c}"/></div>
+			    {/if}
+					{if $ks eq "wj"}
+			   	  <div class="bl_wj bl_qk4 hasimg_t"><img src="{$vo.img_c}"/></div>
+			    {/if}
+				{if $ks eq "qk"}
+			   	  <div class="bl_qk bl_qk4 hasimg_t"><img src="{$vo.img_c}"/></div>
+			    {/if}
+					{if $ks eq "sj"}
+			   	  <div class="bl_sj bl_qk4 hasimg_t"><img src="{$vo.img_c}"/></div>
+			    {/if}
+		        {if $ks eq "jp"}
+			   	  <div class="bl_jp bl_qk4 hasimg_t"><img src="{$vo.img_c}"/></div>
+			    {/if}
+			  {if $ks eq "jt"}
+            <!--   <div class=" bl_jt bl_qk4"><img src="{$vo.img_c}"/></div>-->
+			  {/if}
+			  {/foreach}
+			  {else}
+		     
+		     <div class="bl_jk bl_qk4 hasimg_t">{if $defaultinfo.jk.img_c neq ""}<img src="{$defaultinfo.jk.img_c}"/>{/if}</div>
+			 {if $defaultinfo.qk} <div class="bl_qk bl_qk4 hasimg_t">{if $defaultinfo.qk.img_c neq ""}<img src="{$defaultinfo.qk.img_c}"/>{/if}</div>{/if}
+             {if $defaultinfo.sj} <div class="bl_sj bl_qk4 hasimg_t">{if $defaultinfo.sj.img_c neq ""}<img src="{$defaultinfo.sj.img_c}"/>{/if}</div>{/if}
+              <div class=" bl_jp bl_qk4 hasimg_t">{if $defaultinfo.jp.img_c neq ""}<img src="{$defaultinfo.jp.img_c}"/>{/if}</div>
+              <!--<div class=" bl_jt bl_qk4">{if $defaultinfo.jt.img_c neq ""}<img src="{$defaultinfo.jt.img_c}"/>{/if}</div>-->
+			  {/if}
+	
+			  </div>
+            <div class="qingdan1">
+			 {if $act=="dingzhi_edit" || $act=="check_dingzhi" || $act=="default_dingzhi" || $act=="share_dingzhi"}
+			 	  	{foreach from=$img_l_array item=vo key=ks}
+				 {if $ks eq "jk"}
+			    <div class="bl_jk bl_qk4 hasimg_t"><img src="{$vo.img_l}"/></div>
+			    {/if}
+					{if $ks eq "wj"}
+			   	  <div class="bl_wj bl_qk4 hasimg_t"><img src="{$vo.img_l}"/></div>
+			    {/if}
+				{if $ks eq "qk"}
+			   	  <div class="bl_qk bl_qk4 hasimg_t"><img src="{$vo.img_l}"/></div>
+			    {/if}
+					{if $ks eq "sj"}
+			   	  <div class="bl_sj bl_qk4 hasimg_t"><img src="{$vo.img_l}"/></div>
+			    {/if}
+		        {if $ks eq "jp"}
+			   	  <div class="bl_jp bl_qk4 hasimg_t"><img src="{$vo.img_l}"/></div>
+			    {/if}
+			  {if $ks eq "jt"}
+               <div class=" bl_jt bl_qk4 hasimg_t"><div class="jt_wz jt_wz3" style="color:{$jtcolor};" >{$type_w_text}</div><div class="jt_wz1 jt_wz3" style="color:{$jtcolor};" >{$type_n_text}</div><img src="{$vo.img_l}"/></div>
+			  {/if}
+			  
+			    {if $ks eq "jtt"}
+               <div class=" bl_jtt bl_qk4 hasimg_t"><img src="{$vo.img_l}"/></div>
+			  {/if}
+			  {/foreach}
+			 
+			 {else}
+			  <div class="bl_jk bl_qk4 hasimg_t">{if $defaultinfo.jk.img_l neq ""}<img src="{$defaultinfo.jk.img_l}"/>{/if}</div>
+			    {if $defaultinfo.wj}<div class="bl_wj bl_qk4 hasimg_t">{if $defaultinfo.wj.img_l neq ""}<img src="{$defaultinfo.wj.img_l}"/>{/if}</div>{/if}
+			  {if $defaultinfo.qk}<div class="bl_qk bl_qk4 hasimg_t">{if $defaultinfo.qk.img_l neq ""}<img src="{$defaultinfo.qk.img_l}"/>{/if}</div>{/if}
+              {if $defaultinfo.sj}<div class="bl_sj bl_qk4 hasimg_t">{if $defaultinfo.sj.img_l neq ""}<img src="{$defaultinfo.sj.img_l}"/>{/if}</div>{/if}
+              <div class=" bl_jp bl_qk4 hasimg_t">{if $defaultinfo.jp.img_l neq ""}<img src="{$defaultinfo.jp.img_l}"/>{/if}</div>
+              <div class=" bl_jt bl_qk4 hasimg_t"><div class="jt_wz jt_wz3" style="color:{$jtcolor};" >{$type_w_text}</div><div style="color:{$jtcolor};" class="jt_wz1 jt_wz3">{$type_n_text}</div>{if $defaultinfo.jt.img_l neq ""}<img src="{$defaultinfo.jt.img_l}"/>{/if}</div>
+			 {if $defaultinfo.jtt}<div class="bl_jtt bl_qk4 hasimg_t">{if $defaultinfo.jtt.img_l neq ""}<img src="{$defaultinfo.jtt.img_l}"/>{/if}</div>{/if}
+			 {/if}
+			</div>
+          </div>
+		  	 
+		  
+          <div class="detail_main_center">
+            <div class="line_box" style="width: 200px;"> </div>
+          </div>
+      
+        <div class="dingz_img jh_c" style="display:none;">
+          <div class="bl_box hasimg ">
+		  
+		   {if $act=="dingzhi_edit" || $act=="check_dingzhi" || $act=="default_dingzhi" || $act=="share_dingzhi"}<img src="{$binfo.image}"/>{else}<img src="{$defaultbox}"/>{/if}
+		  <div class="jh_xk line_one" style="color:{$binfo.font_color};">{$jh_line_one}</div><div class="jh_xk jh_xk2 line_two" style="color:{$binfo.font_color};">{$jh_line_two}</div></div>
+        </div>
+        <div class="miao_load">
+          <div class="miao_load_img"></div>
+        </div>
+		</div>
+		
+
+
+
+	  
+      </div>
+	  <div id="scrollbar1" class="miao_dan">
+        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+             <div class="overview dingz_z">
+	
+		 <div class="dingz_tbox">
+		 <div class="dingz_guan"></div>
+		 {foreach from=$liuchen item=liu} 
+		 <div class="dingz_tbox1"><img src="{$liu.image_icon}"/><span>{$liu.title}</span></div>
+		 {/foreach}
+		 </div>
+		
+		<div class="dingz_m clearfix">
+			<h2>{$xilie_title.a}</h2>
+			<div class="wcs-small-black"></div>
+			<div class="d_m_l clearfix">
+				<h3>{$jkdinfo.title}</h3>
+				<p>{$jkdinfo.descript}</p>
+			</div>
+			
+			<div class="d_m_r clearfix">
+				<div class="lub clearfix">
+					<h3>详情</h3>
+					<div class="lubox">
+						<ul>
+						{foreach from=$dzdetaillist item=dp}
+							<li>
+								<img src="{$dp.images}"/>
+								<span>{$dp.title}</span>
+							</li>
+							{/foreach}
+						</ul>
+					</div>
+				</div>
+			
+				<div class="d_m_pre"></div>
+				<div class="d_m_next"></div>
+			</div>
+		</div>
+	  	<div class="dingz_m clearfix">
+			<h2>{$xilie_title.b}</h2>
+			<div class="wcs-small-black"></div>
+			<div class="dingz_j">
+			{foreach from=$jp_descript item=tp}
+				<div class="dingz_j1">
+					<div class="d_m_img"><img src="{$tp.cat_info.des_image}"/></div>
+					<div class="d_m_t">
+						<h3>{$tp.cat_info.cat_name}</h3>
+						<p>{$tp.cat_info.descript}</p>
+					</div>
+				</div>
+			{/foreach}
+				
+			</div>
+		</div>
+		<div class="dingz_m clearfix">
+			<h2>{$xilie_title.c}</h2>
+			<div class="wcs-small-black"></div>
+			<div class="dingz_j">
+				<div class="dingz_jt"><p>{$jieshao.miaoshu}</p></div>
+				
+				{foreach from=$texin item=te key=key}
+				{if $key eq 0}
+				<div class="dingz_jp">
+					<div class="dingz_jp1" style="background: url({$te.image}) no-repeat">
+						<h3>{$te.title}</h3>
+						<div class="p1">{$te.content1}</div>
+						<div class="p2">{$te.content2}</div>
+						<div class="p3">{$te.content3}</div>
+					</div>
+				</div>
+				{elseif $key eq 1}
+				<div class="dingz_jp rt">
+					<div class="dingz_jp1 rt" style="background: url({$te.image}) no-repeat">
+						<h3>{$te.title}</h3>
+						<div class="p4">{$te.content1}</div>
+						<div class="p5">{$te.content2}</div>
+						<div class="p6">{$te.content3}</div>
+					</div>
+				</div>
+				{elseif $key eq 2}
+				<div class="dingz_jp3" style="background: url({$te.image}) no-repeat">
+					<h3>{$te.title}</h3>
+					<div class="d_m_bbox">
+						<div class="p7"> {$te.content1} </div>
+						<div class="p8"> {$te.content2} </div>
+						<div class="p9"> {$te.content3} </div>
+					</div>
+				</div>
+				{/if}
+				{/foreach}
+
+				{foreach from=$pg_glass item=pg key=key}
+				{if $key eq 0}
+				<div class="dingz_jt">
+					<h3><img src="{$pg.image}"/>{$xilie_title.d}</h3>
+				</div>
+			
+				<div class="dingz_jt"><p>{$pg.miaoshu}</p>
+				</div>
+				{elseif $key eq 1}
+				<div class="dingz_jp">
+					<div class="dingz_jp4">
+						<h3>{$pg.title}</h3>
+						<p>{$pg.content} </p>
+					</div>
+				</div>
+				{elseif $key eq 2}
+				<div class="dingz_jp rt rt1">
+					<div class="dingz_jp4 rt1">
+						<h3>{$pg.title}</h3>
+						<p>{$pg.content}</p>
+					</div>
+				</div>
+				{/if}
+				{/foreach}
+			</div>
+		</div>
+		
+		<div class="dingz_m clearfix">
+			<h2>{$xilie_title.e}</h2>
+			<div class="wcs-small-black"></div>
+			<div class="dingz_j">
+				<div class="dingz_pd_l">
+					<div class="p10">{$pd_left.content1}</div>
+					<h3>{$pd_left.title}</h3>
+					<div class="p11">{$pd_left.content2}</div>
+					<div class="p12">{$pd_left.content3}</div>
+					<img src="{$pd_left.image}"/>
+				</div>
+				<div class="dingz_pd_r">	
+					<h3>{$pd_right.title} </h3>
+					<p>{$pd_right.content1}</p>
+					<img src="{$pd_right.image}"/>
+					<div class="pd_t">
+						<div class="pd_t1">{$pd_right.content2} </div>
+						<div class="pd_t1">{$pd_right.content3} </div>
+					</div>
+					
+					{foreach from=$pd_list item=list}
+					<div class="pd_ban">
+						<div class="pd_bimg"><img src="{$list.image}" draggable="false"/></div>
+						<div class="pd_box">
+							<h3>{$list.title} </h3>
+							<p>{$list.content1} </p>
+						</div>
+					</div>
+					{/foreach}
+					
+					
+				</div>	
+			</div>
+		</div>	
+	  </div>
+	   
+        </div>
+</div>
+    </div>
+  </div>
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  
+</div>
+</body>
+</html>

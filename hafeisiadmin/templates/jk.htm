@@ -1,0 +1,457 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\添加)/i, "$1removeImg$3$4移除");
+
+}
+
+
+function checkDefault(obj){
+
+ var defautbox=document.getElementsByName("default_show[]");
+ var checkboxval=document.getElementsByName("checkboxvalue[]");
+ var editdefualtbox=document.getElementsByName("default_show_edit[]");
+  var editcheckboxval=document.getElementsByName("checkboxvalue_edit[]");
+ for(var i=0;i<defautbox.length;i++){
+     if(obj!==defautbox[i]){
+     if(defautbox[i].checked==true){
+	 
+	   defautbox[i].checked=false;
+	    defautbox[i].value=0;
+		checkboxval[i].value=0;
+	 }
+	 }
+ 
+ }
+ if(editdefualtbox.length>0){
+  for(var t=0;t<editdefualtbox.length;t++){
+  if(obj!==editdefualtbox[t]){
+     if(editdefualtbox[t].checked==true){
+	 
+	    editdefualtbox[t].checked=false;
+	    editdefualtbox[t].value=0;
+		editcheckboxval[t].value=0;
+	 }
+	 
+	 }
+ 
+ }
+ }
+ 
+ 
+ if(obj.checked==true){
+obj.checked=true;
+obj.value=1;
+obj.nextSibling.value=1;
+
+}else{
+obj.checked=false;
+obj.value=0;
+obj.nextSibling.value=0;
+
+}
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletItem(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+     Ajax.call('jk.php', 'id=' + id+'&act=deleteitem', removeItem, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeItem(result){
+
+    if(result.err==0){
+	
+	  alert("删除失败!");
+	
+	}else{
+	
+	 if(result.id>0){
+	
+	 	 var obj=document.getElementById("item_"+result.id);
+	
+	   var row = rowindex(obj);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+	 }
+
+	}
+
+
+}
+
+
+
+function deletImg2(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg2&id="+id;
+  
+  }
+ 
+
+}
+function deletImg3(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg3&id="+id;
+  
+  }
+ 
+
+}
+
+
+function vi_show(obj){
+    if(obj.value==0){
+	  dc('vi_url1').style.visibility='collapse';
+	  dc('vi_url2').style.visibility='collapse';
+	  dc('vi_url3').style.visibility='collapse';
+
+	}else{
+
+	    dc('vi_url3').style.visibility='visible';
+		dc('vi_url1').style.visibility='visible';
+		dc('vi_url2').style.visibility='visible';
+
+	}
+}
+function dc(id){
+    return document.getElementById(id);
+}
+
+
+function removeDz(id,tid,tc,gid){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+  var args = "act=remove&id=" + id +"&ids=" + tid +"&ctype=" + tc+"&gid=" + gid
+     Ajax.call('jk.php', args, removeCate, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeCate(result){
+
+ window.parent.frames["main-frame"].location="jk.php?act=add&id="+result.id+"&type_c="+result.c_type+"&gid="+result.gid;
+
+}
+
+
+function searchVal(){
+  var productVal=document.getElementById("productID").value;
+  var objlist=document.getElementsByName("number_e[]");
+  for(var i=0;i<objlist.length;i++){
+     if(objlist[i].value==productVal){
+	  window.parent.frames["main-frame"].document.documentElement.scrollTop=objlist[i].parentNode.parentNode.offsetTop;
+	  objlist[i].style.border="2px solid red";
+	 }else{
+	  objlist[i].style.border=" ";
+	 }
+  }
+}
+
+</script>
+{if $type_c neq 3}
+<div class="list-div" id="listDiv">
+  <table width="100%" cellspacing="1" cellpadding="3">
+     <tr>
+	   <th> ID</th>
+	
+      <th>{if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}{if $type_c eq 5}脚套类别{/if}</th>
+      <th>{if $type_c eq 0}镜框类别(英){/if}{if $type_c eq 1}前框饰布类别(英){/if}{if $type_c eq 2}前框饰件类别(英){/if}{if $type_c eq 3}镜片类别(英){/if}{if $type_c eq 4}镜腿类别(英){/if}{if $type_c eq 5}脚套类别(英){/if}</th>
+	  <th>排序</th>
+      <th>添加时间</th>
+	  <th>操作</th>
+    </tr>
+  {foreach from=$res item=list}
+    <tr align="center">
+	 <td align="center">{$list.id}</td>
+      <td align="center">{$list.cat_name}</td>
+     <td align="center">{$list.cat_enname}</td>
+      <td align="center">{$list.resort}</td>
+   
+      <td>{$list.addtime}</td>
+	      <td align="center"><span>
+      <a href="jk.php?act=edit&cid={$list.id}&id={$list.type_id}&type_c={$list.type_c}&gid={$list.gid}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:;" onclick="removeDz({$list.id},{$list.type_id},{$list.type_c},{$list.gid})" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a></span>
+    </td>
+    </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="11">{$lang.no_records}</td></tr>
+  {/foreach}
+  </table>
+
+</div>
+{/if}
+{if $type_c neq 3}
+<div class="main-div" id="main-div-c">
+
+<form action="jk.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+       {if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}{if $type_c eq 5}脚套类别{/if}：</td>
+      <td>
+        <input type="text" name="cat_name" value="{$ads.cat_name}" size="35" />
+ 
+      </td>
+    </tr>
+
+    <tr>
+      <td  class="label">
+       {if $type_c eq 0}镜框类别(英){/if}{if $type_c eq 1}前框饰布类别(英){/if}{if $type_c eq 2}前框饰件类别(英){/if}{if $type_c eq 3}{$glinfo.cat_name}类别(英){/if}{if $type_c eq 4}镜腿类别(英){/if}{if $type_c eq 5}脚套类别(英){/if}：</td>
+      <td>
+        <input type="text" name="cat_enname" value="{$ads.cat_enname}" size="35" />
+ 
+      </td>
+    </tr>
+
+	    <tr>
+      <td  class="label">显示顺序</td>
+      <td>
+        <input type="text"  name="resort" value="{$ads.resort}" size="35" />
+      </td>
+    </tr>
+	
+		    <tr>
+      <td  class="label">系统描述（中）</td>
+      <td>
+      <textarea name="descript" cols="60" rows="10">{$ads.descript}</textarea>
+      </td>
+    </tr>	
+	
+			    <tr>
+      <td  class="label">系统描述（英）</td>
+      <td>
+      <textarea name="en_descript" cols="60" rows="10" >{$ads.en_descript}</textarea>
+      </td>
+    </tr>	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+       {if $form_act neq "update"} <input type="submit" value="添加" class="button" /> {else} <input type="submit" value="修改" class="button" /> {/if}
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+		        <input type="hidden" name="type_c" value="{$type_c}" />
+				{if $type_c eq 3}
+				    <input type="hidden" name="gid" value="{$gid}" />
+				{/if}
+					     <input type="hidden" name="cid" value="{$ads.id}" />
+				     <input type="hidden" name="ids" value="{$ids}" />
+		
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+{/if}
+{if $form_act neq "update"}
+<div class="list-div" id="listDivs">
+
+<form action="jk.php" method="post" name="theForm" enctype="multipart/form-data">
+ 
+ <table  width="90%" id="gallery-table"  align="center">
+		      <caption style="text-align:left;font-size:16px"> {if $type_c eq 0}镜框属性{/if}{if $type_c eq 1}前框饰布属性{/if}{if $type_c eq 2}前框饰件属性{/if}{if $type_c eq 3}镜片属性{/if}{if $type_c eq 4}镜腿属性{/if}{if $type_c eq 5}脚套属性{/if} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按产品代码搜索：<input type="text" value="" name="productID" id="productID" /><input type="button" value="搜索" onclick="searchVal();"/></caption>
+		     <tr>
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" style="color:blue;" onclick="addOrder(this)">[添加]</a><br/>
+			   {if $type_c neq 0 && $type_c neq 3  }产品代码(左侧)：<input type="text" name="number[]" id="productids" value="{$vo.number}" size="35" />  库存(左侧)： <input type="text" name="dingzhi_number[]" value="{$vo.dingzhi_number}" size="6" /><br/>
+			   产品代码(右侧)：<input type="text" name="r_number[]" value="{$vo.r_number}" size="35" />库存(右侧)： <input type="text" id="productids"  name="r_dingzhi_number[]" value="{$vo.r_dingzhi_number}" size="6" /><br/>{else}产品代码：<input type="text" name="number[]" value="{$vo.number}" size="35" />  库存： <input type="text" name="dingzhi_number[]" value="{$vo.dingzhi_number}" size="6" /><br/>{/if}
+			  {if $type_c eq 3} 球镜最大值：<input type="text" name="max_sph[]" value="{$vo.max_sph}" size="35" /> 球镜最小值： <input type="text" name="min_sph[]" value="{$vo.min_sph}" size="35" /><br/>
+				柱镜最大值：<input type="text" name="max_cyl[]" value="{$vo.max_cyl}" size="35" /> 柱镜最小值： <input type="text" name="min_cyl[]" value="{$vo.min_cyl}" size="35" /><br/>
+				联合光度： <input type="text" name="union_sc[]" value="{$vo.union_sc}" size="35" /><br/>{/if}
+			   标题：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="att_title[]" type="text" value="" size="20"/>  英文标题：<input name="att_entitle[]" type="text" value=""  size="20"><br/>
+			   价格：&nbsp;&nbsp;&nbsp;&nbsp;<input name="att_price[]" type="text" value=""  size="20">  显示顺序：<input type="text" value=""  name="attr_resort[]" /><br/>
+			    配送时间(库存为0时指定的最大配货时间)： <input type="text" name="delivery_time[]" value="{$ads.delivery_time}" size="23" />	<br/>		  
+               {if $type_c eq 3}
+				 产品标识： <input type="text" name="dz_label[]" value="{$vs.dz_label}" size="23" />	<br/>
+				 {/if}			 
+			 {if $type_c neq 3}   设为默认显示：<input type="checkbox" value="0" onclick="checkDefault(this);"  id="default_show" name="default_show[]" /><input type="hidden" value="0" name="checkboxvalue[]" /><br/>{/if}
+			  {if $type_c neq 3} {if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}{if $type_c eq 5}脚套类别{/if}：<select name="jktype[]">
+			     <option value="0">请选择 {if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}</option>
+			        {foreach from=$res item=list}
+					  <option value="{$list.id}">{$list.cat_name}</option>
+					{/foreach}
+			   </select><br/>{/if}
+			   <!--颜色值：<input name="att_color[]" type="text" value=""  size="20">-->
+			  <!-- 描述：<textarea  type="text" name="att_des[]" type="text"> </textarea> 英文描述：<textarea name="att_endes[]"   > </textarea><br/>-->
+			   色块图片:<input type="file" name="color_img[]" />(宽40px*高40px)<br/>
+			 {if $type_c neq 4 || $type_c neq 5}  角度图(正面): {/if}<input  {if $type_c eq 4 || $type_c eq 5}style="display:none;"{/if} type="file" name="attr_jdc[]" /><br/>
+			   角度图(侧面):<input type="file" name="attr_jdl[]" />(宽1920px*高1200px)<br/>
+			   <!-- 角度图(右):--><input style="display:none" type="file" name="attr_jdr[]" /><br/>
+			  <!-- 角度图(背):--><input type="file" style="display:none" name="attr_jdb[]" /><br/>
+			     {if $type_c eq 4 || $type_c eq 5 }镌刻字体颜色：<input type="text" name="font_color[]" value=""/><span style="color:#FF0000">（默认字体白色,请填写颜色代码，如白色（#ffffff）,注：如果配置产品有脚套配件的情况下，只设置脚套镌刻字体颜色，镜腿可以不设置。）</span><br/>{/if}
+			  </td>
+             </tr>
+			 
+			 
+{if $type_c neq 3}
+				{foreach from=$attrlist item=vs}
+			
+			    {foreach from=$vs.children item=vo}
+						     <tr id="item_{$vo.id}">
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" onclick="deletItem({$vo.id},this)" style="color:red">删除</a><br/>
+			    {if $type_c neq 0}  产品代码(左侧)：<input type="text" id="productids" name="number_e[]" value="{$vo.number}" size="35" />  库存(左侧)： <input type="text" name="dingzhi_number_e[]" value="{$vo.dingzhi_number}" size="6" /><br/>
+				产品代码(右侧)：<input type="text" name="r_number_e[]" id="productids" value="{$vo.r_number}" size="35" />库存(右侧)： <input type="text" name="r_dingzhi_number_e[]" value="{$vo.r_dingzhi_number}" size="6" /><br/>{else}产品代码：<input type="text" name="number_e[]" value="{$vo.number}" size="35" />  库存：<input type="text" name="dingzhi_number_e[]" value="{$vo.dingzhi_number}" size="6" /><br/>
+				{/if}
+			   标题：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="att_title_e[]" type="text" value="{$vo.title}" size="20"/>  英文标题：<input name="att_entitle_e[]" type="text" value="{$vo.en_title}"  size="20"><br/>
+			   价格：&nbsp;&nbsp;&nbsp;&nbsp;<input name="att_price_e[]" type="text" value="{$vo.price}"  size="20">  显示顺序：<input type="text" value="{$vo.resort}"  name="attr_resort_e[]" /><br/>
+			   		
+			    配送时间(库存为0时指定的最大配货时间)： <input type="text" name="delivery_time_e[]" value="{$vo.delivery_time}" size="23"/>	<br/>		  
+              
+			    设为默认显示：<input type="checkbox" value="{$vo.default_show}" {if $vo.default_show eq 1} checked="checked" {/if} onclick="checkDefault(this);"  id="default_show_edit" name="default_show_edit[]" /><input type="hidden" value="{$vo.default_show}" name="checkboxvalue_edit[]" /><br/>
+			  {if $type_c neq 3}   {if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}{if $type_c eq 5}脚套类别{/if}：<select name="jktype_e[]">
+			     <option value="0">请选择{if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}{if $type_c eq 5}脚套类别{/if}</option>
+			        {foreach from=$res item=list}
+					{if $list.id eq $vo.type_id}
+							  <option value="{$list.id}" selected>{$list.cat_name}</option>
+					{else}
+					
+						 <option value="{$list.id}">{$list.cat_name}</option>
+					{/if}
+			
+					{/foreach}
+			   </select><br/>{/if}
+			  <!-- 颜色值：<input name="att_color_e[]" type="text" value="{$vo.color}"  size="20">-->
+			<!--描述：<textarea  type="text" name="att_des_e[]" type="text">{$vo.descript} </textarea>英文描述：<textarea name="att_endes_e[]" > {$vo.en_descript}</textarea><br/>-->
+			  色块图片:<input type="file" name="color_img_e[]" /><input type="hidden" value="{$vo.color_img}" name="jd_hide_color[]" />{if $vo.color_img neq ""}<img src="../{$vo.color_img}" width="50px" height="50px"  />{/if}(宽40px*高40px)<br/>
+			   {if $type_c neq 4 || $type_c neq 5} 角度图(正面) :{/if}<input {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} type="file" name="attr_jdc_e[]" /><input type="hidden" {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} value="{$vo.img_c}" name="jd_hide_c[]" /><input type="hidden" {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} value="{$vo.img_c_t}" name="jd_hide_c_t[]" />{if $vo.img_c neq ""}<img src="../{$vo.img_c_t}" {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} width="50px" height="50px"  />{/if}(宽1920px*高1200px)<br/>
+			  
+			   角度图(侧面):<input type="file" name="attr_jdl_e[]" /><input type="hidden" value="{$vo.img_l}" name="jd_hide_l[]" /><input type="hidden" value="{$vo.img_l_t}" name="jd_hide_l_t[]" />{if $vo.img_l neq ""}<img src="../{$vo.img_l_t}" width="50px" height="50px"  />{/if}(宽1920px*高1200px)<br/>
+			     <!-- 角度图(右):--><input style="display:none" type="file" name="attr_jdr_e[]" /><input style="display:none" type="hidden" value="{$vo.img_r}" name="jd_hide_r[]" /><input type="hidden" style="display:none" value="{$vo.img_r_t}" name="jd_hide_r_t[]" />{if $vo.img_r neq ""}<img style="display:none" src="../{$vo.img_r_t}" width="50px" height="50px"  />{/if}<br/>
+			  <!-- 角度图(背):--><input  style="display:none" type="file" name="attr_jdb_e[]" /><input style="display:none" type="hidden" value="{$vo.img_b}" name="jd_hide_b[]" /><input type="hidden" style="display:none" value="{$vo.img_b_t}" name="jd_hide_b_t[]" />{if $vo.img_b neq ""}<img style="display:none" src="../{$vo.img_b_t}" width="50px" height="50px"  />{/if}<br/>
+		   {if $type_c eq 4 || $type_c eq 5}镌刻字体颜色：<input type="text" name="font_color_e[]" value="{$vo.font_color}"/><span style="color:#FF0000">（默认字体白色,请填写颜色代码，如白色（#ffffff），注：如果配置产品有脚套配件的情况下，只设置脚套镌刻字体颜色，镜腿可以不设置。）</span><br/>{/if}
+			  </td>
+			  <input type="hidden" value="{$vo.id}" name="jd_id[]" />
+             </tr>
+		
+						{/foreach}
+				{/foreach} 
+              {else}
+			  {foreach from=$attrlist item=vo}
+			
+			
+						     <tr id="item_{$vo.id}">
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" onclick="deletItem({$vo.id},this)" style="color:red">删除</a><br/>
+		
+			    产品代码：<input type="text" name="number_e[]" id="productids" value="{$vo.number}" size="35" /> 库存： <input type="text" name="dingzhi_number_e[]" value="{$vo.dingzhi_number}" size="6" /><br/>
+				球镜最大值：<input type="text" name="max_sph_e[]" value="{$vo.max_sph}" size="35" /> 球镜最小值： <input type="text" name="min_sph_e[]" value="{$vo.min_sph}" size="35" /><br/>
+				柱镜最大值：<input type="text" name="max_cyl_e[]" value="{$vo.max_cyl}" size="35" /> 柱镜最小值： <input type="text" name="min_cyl_e[]" value="{$vo.min_cyl}" size="35" /><br/>
+					联合光度： <input type="text" name="union_sc_e[]" value="{$vo.union_sc}" size="35" /><br/>
+			   标题:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="att_title_e[]" type="text" value="{$vo.title}" size="20"/>  英文标题：<input name="att_entitle_e[]" type="text" value="{$vo.en_title}"  size="20"><br/>
+			   价格:&nbsp;&nbsp;&nbsp;&nbsp;<input name="att_price_e[]" type="text" value="{$vo.price}"  size="20">  显示顺序：<input type="text" value="{$vo.resort}"  name="attr_resort_e[]" /><br/>
+			   		 
+			    配送时间(库存为0时指定的最大配货时间)： <input type="text" name="delivery_time_e[]" value="{$vo.delivery_time}" size="23" />	<br/>		  
+                {if $type_c eq 3}
+				 产品标识： <input type="text" name="dz_label_e[]" value="{$vo.dz_label}" size="23" />	<br/>
+				 {/if}
+			  <!--   设为默认显示：<input type="checkbox" value="{$vo.default_show}" {if $vo.default_show eq 1} checked="checked" {/if} onclick="checkDefault(this);"  id="default_show_edit" name="default_show_edit[]" /><input type="hidden" value="{$vo.default_show}" name="checkboxvalue_edit[]" /><br/>
+			  {if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}：{if $type_c eq 5}脚套类别{/if}<select name="jktype_e[]">
+			     <option value="0">请选择{if $type_c eq 0}镜框类别{/if}{if $type_c eq 1}前框饰布类别{/if}{if $type_c eq 2}前框饰件类别{/if}{if $type_c eq 3}{$glinfo.cat_name}类别{/if}{if $type_c eq 4}镜腿类别{/if}{if $type_c eq 5}脚套类别{/if}</option>
+			        {foreach from=$res item=list}
+					{if $list.id eq $vo.type_id}
+							  <option value="{$list.id}" selected>{$list.cat_name}</option>
+					{else}
+					
+						 <option value="{$list.id}">{$list.cat_name}</option>
+					{/if}
+			
+					{/foreach}
+			   </select><br/>-->
+			  <!-- 颜色值：<input name="att_color_e[]" type="text" value="{$vo.color}"  size="20">-->
+			<!--描述：<textarea  type="text" name="att_des_e[]" type="text">{$vo.descript} </textarea>英文描述：<textarea name="att_endes_e[]" > {$vo.en_descript}</textarea><br/>-->
+			  色块图片:<input type="file" name="color_img_e[]" /><input type="hidden" value="{$vo.color_img}" name="jd_hide_color[]" />{if $vo.color_img neq ""}<img src="../{$vo.color_img}" width="50px" height="50px"  />{/if}(宽40px*高40px)<br/>
+			   {if $type_c neq 4 || $type_c neq 5} 角度图(正面) :{/if}<input {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} type="file" name="attr_jdc_e[]" /><input type="hidden" {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} value="{$vo.img_c}" name="jd_hide_c[]" /><input type="hidden" {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} value="{$vo.img_c_t}" name="jd_hide_c_t[]" />{if $vo.img_c neq ""}<img src="../{$vo.img_c_t}" {if $type_c eq 4 || $type_c eq 5} style="display:none;" {/if} width="50px" height="50px"  />{/if}<br/>
+			   角度图(侧面):<input type="file" name="attr_jdl_e[]" /><input type="hidden" value="{$vo.img_l}" name="jd_hide_l[]" /><input type="hidden" value="{$vo.img_l_t}" name="jd_hide_l_t[]" />{if $vo.img_l neq ""}<img src="../{$vo.img_l_t}" width="50px" height="50px"  />{/if}(宽1920px*高1200px)<br/>
+			     <!-- 角度图(右):--><input style="display:none" type="file" name="attr_jdr_e[]" /><input style="display:none" type="hidden" value="{$vo.img_r}" name="jd_hide_r[]" /><input type="hidden" style="display:none" value="{$vo.img_r_t}" name="jd_hide_r_t[]" />{if $vo.img_r neq ""}<img style="display:none" src="../{$vo.img_r_t}" width="50px" height="50px"  />{/if}<br/>
+			  <!-- 角度图(背):--><input  style="display:none" type="file" name="attr_jdb_e[]" /><input style="display:none" type="hidden" value="{$vo.img_b}" name="jd_hide_b[]" /><input type="hidden" style="display:none" value="{$vo.img_b_t}" name="jd_hide_b_t[]" />{if $vo.img_b neq ""}<img style="display:none" src="../{$vo.img_b_t}" width="50px" height="50px"  />{/if}<br/>
+
+			  </td>
+			  <input type="hidden" value="{$vo.id}" name="jd_id[]" />
+             </tr>
+		
+					
+				{/foreach}
+				{/if}
+    <tr>
+      
+       <td  align="center">
+	     <input type="hidden" name="type_c" value="{$type_c}" />
+						     <input type="hidden" name="gid" value="{$gid}" />   
+				     <input type="hidden" name="ids" value="{$ids}" />
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="attr_add" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+        </table>
+</form>
+</div>
+{/if}
+{include file="pagefooter.htm"}

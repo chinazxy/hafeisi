@@ -1,0 +1,298 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+ {insert_scripts files='../js/region.js,../js/shopping_flow.js'}
+
+  <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+var i=0;
+var string='';
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+{
+
+  var src = obj.parentNode.parentNode;
+
+   var idx = rowindex(src);
+
+   var tbl = document.getElementById('gallery-table');
+
+   var row = tbl.insertRow(idx + 1);
+
+   var cell = row.insertCell(-1);
+   
+ //cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+   cell.innerHTML='{$addOrder}';
+
+
+}
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+function delet(id){
+
+  if(confirm("您确定要删除该条数据吗?")){
+   
+	 location.href="glasses_case.php?act=delet&id="+id;
+  }
+}
+
+function deletImg(din,id){
+
+  if(confirm("您确定要删除该图片吗?")){
+    
+	
+	 location.href="glasses_case.php?act=deleteimgz&id="+id+"&din="+din;
+	 
+  }
+ 
+
+}
+function checkDefault(obj){
+
+ var defautbox=document.getElementsByName("zj_moren[]");
+ var checkboxval=document.getElementsByName("zj_moren1[]");
+ var editdefualtbox=document.getElementsByName("zj_tmoren[]");
+ var editcheckboxval=document.getElementsByName("zj_tmoren1[]");
+ for(var i=0;i<defautbox.length;i++){
+     if(obj!==defautbox[i]){
+     if(defautbox[i].checked==true){
+	 
+	   defautbox[i].checked=false;
+	    defautbox[i].value=0;
+		checkboxval[i].value=0;
+	 }
+	 }
+ 
+ }
+ if(editdefualtbox.length>0){
+  for(var t=0;t<editdefualtbox.length;t++){
+  if(obj!==editdefualtbox[t]){
+     if(editdefualtbox[t].checked==true){
+	 
+	    editdefualtbox[t].checked=false;
+	    editdefualtbox[t].value=0;
+		editcheckboxval[t].value=0;
+	 }
+	 
+	 }
+ 
+ }
+ }
+ 
+ 
+ if(obj.checked==true){
+obj.checked=true;
+obj.value=1;
+obj.nextSibling.value=1;
+
+}else{
+obj.checked=false;
+obj.value=0;
+obj.nextSibling.value=0;
+
+}
+
+}
+
+</script>
+<div class="main-div">
+<form action="glasses_case.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table" >
+     <caption style="text-align:left;font-size:16px;padding-left:10px">镜盒系列</caption>
+ 
+ 
+     <tr>
+	
+      <td  class="label">
+       产品代码：</td>
+      <td>
+        <input type="text" name="number" value="{$ads.number}" size="35" />
+        
+      </td>
+    </tr>
+    <tr>
+	
+      <td  class="label">
+       中文系列标题：</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+        
+      </td>
+    </tr>
+	    <tr>
+	
+      <td  class="label">
+       英文系列标题：</td>
+      <td>
+        <input type="text" name="title_en" value="{$ads.title_en}" size="35" />
+        
+      </td>
+    </tr>
+	    <tr style="display:none">
+      <td  class="label">
+       中文描述：</td>
+      <td>
+	     <textarea name="content" cols="60" rows="5">{$ads.content}</textarea>
+      </td>
+    </tr>
+	
+	
+	
+	    <tr style="display:none">
+      <td  class="label">
+       英文描述：</td>
+      <td>
+	     <textarea name="content_en" cols="60" rows="5">{$ads.content_en}</textarea>
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+       排序：</td>
+      <td>
+        <input type="text" name="resort" value="{$ads.resort}" size="35" style="width:80px"/>
+ 
+      </td>
+	  </tr>
+	  	    <tr>
+      <td  class="label">
+       库存：</td>
+      <td>
+        库存：<input type="text" name="dingzhi_number" value="{$ads.dingzhi_number}" size="20"/>
+ 
+      </td>
+	  </tr>
+	  	  	    <tr>
+      <td  class="label">
+        配送时间(库存为0时指定的最大配货时间)：</td>
+      <td>
+          配送时间(库存为0时指定的最大配货时间)： <input type="text" name="delivery_time" value="{$ads.delivery_time}" size="35" style="width:80px"/>
+ 
+      </td>
+	  </tr>
+
+	<tr>
+	<td class="label">图片：</td>
+	<td><input type="file" name="file"  size="35" /> {if $ads.image}<img src="../{$ads.image_m}"/><input type="button" value="删除图片" onclick="deletImg('p',{$ads.id})"/>{/if}</td>
+	</tr>
+	<tr>
+	      <td class="label">
+              设为默认：</td><td><input type="checkbox" name="moren" value="1" {if $ads.moren eq 1}checked="checked"{/if}/>
+      </td>
+	  </tr>
+
+    <tr> <td colspan="2" class=".tianjia">
+	
+    <!--   <table width="90%" id="gallery-table"  align="center">
+	   <caption style="text-align:left;font-size:16px;padding-left:10px">对应镜盒材质</caption>
+          <tr>
+            <td style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+			
+              <a href="javascript:;" onclick="addOrder(this)">[+]</a>
+			   产品代码： <input type="text" name="number[]" size="20" />
+			   中文标题：<input type="text" name="zj_title[]" size="20"/><br/>
+			   英文标题：<input type="text" name="zj_title_en[]" size="20"/><br/>
+              
+			   显示排序：<input type="text" name="zj_resort[]" size="20" style="width:80px"/><br/>
+	           设为默认：<input class="moren" type="checkbox" name="zj_moren[]" onchange="checkDefault(this)" value="1"/><input class="moren1" type="hidden" value="0" name="zj_moren1[]"/><br/>
+                
+               库存：<input type="text" name="dingzhi_number[]" value="" size="20"/>
+			  配送时间(库存为0时指定的最大配货时间)： <input type="text" name="delivery_time[]" value="" size="20" /><br/>
+               材质图片：<input type="file" name="zj_file[]"/><span style="color:#FF0000">PC端宽1920*高1080</span><br/>
+			   展开图片：<input type="file" name="zj_file2[]"/><span style="color:#FF0000">宽1920*高1080</span><br/>
+			   材质色块图：<input type="file" name="zj_file1[]"/><span style="color:#FF0000">宽40px*高40px</span><br/>
+			   镌刻字体颜色：<input type="text" name="font_color[]"/><span style="color:#FF0000">（默认字体白色,请填写颜色代码，如白色（#ffffff））</span><br/>
+			      </td>
+             </tr>
+        </table>-->
+		
+	       <table  width="90%" id="gallery-table"  align="center">
+		      <caption style="text-align:left;font-size:16px;padding-left:10px">对应镜盒材质</caption>
+		     <tr>
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" onclick="addOrder(this)">[+]</a>
+			     产品代码： <input type="text" name="tnumber[]" size="20" />
+			   中文标题：<input type="text" name="zj_ttitle[]" size="20"/><br/>
+			   英文标题：<input type="text" name="zj_ttitle_en[]" size="20"/><br/>    
+			   显示排序：<input type="text" name="zj_tresort[]" size="20" style="width:80px"/><br/>
+			   设为默认：<input class="moren" type="checkbox" name="zj_tmoren[]" onchange="checkDefault(this)" value="1"/>
+			   <input class="moren1" type="hidden" value="0" name="zj_tmoren1[]"/><br/>
+			   库存：<input type="text" name="tdingzhi_number[]" value="" size="20"/>
+			  配送时间(库存为0时指定的最大配货时间)： <input type="text" name="tdelivery_time[]" value="" size="20" /><br/>
+               镜盒正面图片：<input type="file" name="zj_tfile[]"/><span style="color:#FF0000">宽1920*高1080</span><br/>
+			   镜盒展开图片：<input type="file" name="zj_tfile2[]"/><span style="color:#FF0000">宽1920*高1080</span><br/>
+			   材质色块图：<input type="file" name="zj_tfile1[]"/><span style="color:#FF0000">宽40px*高40px</span><br/>
+			     镌刻字体颜色：<input type="text" name="font_color1[]"/><span style="color:#FF0000">（默认字体白色,请填写颜色代码，如白色（#ffffff））</span><br/>
+			      </td>
+             </tr>
+		  {foreach from=$child item=ch}  
+          <tr>
+            <td style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+			   <a href="javascript:;" onclick="delet({$ch.id})">[-]</a>
+			    产品代码： <input type="text" name="zj_number[]" size="20" value="{$ch.number}" />
+			   中文标题：<input type="text" name="zj_title[]" size="20" value="{$ch.child_title}"/><br/>
+			   英文标题：<input type="text" name="zj_title_en[]" size="20" value="{$ch.child_title_en}" /><br/>
+			   显示排序：<input type="text" name="zj_resort[]" size="20" style="width:80px" value="{$ch.resort}"/><br/>
+			      设为默认：<input class="moren" type="checkbox" name="zj_moren[]" onchange="checkDefault(this)" value="0" {if $ch.moren eq 1}checked="checked"{/if}/><input class="moren1" type="hidden" value="{if $ch.moren eq 1}1{else}0{/if}" name="zj_moren1[]"/><br/>
+				  库存：<input type="text" name="dingzhi_number[]" value="{$ch.dingzhi_number}" size="20"/>
+			  配送时间(库存为0时指定的最大配货时间)： <input type="text" value="{$ch.delivery_time}" name="delivery_time[]" value="" size="20" />   <br/>
+	          {if $ch.image}<img src="../{$ch.image_m}"/><input type="button" value="删除图片" onclick="deletImg('c',{$ch.id})"/><br/>{/if}
+              镜盒正面图片：<input type="file" name="zj_file[]"/><span style="color:#FF0000">PC端宽1920*高1080</span><br/>
+			   {if $ch.z_image}<img src="../{$ch.z_image_m}"/><input type="button" value="删除图片" onclick="deletImg('z',{$ch.id})"/><br/>{/if}
+              镜盒展开图片：<input type="file" name="zj_file2[]"/><span style="color:#FF0000">PC端宽1920*高1080</span><br/>
+			     {if $ch.s_image}<img src="../{$ch.s_image_m}"/><input type="button" value="删除图片" onclick="deletImg('s',{$ch.id})"/><br/>{/if}
+               材质色块图：<input type="file" name="zj_file1[]"/><span style="color:#FF0000">宽40px*高40px</span><br/>
+			      镌刻字体颜色：<input type="text" name="font_color[]" value="{$ch.font_color}"/><span style="color:#FF0000">（默认字体白色,请填写颜色代码，如白色（#ffffff））</span><br/>
+			      </td>
+             </tr>		
+			 {/foreach}
+        </table>
+
+		
+	</td>
+</tr>
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

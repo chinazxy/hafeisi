@@ -1,0 +1,132 @@
+* { padding: 0; margin: 0;  }
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,  
+form,fieldset,input,textarea,p,blockquote,th,td {
+	padding: 0;
+	margin: 0;
+	border-collaps: 0;
+	
+}
+body,html { background:#fff; font-size:16px;} 
+table {
+	border-collapse: collapse;
+	border-spacing: 1;
+}  
+fieldset,img {  
+border: 0;  
+vertical-align:middle;
+}  
+ 
+ol,ul {  
+list-style: none;
+margin:0px;
+padding:0px;
+}  
+caption,th {  
+text-align: left;  
+}  
+h1,h2,h3,h4,h5,h6 {  
+font-size: 100%;  
+font-weight:normal;
+}
+a{ color:#999999;text-decoration:none;}
+a:hover{ cursor:pointer;outline:none}
+body{font-size:16px;}
+input,button,select,textarea{outline:none}  
+
+textarea{resize:none} 
+.clearfix:after {
+clear: both;
+content: '.';
+display: block;
+height: 0px;
+
+visibility: hidden;
+}
+input, button, select, textarea {
+    outline: medium none;
+}
+p { word-wrap:break-word; word-break:break-all;}
+img {max-width:100%;}
+
+
+/*h5*/
+.width {width:100%;height:auto;}
+.t1 {width:100%;height:auto; position:relative; }
+.dianb {width:100%;height:auto;position:absolute;left:0;bottom:0; text-align:center;}
+.dian {width:100%;height:auto; display:inline-block;}
+.dian img {max-width:100%;}
+.dian a {color:#fff; width:100%;height:100%; display:block; text-decoration:none;}
+.t2 {width:100%;height:100%; background:url(../images/ztyimg/w2.png) no-repeat center center; background-size:cover;-webkit-background-size:cover; position: relative;}
+
+.t2 .tu2 {width:100%;height:100%; background:url(../images/ztyimg/w2w.png) no-repeat center 100%;background-size:cover;-webkit-background-size:cover;  position: absolute;left:0;top:0;}
+
+.t3  {width:100%;height:100%; background:url(../images/ztyimg/w3.png) no-repeat center 100%; background-size:cover;-webkit-background-size:cover;  position: relative;left:0;top:0;}
+
+.t3 .tu3  {width:100%;height:100%; background:url(../images/ztyimg/w3w.png) no-repeat center 100%;background-size:cover;-webkit-background-size:cover; position: absolute;left:0;top:0;}
+
+
+.t4  {width:100%;height:100%; background:url(../images/ztyimg/w4.png) no-repeat center 100%;background-size:cover;-webkit-background-size:cover;  position: relative;left:0;top:0;}
+
+.t4 .tu4  {width:100%;height:100%; background:url(../images/ztyimg/w4w.png) no-repeat center 100%; background-size:cover;-webkit-background-size:cover; position: absolute;left:0;top:0;}
+
+
+.t5  {width:100%;height:100%; background:url(../images/ztyimg/w5w.png) no-repeat center 100%; background-size:cover;-webkit-background-size:cover;  position: relative;left:0;top:0;}
+
+.t5 .tu5  {width:100%;height:100%; background:url(../images/ztyimg/w5.png) no-repeat center 100%;background-size:cover;-webkit-background-size:cover; position: absolute;left:0;top:0;}
+.t6  {width:100%;height:100%; background:url(../images/ztyimg/w6.png) no-repeat center 100%;background-size:cover;-webkit-background-size:cover;  position: relative;left:0;top:0;}
+
+.t6 .tu6  {width:100%;height:100%; background:url(../images/ztyimg/w6w.png) no-repeat center 100%;background-size:contain;-webkit-background-size:contain;  position: absolute;left:0;top:0;}
+
+
+
+.t7 {width:100%;height:auto; text-align:center;}
+
+.chap {width:100%;height:auto; text-align:center; margin-top:40px;}
+.margin { margin-bottom:40px;}
+.chap .chatu {width:65%;height:auto; text-align:center; display:inline-block;}
+.chap .chatu img {max-width:100%;}
+
+.chap .zi {width:100%; text-align:center; float:left; color:#666666; font-size:14px;height:auto; margin-bottom:30px; margin-top:30px;}
+.chap .zi .te1 {width:100%;height:auto; float:left;}
+.chap .zi .te2 {width:100%;height:auto; float:left;}
+.chap .anniun { width:138px;height:33px; line-height:33px; font-size:14px; display:inline-block; border:1px solid #e5e5e5;}
+.chap .anniun a {width:100%;height:100%; text-decoration:none; display:block;color:#666666;}
+
+
+
+/*2*/
+
+.d1 {width:100%;height:100%; background:url(../images/ztyimg/z1.png) no-repeat center top; -webkit-background-size:cover;background-size:cover; position:relative; margin-top:14%;}
+.d2 {width:100%;height:100%; background:url(../images/ztyimg/z2.png) no-repeat center 100%; -webkit-background-size:cover;background-size:cover; position:relative;}
+
+.d3 {width:100%;height:100%; background:url(../images/ztyimg/z3.png) no-repeat center 100%; -webkit-background-size:cover;background-size:cover; position:relative;}
+.d3 .du3  {width:100%;height:100%; background:url(../images/ztyimg/z3z.png) no-repeat center 100%; -webkit-background-size:cover;background-size:cover; position: absolute;left:0;top:0;}
+
+.d5 {width:100%;height:100%; background:url(../images/ztyimg/z5.png) no-repeat center 100%; -webkit-background-size:cover;background-size:cover; position:relative;}
+.d5 .du5  {width:100%;height:100%; background:url(../images/ztyimg/z5z.png) no-repeat center 100%; position: -webkit-background-size:cover;background-size:cover; absolute;left:0;top:0;}
+.d6 {width:100%;height:100%; background:url(../images/ztyimg/z6z.png) no-repeat center center; -webkit-background-size:contain;background-size:contain; position:relative;}
+.ann {width:95%;height:auto; float:left; margin-bottom:40px;}
+.ann .anniuhe {width:90px;height:20px; float:right; border:1px solid #7a7a7a; border-radius:20px; background:#7a7a7a; line-height:20px; text-align:center; font-size:12px; color:#fff;}
+
+.anniuhe a{ font-size:12px; color:#fff;}
+
+.dilg {width:100%;height:400px; float:left;background:url(../images/ztyimg/dhl.png) no-repeat center 100%; -webkit-background-size:cover;background-size:cover; background-size:cover;}
+.dilu {width:100%;height:200px;float:left; background:url(../images/ztyimg/diua.png) no-repeat center 100%; -webkit-background-size:cover;background-size:cover; background-size:cover; }
+.dilu a {width:100%;height:100%; text-decoration:none; display:block;}
+
+.app-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -48px auto auto -38px;
+	width: 95px;
+	height: 95px;
+	display: block;
+	opacity: 1;
+	-webkit-transition: all .5s;
+	z-index: 99999
+}
+
+
+
+.marginbottom {padding-bottom:20%;}

@@ -1,0 +1,217 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+ {insert_scripts files='../js/region.js,../js/shopping_flow.js'}
+
+  <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style>
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+var i=0;
+var string='';
+//var st_addim='';
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+{
+
+  var src = obj.parentNode.parentNode;
+
+   var idx = rowindex(src);
+
+   var tbl = document.getElementById('gallery-table');
+
+   var row = tbl.insertRow(idx + 1);
+
+   var cell = row.insertCell(-1);
+   
+ //cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+   cell.innerHTML='{$addOrder}';
+
+
+}
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+function delet(id,din){
+
+  var din = arguments[1]?arguments[1]:'list';
+  //alert(din);
+  if(confirm("您确定要删除该条数据吗?")){
+   
+	 location.href="dingzhi_miaoshu.php?act=delet&id="+id+"&din="+din;
+  }
+}
+
+function deletImg(id,din){
+  var din = arguments[1]?arguments[1]:'';
+  if(confirm("您确定要删除该图片吗?")){
+	 location.href="dingzhi_miaoshu.php?act=deleteimg&id="+id+"&din="+din;	 
+  }
+}
+function checkDefault(obj){
+
+ var defautbox=document.getElementsByName("zj_moren[]");
+ var checkboxval=document.getElementsByName("zj_moren1[]");
+ var editdefualtbox=document.getElementsByName("zj_tmoren[]");
+ var editcheckboxval=document.getElementsByName("zj_tmoren1[]");
+ for(var i=0;i<defautbox.length;i++){
+     if(obj!==defautbox[i]){
+	 
+     if(defautbox[i].checked==true){
+	 
+	   defautbox[i].checked=false;
+	    defautbox[i].value=0;
+		checkboxval[i].value=0;
+	 }
+	 }
+ 
+ }
+ if(editdefualtbox.length>0){
+  for(var t=0;t<editdefualtbox.length;t++){
+  if(obj!==editdefualtbox[t]){
+     if(editdefualtbox[t].checked==true){
+	    editdefualtbox[t].checked=false;
+	    editdefualtbox[t].value=0;
+		editcheckboxval[t].value=0;
+	 }
+	 
+	 }
+ 
+ }
+ }
+ 
+ 
+if(obj.checked==true){
+
+
+obj.checked=true;
+obj.value=1;
+obj.nextSibling.value=1;
+
+}else{
+
+obj.checked=false;
+obj.value=0;
+obj.nextSibling.value=0;
+
+}
+
+}
+function add_c(num){
+
+   //alert(document.getElementsByName("add"+num)[0].value);
+
+   location.href="dingzhi_chufan.php?act=insert&parent_id="+num+"&value="+document.getElementsByName("add"+num)[0].value;
+   
+}
+function re_m(id,din){
+var din = arguments[1]?arguments[1]:'list';
+if(confirm("您确定要删除该条数据吗?")){
+   location.href="dingzhi_miaoshu.php?act=delet&id="+id+"&din="+din;
+   }
+}
+function gen(id){
+if(confirm("您确定要更新该条数据吗?")){
+//alert(document.getElementsByName("value["+id+"]")[0].value);
+   location.href="dingzhi_chufan.php?act=genxin&id="+id+"&value="+document.getElementsByName("value["+id+"]")[0].value;
+   }
+}
+function tab_show(obj,id){
+if(obj.innerHTML=='显示'){
+ document.getElementById(id).style.display="block";
+ obj.innerHTML='隐藏';
+}else{
+  document.getElementById(id).style.display="none";
+  obj.innerHTML='显示';
+}
+
+}
+function xi_show(obj){
+   obj.nextSibling.style.display="block";
+   obj.style.display="none";
+}
+function add_im(obj){
+//var st_addim = obj.parentNode.parentNode.innerHTML;
+var st_addim='<td class="label"><a href="javascript:void(0)" onclick="removeImg(this)">[-]</a>标题(中):<br/>标题(英):<br/>图片:</td><td><input type="text" name="add_title_lun[]" size="30"/><br/><input type="text" name="add_title_en_lun[]" size="30"/><br/><input type="file" name="add_images[]"/><span style="color:red">宽460*高200</span></td>';
+//st_addim =st_addim.replace('onclick="add_im(this)">[+]','onclick="removeImg(this)">[-]');
+var tr=document.createElement("tr"); 
+    tr.innerHTML=st_addim;
+    obj.parentNode.parentNode.parentNode.appendChild(tr);
+}
+function remove_im(obj){
+   obj.parentNode.parentNode.remove();
+   
+}
+function xilie(obj){
+
+  if(obj.innerHTML=='系列标题修改项显示'){
+  
+     document.getElementById("xilie_table").style.display="";
+	 obj.innerHTML='系列标题修改项关闭';
+  }else{
+     document.getElementById("xilie_table").style.display="none";
+	 obj.innerHTML='系列标题修改项显示';
+  }
+}
+</script>
+<div class="main-div" >
+<form action="dingzhi_miaoshu.php" method="post" name="theForm" enctype="multipart/form-data">
+<table>
+<tr>
+<td class="label">CSS样式(中):</td><td><textarea cols="100" rows="50" name="yanshi">{$ads_list.css_content}</textarea></td>
+
+</tr>
+
+<tr>
+<td colspan="2" style="height:30px"></td>
+</tr>
+<tr><td class="label">html代码(中):</td><td >{$FCKeditor}</td></tr>
+<tr>
+<td class="label">CSS样式(英):</td><td><textarea cols="100" rows="50" name="en_yanshi">{$ads_list.en_css_content}</textarea></td>
+</tr>
+<tr><td class="label">html代码(英):</td><td >{$en_FCKeditor}</td></tr>
+<td colspan="2" style="height:10px"></td>
+     <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+         <input type="hidden" name="id" value="{$ads_list.id}" />
+      </td>
+    </tr>
+</table>
+</form>
+</div>
+
+{include file="pagefooter.htm"}

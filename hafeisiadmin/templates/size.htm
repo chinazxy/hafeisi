@@ -1,0 +1,320 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\添加)/i, "$1removeImg$3$4移除");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+
+function checkDefault(obj){
+
+ var defautbox=document.getElementsByName("default_show[]");
+ var checkboxval=document.getElementsByName("checkboxvalue[]");
+ var editdefualtbox=document.getElementsByName("default_show_edit[]");
+  var editcheckboxval=document.getElementsByName("checkboxvalue_edit[]");
+ for(var i=0;i<defautbox.length;i++){
+     if(obj!==defautbox[i]){
+     if(defautbox[i].checked==true){
+	 
+	   defautbox[i].checked=false;
+	    defautbox[i].value=0;
+		checkboxval[i].value=0;
+	 }
+	 }
+ 
+ }
+ if(editdefualtbox.length>0){
+  for(var t=0;t<editdefualtbox.length;t++){
+  if(obj!==editdefualtbox[t]){
+     if(editdefualtbox[t].checked==true){
+	 
+	    editdefualtbox[t].checked=false;
+	    editdefualtbox[t].value=0;
+		editcheckboxval[t].value=0;
+	 }
+	 
+	 }
+ 
+ }
+ }
+ 
+ 
+ if(obj.checked==true){
+obj.checked=true;
+obj.value=1;
+obj.nextSibling.value=1;
+
+}else{
+obj.checked=false;
+obj.value=0;
+obj.nextSibling.value=0;
+
+}
+
+}
+
+
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletItem(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+     Ajax.call('size.php', 'id=' + id+'&act=deleteitem', removeItem, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeItem(result){
+
+    if(result.err==0){
+	
+	  alert("删除失败!");
+	
+	}else{
+	
+	 if(result.id>0){
+	
+	 	 var obj=document.getElementById("item_"+result.id);
+	
+	var row = rowindex(obj);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+	 }
+
+	}
+
+
+}
+
+
+
+function deletImg2(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg2&id="+id;
+  
+  }
+ 
+
+}
+function deletImg3(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg3&id="+id;
+  
+  }
+ 
+
+}
+
+
+function vi_show(obj){
+    if(obj.value==0){
+	  dc('vi_url1').style.visibility='collapse';
+	  dc('vi_url2').style.visibility='collapse';
+	  dc('vi_url3').style.visibility='collapse';
+
+	}else{
+
+	    dc('vi_url3').style.visibility='visible';
+		dc('vi_url1').style.visibility='visible';
+		dc('vi_url2').style.visibility='visible';
+
+	}
+}
+function dc(id){
+    return document.getElementById(id);
+}
+
+
+function removeDz(id,tid,tc){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+  var args = "act=remove&id=" + id +"&ids=" + tid +"&ctype=" + tc
+     Ajax.call('size.php', args, removeCate, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeCate(result){
+
+ window.parent.frames["main-frame"].location="jk.php?act=add&id="+result.id+"&c_type="+result.c_type;
+
+}
+
+</script>
+<!--<div class="main-div">
+
+<form action="size.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table">
+     <caption style="text-align:left;font-size:16px">栏目信息</caption>
+    <tr>
+      <td  class="label">
+       尺寸栏目标题(中)：</td>
+      <td>
+        <input type="text" name="title" value="{$minfo.title}" size="35" />
+ 
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">
+       尺寸栏目标题(英)：</td>
+      <td>
+        <input type="text" name="en_title" value="{$minfo.en_title}" size="35" />
+ 
+      </td>
+    </tr>
+	
+		    <tr>
+      <td  class="label">
+       尺寸栏目描述(中)：</td>
+      <td>
+        <textarea type="text" name="descript" >{$minfo.descript}</textarea>
+ 
+      </td>
+    </tr>
+		    <tr>
+      <td  class="label">
+       尺寸栏目描述(英)：</td>
+      <td>
+        <textarea type="text" name="en_descript" >{$minfo.en_descript}</textarea>
+ 
+      </td>
+    </tr>
+		    <tr>
+      <td  class="label">
+       尺寸栏目小图标：</td>
+      <td>
+       <input type="file" name="c_image" />
+       <input type="hidden" value="{$minfo.images}" name="c_image_hide" />{if $minfo.images neq ""}<img src="../{$minfo.images}" width="50px" height="50px"  />{/if}
+      </td>
+    </tr>
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+       {if $form_act neq "update"} <input type="submit" value="添加" class="button" /> {else} <input type="submit" value="修改" class="button" /> {/if}
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+		        <input type="hidden" name="type_c" value="{$type_c}" />
+					     <input type="hidden" name="cid" value="{$ads.id}" />
+				     <input type="hidden" name="ids" value="{$ids}" />
+		
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>-->
+
+<div class="main-div" id="listDiv">
+<form action="size.php" method="post" name="theForm" enctype="multipart/form-data">
+ 
+ <table  width="90%" id="gallery-table"  align="center">
+		      <caption style="text-align:left;font-size:16px">尺寸属性</caption>
+		     <tr>
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" style="color:blue;" onclick="addOrder(this)">[添加]</a>
+			   标题：<input type="text" name="att_title[]" type="text" value="" size="20"/>  英文标题：<input name="att_entitle[]" type="text" value=""  size="20"><br/>
+			   设为默认显示：<input type="checkbox" value="0" onclick="checkDefault(this);"  id="default_show" name="default_show[]" /><input type="hidden" value="0" name="checkboxvalue[]" /><br/>
+			   尺寸范围：<input name="att_size[]" type="text" value=""  size="20">  <br/> 
+			   显示顺序：<input type="text" value=""  name="attr_resort[]" /><br/>	
+			   尺寸图片：<input type="file" name="color_img[]" /><br/>
+
+			  </td>
+             </tr>
+			 
+			 
+
+				{foreach from=$res item=vs}
+			
+			 
+						     <tr id="item_{$vs.id}">
+            <td  style="border-bottom:1px solid #bbdde5; padding:20px 0px;">
+              <a href="javascript:;" onclick="deletItem({$vs.id},this)" style="color:red">删除</a>
+			   标题：<input type="text" name="att_title_e[]" type="text" value="{$vs.title}" size="20"/>  英文标题：<input name="att_entitle_e[]" type="text" value="{$vs.en_title}"  size="20"><br/>
+			      设为默认显示：<input type="checkbox" value="{$vs.default_show}" {if $vs.default_show eq 1} checked="checked" {/if} onclick="checkDefault(this);"  id="default_show_edit" name="default_show_edit[]" /><input type="hidden" value="{$vs.default_show}" name="checkboxvalue_edit[]" /><br/>
+			   尺寸范围：<input name="att_size_e[]" type="text" value="{$vs.size}"  size="20"> <br/> 
+			   显示顺序：<input type="text" value="{$vs.resort}"  name="attr_resort_e[]" /><br/>
+			   尺寸图片：<input type="file" name="color_img_e[]" /><input type="hidden" value="{$vs.images}" name="jd_hide_color[]" /><input type="hidden" value="{$vs.thumb}" name="jd_hide_color_t[]" />{if $vs.thumb neq ""}<img src="../{$vs.thumb}" width="50px" height="50px"  />{/if}<br/>
+			
+			  </td>
+			  <input type="hidden" value="{$vs.id}" name="jd_id[]" />
+             </tr>
+				
+				{/foreach}
+    <tr>
+      
+       <td  align="center">
+	     <input type="hidden" name="type_c" value="{$type_c}" />
+					   
+				     <input type="hidden" name="ids" value="{$ids}" />
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="attr_add" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+        </table>
+</form>
+</div>
+
+{include file="pagefooter.htm"}

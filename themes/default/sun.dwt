@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- #BeginLibraryItem "/library/content_header.lbi" --><!-- #EndLibraryItem -->
+<link type="text/css" rel="stylesheet" href="Public/css/global.css" />
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+{insert_scripts files='./Public/js/jquery.mousewheel.js,minified/plugins/CSSPlugin.min.js,minified/TweenMax.min.js,jquery.easing.1.3.js,./Public/jquery.jscrollpane.min.js,./Public/js/pro_cos.js,./Public/js/common.js,./Public/js/brandcos.js,./Public/js/sort.js'}
+
+
+</head>
+
+<body>
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+
+<div class="sort" style="position:relative;">
+	
+    	<div class="b_img" id="carousel">
+        	<ul>
+			 {foreach from=$photolist item=vo}
+			 
+            	<li><img class=" hid_img" src="Public/Uploads/Photo/{$vo.photo_plot}" /></li>
+				{/foreach}
+
+            </ul>
+        </div>
+       
+<div class="contact_sort_bg">
+	<div class="contact_sort clearfix">
+     <div class="dot_box">
+        	<ul class="a">
+			 
+            {foreach from=$photolist item=vo key=i}
+			   {if $i eq 0}
+			   <li class="cur"></li>
+			   {else}
+			   
+			    	<li></li>
+			 {/if}
+				{/foreach}
+				
+            </ul>
+        </div>
+		
+		 {foreach from=$navlist.cat_id item=vo name=foo}
+	
+		{if $smarty.foreach.foo.index eq 0}
+		 
+        <div class="s_left">
+        	<div class="s_up">{$vo.cat_enname}</div>
+            <div class="s_title">{$vo.name}</div>
+            <div class="s_txt">
+{foreach from=$vo.cat_id item=vos name=fos}{$g}{if $smarty.foreach.fos.index eq 0}<a {if $vos.id eq $id} id="current" {/if} href="glassesList.php?pid={$vo.id}&id={$vos.id}">{$vos.name}</a>{else}<a {if $vos.id eq $id} id="current" {/if} href="glassesList.php?pid={$vo.id}&id={$vos.id}">{$vos.name}</a>{/if}{if ($smarty.foreach.fos.index+1) % 3  eq 0 && $smarty.foreach.fos.index neq 0}<br/>{/if}
+			{/foreach}
+            </div>
+        </div>
+		{else}
+        <div class="s_right">
+        		<div class="s_up">{$vo.cat_enname}</div>
+            <div class="s_title">{$vo.name}</div>
+            <div class="s_txt">
+		 {foreach from=$vo.cat_id item=vos name=fos}{if $smarty.foreach.fos.index  eq 0}<a {if $vos.id eq $id} id="current" {/if}  href="glassesList.php?pid={$vo.id}&id={$vos.id}">{$vos.name}</a>{else}<a {if $vos.id eq $id} id="current" {/if}  href="glassesList.php?pid={$vo.id}&id={$vos.id}">{$vos.name}</a>{/if}{if ($smarty.foreach.fos.index+1) % 3 eq 0 && $smarty.foreach.fos.index neq 0}<br />{/if}
+			{/foreach}
+            </div>
+            
+        </div>
+		{/if}
+	
+		{/foreach}
+    </div>
+	</div>
+</div>
+
+  <input type="hidden" value="2" class="nowpage"/>
+</body>
+</html>

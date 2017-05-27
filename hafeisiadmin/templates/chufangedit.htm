@@ -1,0 +1,253 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletImg(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+</script>
+<div class="main-div">
+<form method="post" action="chufang.php" name="theForm" >
+  <table width="100%" id="general-table">
+    <tr>
+    
+      <td>
+      		   左眼球镜： {foreach from=$cfarray item=vo key=ks}
+					 
+				    {if $ks eq 1}
+			 
+                    <select class="j_chuf2 l_eye l_eye_s" name="l_eye_s">
+					  <option value="">球镜/S</option>
+					   {foreach from=$vo item=vs key=kv}
+					    {if $cfc.l_eye_s neq "" && $cfc.l_eye_s eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					
+					   {/foreach}
+					</select>
+				 
+				   {/if}
+				 		   {/foreach}
+      </td>
+ 
+
+  
+   
+      <td>左眼柱镜：{foreach from=$cfarray item=vo key=ks}
+            {if $ks eq 2}
+               
+			       
+                    <select class="j_chuf2 l_eye l_eye_c" name="l_eye_c">
+							  <option value="">柱镜/C</option>
+							  	   {foreach from=$vo item=vs key=kv}
+					       {if $cfc.l_eye_c neq "" && $cfc.l_eye_c eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					
+						   {/if}   {/foreach}
+      </td>
+  
+	
+ 
+    
+      <td> 左眼轴位：{foreach from=$cfarray item=vo key=ks}
+           				     {if $ks eq 3}
+                  
+			
+                    <select name="l_eye_a" class="j_chuf2 l_eye l_eye_a" {if $l_eye_a eq ""} disabled="disabled" {/if}>
+							  <option value="" {if $l_eye_a eq ""} selected="selected" {/if}>轴位/A</option>
+							  			  	   {foreach from=$vo item=vs key=kv}
+					         {if $cfc.l_eye_a neq "" && $cfc.l_eye_a eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+				 
+					   {/if} {/foreach}
+      </td>
+ 
+	
+ 
+     
+      <td> 左眼瞳距：{foreach from=$cfarray item=vo key=ks}
+ 		   	     {if $ks eq 4}
+                 
+                    <select  name="l_eye_t" class="j_chuf2 eye_t l_eye_t">  
+					   <option value="">左眼瞳距</option>
+							  			  	   {foreach from=$vo item=vs key=kv}
+					  	 	            {if $cfc.l_eye_t neq "" && $cfc.l_eye_t eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					 
+					{/if}   {/foreach}
+      </td>
+    </tr>
+	   
+		    <tr>
+    
+      <td>右眼球镜：
+        		  {foreach from=$cfarray item=vo key=ks}
+				    {if $ks eq 5}
+                
+					
+                    <select name="r_eye_s" class="j_chuf2 r_eye r_eye_s">
+							  <option value="">球镜/S</option>
+							  			  			  	   {foreach from=$vo item=vs key=kv}
+			         {if $cfc.r_eye_s neq "" && $cfc.r_eye_s eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					 
+					{/if}{/foreach}
+      </td>
+    
+		 
+ 
+      <td>右眼柱镜：{foreach from=$cfarray item=vo key=ks}
+            {if $ks eq 6}
+             
+                    <select name="r_eye_c" class="j_chuf2 r_eye r_eye_c" >
+					  <option value="">柱镜/C</option>
+					  			  			  	   {foreach from=$vo item=vs key=kv}
+					            {if $cfc.r_eye_c neq "" && $cfc.r_eye_c eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+				 
+					{/if}{/foreach}
+      </td>
+ 
+	
+		 
+ 
+      <td>右眼轴位： {foreach from=$cfarray item=vo key=ks}
+        {if $ks eq 7}
+                 
+                    <select  name="r_eye_a" class="j_chuf2 r_eye r_eye_a" {if $r_eye_a eq ""} disabled="disabled" {/if}>
+					  <option value="" {if $r_eye_a eq ""} selected="selected"{/if}>轴位/A</option>
+					  			  			  	   {foreach from=$vo item=vs key=kv}
+					 	            {if $cfc.r_eye_a neq "" && $cfc.r_eye_a eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+				 
+					{/if}{/foreach}
+      </td>
+ 
+		
+ 
+    
+      <td>右眼瞳距：{foreach from=$cfarray item=vo key=ks}
+    {if $ks eq 8}
+                 
+				
+                    <select  name="r_eye_t" class="j_chuf2 eye_t r_eye_t">  
+							   <option value="">右眼瞳距</option>
+							  			  	   {foreach from=$vo item=vs key=kv}
+						  	 	            {if $cfc.r_eye_t neq "" && $cfc.r_eye_t eq $vs}
+						     <option selected="selected" value="{$kv}">{$vs}</option>
+						  {else}
+						       <option value="{$kv}">{$vs}</option>
+						{/if}
+					   {/foreach}
+					</select>
+					 
+					{/if}{/foreach}
+      </td>
+ 
+       </tr>
+	   <tr>
+ 
+       <td colspan="4" style="text-align:center;">
+	   <input type="submit" value="修改"   class="button"  />
+        <input type="button" value="返回列表" onclick="location.href='chufang.php?act=list&user_id={$uids}'" class="button" />
+          
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ids}" />
+		   <input type="hidden" name="uid" value="{$uids}" />
+      </td>
+      </tr>
+ </table>
+</form>
+</div>
+
+{include file="pagefooter.htm"}

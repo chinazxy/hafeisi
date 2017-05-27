@@ -1,0 +1,222 @@
+<!-- $Id: ads_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/region.js"}
+<div class="main-div">
+<form action="salestone.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+       门店(中)：</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+ 
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">
+       门店(英)：</td>
+      <td>
+        <input type="text" name="entitle" value="{$ads.entitle}" size="35" />
+ 
+      </td>
+    </tr>
+    {if $action eq "add"}
+      <tr>
+        <td class="label">所属类型：</td>
+        <td>
+         <select name="stone_types">
+		  {foreach from=$typelist item=list}
+	
+         <option value='{$list.id}'>{$list.name}</option>
+        {/foreach}
+         </select>
+        </td>
+      </tr>
+	{else}
+	        <tr>
+        <td class="label">所属类型：</td>
+        <td>
+         <select name="stone_types">
+		  {foreach from=$typelist item=list}
+	       {if  $list.id eq $ads.type}
+         <option value='{$list.id}' selected>{$list.name}</option>
+		  {else}
+		     <option value='{$list.id}'>{$list.name}</option>
+		   {/if}
+        {/foreach}
+         </select>
+        </td>
+      </tr>
+    {/if}
+
+    <tr>
+      <td  class="label">logo图片：</td>
+      <td>
+        <input type="file" name="images"  />
+		{if $ads.images neq ''}
+		  <img src="../{$ads.images}" width="165px" height="60px"  />
+		{/if}
+		<input type="hidden" value="{$ads.images}"  name="hide_img" />
+		(图片大小 宽165px*高60px)
+      </td>
+    </tr>
+	
+	
+	
+	
+	
+			
+		
+					
+			
+	
+	<tr>
+        <td class="label">所在省份</td>
+        <td>
+		          <select name="province" id="selProvince"  onchange="region.changed(this, 2, 'selCities')">
+                      <option value="0">请选择省</option>
+                     <!-- {foreach from=$shop_province_list item=province}-->
+					  <!--{if $province.region_id eq $address_info.province}-->
+                      <option value="{$province.region_id}" selected >{$province.region_name}</option>
+					  <!--{else}-->
+					   <option value="{$province.region_id}" >{$province.region_name}</option>
+					  <!--{/if}-->
+                      <!-- {/foreach}-->
+                    </select>
+        </td>
+      </tr>
+	
+	
+		<tr>
+        <td class="label">所在城市</td>
+        <td>
+			    <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+                      <option value="0">请选择市</option>
+					      <!-- {foreach from=$citylist item=city}-->
+					  <!--{if $city.region_id eq $address_info.city}-->
+					  
+					   <option value="{$city.region_id}" selected >{$city.region_name}</option>
+                          <!--{else}-->
+						   <option value="{$city.region_id}" >{$city.region_name}</option>
+						  
+					     <!--{/if}-->
+                      <!-- {/foreach}-->
+                    </select>
+        </td>
+      </tr>
+			<tr>
+        <td class="label">所在城市</td>
+        <td>
+		 <select name="district" id="selDistricts" {if !$district_list}style="display:none"{/if}>
+                      <option value="0">请选择区</option>
+                    <!-- {foreach from=$district_list item=district} -->
+                      <option value="{$district.region_id}" {if $address_info.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+                      <!-- {/foreach} -->
+                    </select>
+        </td>
+      </tr>
+	
+	
+    <tr>
+      <td  class="label">地址(中)：</td>
+      <td>
+        <input type="text" name="address" value="{$ads.address}" size="35" />
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">地址(英)：</td>
+      <td>
+        <input type="text" name="enaddress" value="{$ads.enaddress}" size="35" />
+      </td>
+    </tr>
+	    <tr>
+      <td  class="label">电话：</td>
+      <td>
+        <input type="text" name="phone" value="{$ads.phone}" size="35" />
+      </td>
+    </tr>
+	
+		
+	    <tr>
+      <td  class="label">传真：</td>
+      <td>
+        <input type="text" name="fax" value="{$ads.fax}" size="35" />
+      </td>
+    </tr>
+	
+	
+			
+	    <tr>
+      <td  class="label">全国客服服务热线：</td>
+      <td>
+        <input type="text" name="onlinephone" value="{$ads.onlinephone}" size="35" />
+      </td>
+    </tr>
+	
+	
+		    <tr>
+      <td  class="label">地图X轴座标：</td>
+      <td>
+        <input type="text" name="xsize" value="{$ads.xsize}" size="35" />
+      </td>
+    </tr>
+			    <tr>
+      <td  class="label">地图Y轴座标：</td>
+      <td>
+        <input type="text" name="ysize" value="{$ads.ysize}" size="35" />
+      </td>
+    </tr>
+				    <tr>
+      <td  class="label">显示排序：</td>
+      <td>
+        <input type="text" name="resort" value="{$ads.resort}" size="35" />
+      </td>
+    </tr>
+	
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+  document.forms['theForm'].elements['title'].focus();
+  <!--
+  var MediaList = new Array('0', '1', '2', '3');
+  {literal}
+  function showMedia(AdMediaType)
+  {
+    for (I = 0; I < MediaList.length; I ++)
+    {
+      if (MediaList[I] == AdMediaType)
+        document.getElementById(AdMediaType).style.display = "";
+      else
+        document.getElementById(MediaList[I]).style.display = "none";
+    }
+  }
+
+  /**
+   * 检查表单输入的数据
+   */
+
+
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+    document.forms['theForm'].reset();
+  }
+
+  //-->
+  {/literal}
+</script>
+{include file="pagefooter.htm"}

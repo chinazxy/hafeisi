@@ -1,0 +1,32 @@
+/*dingzhi*/
+.dingzhi {width:100%; max-width:90em; height:900px; margin:0 auto; padding-bottom:60px;}
+.dingz_img {width:72%; height:auto; float:right;}
+.dingz_img img {width:100%;}
+.dingz_box2 {width:23%; height:100%; float:right; background:#fff; position:relative;}
+.dingz_box22 {width:87%; height:100%; margin:0 auto;  position:relative;}
+.dingz_box2_h {width:100%; height:auto; padding:20px 0px; float:left; font-size:14px; color:#000; text-align:center; border-bottom:1px solid #e2e2e2;}
+.dingz_box2_1 {width:100%; height:auto; padding:15px 0px; float:left; font-size:12px; color:#000; text-align:left; margin:20px 0px;}
+.dingz_box2_in {width:100%; height:30px; float:left; position:relative;}
+.dingz_box2_inb {width:97%; height:28px; float:left; border:none; background:#none; line-height:28px; text-align:left; padding-left:10px; font-size:12px; color:#999;}
+.dingz_box2_inb2 {width:97%; height:28px; float:left;  border:1px solid #e2e2e2; background:#f6f6f6;line-height:28px; text-align:left; padding-left:10px; font-size:12px; color:#999; position:absolute; top:1px; left:1px;}
+.dingz_box2_in ul {width:100%; height:28px; float:left;}
+.dingz_box2_in ul li {width:31%; height:100%; border:1px solid #999; color:#000; font-size:12px; margin-right:1.8%; float:left; text-align:center; line-height:28px;}
+.dingz_box2_in ul li a {display:block; width:100%; height:100%; color:#000;}
+.dingz_box2_in ul li a:hover {color:#fff;}
+.dingz_box2_in ul li:hover {background:#999;}
+.dingz_box2_in ul li a.select {background:#999;color:#fff;}
+.dingz_box2_in ul li.mar_0 {margin-right:0px;}
+
+.dingz_box2_tj {width:100%; height:34px; position:absolute; left:0px; bottom:40px;}
+.dingz_box2_tj1 {width:48%; height:32px; float:left; text-align:center; line-height:32px; border:1px solid #000; font-size:12px;}
+.dingz_box2_tj1 a {width:100%; height:100%; display:block; color:#000;}
+.dingz_box2_tj1 a.select {background:#000;color:#fff;}
+.dingz_box2_tj1.mar_r {float:right;}
+
+
+.dingz_box3 {width:60px; height:100%; float:right; background:#333; position:relative;}
+.dingz_box3 ul {width:100%; height:auto; float:left;}
+.dingz_box3 ul li {width:100%; height:60px; float:left; cursor:pointer; font-size:12px; text-align:center;}
+.dingz_box3 ul li a {display:block; width:100%; color:#fff;}
+.dingz_box3 ul li.pad {padding:20px 0px; height:auto;}
+.san_ding {width:17px; height:17px; position:absolute; left:-8px; top:50%; margin-top:-8px; background:url(../images/san_ding.png) no-repeat;}

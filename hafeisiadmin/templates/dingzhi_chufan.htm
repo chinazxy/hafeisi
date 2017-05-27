@@ -1,0 +1,286 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+ {insert_scripts files='../js/region.js,../js/shopping_flow.js'}
+
+  <script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+var i=0;
+var string='';
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+{
+
+  var src = obj.parentNode.parentNode;
+
+   var idx = rowindex(src);
+
+   var tbl = document.getElementById('gallery-table');
+
+   var row = tbl.insertRow(idx + 1);
+
+   var cell = row.insertCell(-1);
+   
+ //cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+   cell.innerHTML='{$addOrder}';
+
+
+}
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+function delet(id){
+
+  if(confirm("您确定要删除该条数据吗?")){
+   
+	 location.href="glasses_case.php?act=delet&id="+id;
+  }
+}
+
+function deletImg(din,id){
+
+  if(confirm("您确定要删除该图片吗?")){
+    
+	
+	 location.href="glasses_case.php?act=deleteimgz&id="+id+"&din="+din;
+	 
+  }
+ 
+
+}
+function checkDefault(obj){
+
+ var defautbox=document.getElementsByName("zj_moren[]");
+ var checkboxval=document.getElementsByName("zj_moren1[]");
+ var editdefualtbox=document.getElementsByName("zj_tmoren[]");
+ var editcheckboxval=document.getElementsByName("zj_tmoren1[]");
+ for(var i=0;i<defautbox.length;i++){
+     if(obj!==defautbox[i]){
+	 
+     if(defautbox[i].checked==true){
+	 
+	   defautbox[i].checked=false;
+	    defautbox[i].value=0;
+		checkboxval[i].value=0;
+	 }
+	 }
+ 
+ }
+ if(editdefualtbox.length>0){
+  for(var t=0;t<editdefualtbox.length;t++){
+  if(obj!==editdefualtbox[t]){
+     if(editdefualtbox[t].checked==true){
+	    editdefualtbox[t].checked=false;
+	    editdefualtbox[t].value=0;
+		editcheckboxval[t].value=0;
+	 }
+	 
+	 }
+ 
+ }
+ }
+ 
+ 
+if(obj.checked==true){
+
+
+obj.checked=true;
+obj.value=1;
+obj.nextSibling.value=1;
+
+}else{
+
+obj.checked=false;
+obj.value=0;
+obj.nextSibling.value=0;
+
+}
+
+}
+function add_c(num){
+
+   //alert(document.getElementsByName("add"+num)[0].value);
+
+   location.href="dingzhi_chufan.php?act=insert&parent_id="+num+"&value="+document.getElementsByName("add"+num)[0].value;
+   
+}
+function re_m(id){
+if(confirm("您确定要删除该条数据吗?")){
+   location.href="dingzhi_chufan.php?act=delet&id="+id;
+   }
+}
+function gen(id){
+if(confirm("您确定要更新该条数据吗?")){
+//alert(document.getElementsByName("value["+id+"]")[0].value);
+   location.href="dingzhi_chufan.php?act=genxin&id="+id+"&value="+document.getElementsByName("value["+id+"]")[0].value;
+   }
+}
+function tab_show(obj,id){
+if(obj.innerHTML=='显示'){
+ document.getElementById(id).style.display="block";
+ obj.innerHTML='隐藏';
+}else{
+  document.getElementById(id).style.display="none";
+  obj.innerHTML='显示';
+}
+
+}
+</script>
+<div class="main-div">
+
+  <table width="100%" id="general-table" >
+     <caption style="text-align:left;font-size:16px;padding-left:10px">处方管理</caption>
+
+	<form action="dingzhi_chufan.php" method="post" name="theForm" enctype="multipart/form-data">
+	<tr><td colspan="2"><strong>左眼:</strong></td></tr>
+	<tr><td colspan="2">
+	
+	<ul style="list-style-type:none;">
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>
+	左眼球镜(Sph):<input type="text" name="add1"/><input type="button" onclick="add_c(1)" value="添加"/>
+	</div>
+	<div id="left1" style="display:none">
+	{foreach from=$result item=re key=key}
+	{if $re.parent_id eq 1}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+	</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'left1')" style="text-decoration:none;">显示</a></div>
+	</div>
+	</li>
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>左眼柱镜(Cyl):<input type="text" name="add2"/><input type="button" onclick="add_c(2)" value="添加"/></div>
+	<div id="left2" style="display:none">
+	{foreach from=$result item=re key=key}
+	{if $re.parent_id eq 2}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+	</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'left2')" style="text-decoration:none;">显示</a></div>
+	</div></li>
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>左眼轴位(Axis):<input type="text" name="add3"/><input type="button" onclick="add_c(3)" value="添加"/></div>
+	<div id="left3" style="display:none">
+	{foreach from=$result item=re key=key}
+	{if $re.parent_id eq 3}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+	</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'left3')" style="text-decoration:none;">显示</a></div>
+	</div></li>
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>左眼瞳距(PD):<input type="text" name="add4"/><input type="button" onclick="add_c(4)" value="添加"/></div>
+<div id="left4" style="display:none">   
+   {foreach from=$result item=re key=key}
+	{if $re.parent_id eq 4}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+		</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'left4')" style="text-decoration:none;">显示</a></div>
+	</div></li>
+	
+	</ul>
+	
+	
+	
+	</td></tr>
+	<tr><td colspan="2"><strong>右眼:</strong></td></tr>
+		<tr><td colspan="2">
+	
+	<ul style="list-style-type:none;">
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>
+	右眼球镜(Sph):<input type="text" name="add5"/><input type="button" onclick="add_c(5)" value="添加"/>
+	</div>
+	<div id="right5" style="display:none">   
+	{foreach from=$result item=re key=key}
+	{if $re.parent_id eq 5}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+	</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'right5')" style="text-decoration:none;">显示</a></div>
+	</div>
+	</li>
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>右眼柱镜(Cyl):<input type="text" name="add6"/><input type="button" onclick="add_c(6)" value="添加"/></div>
+	<div id="right6" style="display:none">   
+	{foreach from=$result item=re key=key}
+	{if $re.parent_id eq 6}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+	</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'right6')" style="text-decoration:none;">显示</a></div>
+	</div></li>
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>右眼轴位(Axis):<input type="text" name="add7"/><input type="button" onclick="add_c(7)" value="添加"/></div>
+  <div id="right7" style="display:none">  
+	{foreach from=$result item=re key=key}
+	{if $re.parent_id eq 7}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+	</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'right7')" style="text-decoration:none;">显示</a></div>
+	</div></li>
+	<li style="float:left;margin-left:20px"><div style="border:1px solid #000"><div>右眼瞳距(PD):<input type="text" name="add8"/><input type="button" onclick="add_c(8)" value="添加"/></div>
+    <div id="right8" style="display:none">    
+   {foreach from=$result item=re key=key}
+	{if $re.parent_id eq 8}
+	<div><input type="text" name="value[{$re.id}]" value="{$re.value}"/><input type="button" onclick="gen({$re.id})" value="更新"/><input type="button" onclick="re_m({$re.id})" value="删除"/></div>
+	{/if}
+	{/foreach}
+	</div>
+	<div align="center"  style="font-size:30px"><a href="javascript:void(0)" onclick="tab_show(this,'right8')" style="text-decoration:none;">显示</a></div>
+	</div></li>
+	
+	</ul>
+	
+	
+	
+	</td></tr>
+	
+     <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="一键更新数据" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+         <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+	</form>
+ </table>
+
+
+</div>
+
+{include file="pagefooter.htm"}

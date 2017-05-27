@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>太禾网络科技有限公司</title>
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Metrophobic' rel='stylesheet' type='text/css'>
+ <script type="text/javascript" src="js/uncompressed/plugins/CSSPlugin.js"></script>
+		<script type="text/javascript" src="js/uncompressed/easing/EasePack.js"></script>
+        <script type="text/javascript" src="js/minified/TweenMax.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="js/squre.js"></script>
+<script type="text/javascript" src="js/drag.js"></script>
+<script type="text/javascript">
+
+$(function(){
+
+    $(".img").hover(function(){
+		$(this).children(".s2").hide();
+		$(this).children(".s1").show();
+	},function(){
+		$(this).children(".s1").hide();
+		$(this).children(".s2").show();
+	});
+	
+	var imgwidth=0;
+	
+	$(".case_img .imgDate").each(function(i){
+	  imgwidth+=parseInt($(this).attr("width"));
+	  $(".case_cover_box").eq(i).attr("width",$(this).attr("width")+"px");
+	  $(".case_cover").eq(i).attr("width",$(this).attr("width")+"px");
+	  var stylecss='top:0px;right:0px;height:400px;width:'+$(this).attr("width")+"px;"+' z-index:99; background:#000;-moz-opacity:0.8;opacity: 0.8;filter:alpha(opacity=80);'
+	  $(".case_half").eq(i).attr("style",stylecss);
+	  
+	});
+	
+   //  $(".case_cover_wrap").css("opacity",0);
+	
+    $(".overview").css("width",imgwidth+"px");
+    $('.caseContainerWrap').tinyscrollbar({axis:'x',sizethumb:120});
+    
+	$('.overview').SquareSlide({speed:200,opacity:1});
+	
+	
+	$(".imgDate").each(function(){
+	
+	                $(this).hide();
+                    $(this).parent().addClass("img_loading");
+					LoadImage($(this));
+	
+	
+	});
+	
+	function LoadImage(imgObj) {
+    var browser = new Object();
+    var obj = new Object();
+    obj = imgObj;
+    browser.useragent = window.navigator.userAgent.toLowerCase();
+    browser.ie = /msie/.test(browser.useragent);
+    browser.moz = /gecko/.test(browser.useragent);
+    var imgsrc = obj.attr("data-original");
+    var image = new Image;
+    image.src = imgsrc;
+    if (browser.ie) {
+        if (image.height === 0) {
+            image.onload = function() {
+                obj.attr("src", image.src);
+                ShowContentImage(obj);
+            }
+
+        } else {
+            obj.attr("src", image.src);
+            ShowContentImage(obj);
+
+        }
+    } else {
+        image.onload = function() {
+            if (image.complete == true) {
+                obj.attr("src", image.src);
+                ShowContentImage(obj);
+            }
+        }
+
+    }
+
+    image.onerror = function() {
+        obj.parent().removeClass("img_loading").addClass("img_loading_error");
+    }
+
+}
+
+function ShowContentImage(obj) {
+    // console.log(obj.attr("s"))
+//	obj.next().css({"display":"block","opacity":0});
+    obj.parent().removeClass("img_loading");
+    obj.fadeIn(1000);
+
+}
+
+$(".alertBox").click(function(){
+
+  $(".alert_box").fadeIn(1000);
+
+});
+
+$(".close ").click(function(){
+
+   $(".alert_box").fadeOut(1000);
+
+});
+
+
+
+$(".list-content").draganddrop();
+
+
+
+})
+</script>
+<style>
+.hand {
+    cursor: url("images/icones/hand.png") 16 16, e-resize;
+}
+.hand-clicked {
+    cursor: url("images/hand-clicked.png") 16 16, e-resize;
+}
+.alert_box{ width:100%; height:720px; z-index:99999; display:none;}
+</style>
+</head>
+<body style=" position:relative; z-index:0">
+   <div>
+   
+  
+	<!--head start-->
+	<div class="header">
+		<div class="head">
+			<div class="logo"><a href="#"><img src="images/logo.png" alt="太禾网络科技有限公司"/></a></div>
+			<div class="nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li class="select-li"><a href="case.html">Case</a></li>
+					<li><a href="service.html">Service</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="index-content bg1 case_wrap white caseContainerWrap">
+    	<div class="case viewport" style="width:auto;">
+		 <div class="overview">
+			<div class="case_img">
+            	<img src="images/case_1.jpg" class="imgDate" data-original="images/case_1.jpg" width="773" height="400"/>
+                <div class="case_cover_wrap cover" style="left: 0px; opacity: 0; top: 0px;">
+                    <div class="case_cover_box">
+                        <div class="case_cover">
+                        	<div class="left fl">
+                                <h1>Haval SUV H6</h1>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the total sales volume of Haval in the first quarter. A record 89,689 units were sold in the first quarter, consolidating Haval's lead in the SUV segment.</p>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the toing Haval's lead in the SUV segment.</p>
+                                <div class="case_link">
+                                	<a href="JavaScript:void(0);" class="alertBox"><div class="left fl"></div></a>
+                                	<a href="#"><div class="right fr"></div></a>
+                                </div>
+                            </div>
+                            <div class="right fr">
+                            	<div class="case_logo"><img src="images/case_logo.jpg" data-original="images/case_1.jpg"  width="80" height="80" /></div>
+                           		<div class="case_title relative">
+                               		<div class="absolute text"><span>Haval SUV H6</span></div>
+                                	<div class="absolute color half"></div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="case_half"> </div>
+                    </div>
+                </div>
+
+            </div>
+			<div class="case_img">
+			<img src="images/case_1.jpg" class="imgDate" data-original="images/case_1.jpg"  width="773" height="400"/>
+			       <div class="case_cover_wrap cover" style="left: 0px; opacity: 0; top: 0px;">
+                    <div class="case_cover_box">
+                        <div class="case_cover">
+                        	<div class="left fl">
+                                <h1>Haval SUV H6</h1>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the total sales volume of Haval in the first quarter. A record 89,689 units were sold in the first quarter, consolidating Haval's lead in the SUV segment.</p>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the toing Haval's lead in the SUV segment.</p>
+                                <div class="case_link">
+                                	<a href="JavaScript:void(0);" class="alertBox"><div class="left fl"></div></a>
+                                	<a href="#"><div class="right fr"></div></a>
+                                </div>
+                            </div>
+                            <div class="right fr">
+                            	<div class="case_logo"><img src="images/case_logo.jpg"  width="80" height="80" /></div>
+                           		<div class="case_title relative">
+                               		<div class="absolute text"><span>Haval SUV H6</span></div>
+                                	<div class="absolute color half"></div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="case_half">
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="case_img"><img src="images/case_1.jpg" class="imgDate" data-original="images/case_1.jpg"  width="773" height="400"/>
+			       <div class="case_cover_wrap cover" style="left: 0px; opacity: 0; top: 0px;">
+                    <div class="case_cover_box">
+                        <div class="case_cover">
+                        	<div class="left fl">
+                                <h1>Haval SUV H6</h1>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the total sales volume of Haval in the first quarter. A record 89,689 units were sold in the first quarter, consolidating Haval's lead in the SUV segment.</p>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the toing Haval's lead in the SUV segment.</p>
+                                <div class="case_link">
+                                	<a href="JavaScript:void(0);" class="alertBox"><div class="left fl"></div></a>
+                                	<a href="#"><div class="right fr"></div></a>
+                                </div>
+                            </div>
+                            <div class="right fr">
+                            	<div class="case_logo"><img src="images/case_logo.jpg"  width="80" height="80" /></div>
+                           		<div class="case_title relative">
+                               		<div class="absolute text"><span>Haval SUV H6</span></div>
+                                	<div class="absolute color half"></div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="case_half">
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="case_img">
+			<img src="images/case_1.jpg" class="imgDate"  data-original="images/case_1.jpg"   width="773" height="400"/>
+			       <div class="case_cover_wrap cover" style="left: 0px; opacity: 0; top: 0px;">
+                    <div class="case_cover_box">
+                        <div class="case_cover">
+                        	<div class="left fl">
+                                <h1>Haval SUV H6</h1>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the total sales volume of Haval in the first quarter. A record 89,689 units were sold in the first quarter, consolidating Haval's lead in the SUV segment.</p>
+                                <p>According to statistics released by the China Passenger Car Association, Haval sold 34,689 units in March, expanding 85 percent year on year, unveiling the toing Haval's lead in the SUV segment.</p>
+                                <div class="case_link">
+                                	<a href="JavaScript:void(0);" class="alertBox"><div class="left fl"></div></a>
+                                	<a href="#"><div class="right fr"></div></a>
+                                </div>
+                            </div>
+                            <div class="right fr">
+                            	<div class="case_logo"><img src="images/case_logo.jpg"  width="80" height="80" /></div>
+                           		<div class="case_title relative">
+                               		<div class="absolute text"><span>Haval SUV H6</span></div>
+                                	<div class="absolute color half"></div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="case_half">
+                        </div>
+                    </div>
+                </div>
+			</div>
+         </div>
+	
+       
+   </div>
+     <div class="scroll scrollbar">
+            <div class="scroll_main track">
+			<div class="end"></div>
+                <div class="scroll_slide thumb"></div>
+            </div>
+         </div>
+	</div>
+	<div class="index-bottom">
+		<div class="sub-copyright">
+			<div class="left"><a href="#">News</a>  <span>|</span>   <a href="#"> Jobs  </a>  <span>|</span> <a href="#">TCloud</a></div>
+			<div class="right">
+				<a href="#" class="img"><img src="images/n1.png" class="s1"/><img src="images/n2.png" class="s2"/></a>
+				<a href="#" class="img"><img src="images/f1.png" class="s1"/><img src="images/f2.png" class="s2"/></a>
+				<a href="#" class="img"><img src="images/g1.png" class="s1"/><img src="images/g2.png" class="s2"/></a>
+				<span>Copyright © 2010 - 2013 Taihe. All Rights Reserved</span>
+			</div>
+		</div>
+	</div> 
+    </div>
+	   <div class="alert_box absolute black">
+	<!--head start-->
+	<div class="header">
+    	<div class="list_top auto fl">Haval SUV H6</div>
+   		<div class="close auto fr"><a href="#" class="img"><img src="images/close2.png" class="s1" width="24" height="24"/><img src="images/close1.png" class="s2" width="24" height="24"/></a></div>
+    </div>
+
+	<div class="index-content bg1 case_wrap black list-content">
+    	<div class="list" style="width:3908px;">
+		<div class="container-inner" style="width:100%; position:absolute; height:500px; background:black; z-index:999; ">
+			<div class="list_img m0" style="width:798px;">
+            	<img src="images/img.jpg" class="dragImage"  width="798" height="500"/>
+                <div class="absolute touming7 black"></div>
+
+            </div>
+            	<div class="list_img m0" style="width:798px">
+            	<img src="images/img.jpg" class="dragImage"  width="798" height="500"/>
+                <div class="absolute touming7 black"></div>
+
+            </div>
+            	<div class="list_img m0" style="width:798px">
+            	<img src="images/img.jpg" class="dragImage"  width="798" height="500"/>
+                <div class="absolute touming7 black"></div>
+
+            </div>
+		  	<div class="list_img m0" style="width:798px">
+            	<img src="images/img.jpg" class="dragImage"  width="798" height="500"/>
+                <div class="absolute touming7 black"></div>
+
+            </div>
+                         </div>
+   </div>
+   <div class="list2" style="width:100%; position:relative; z-index:99999; background:red; opacity:0.4">
+		
+   </div>
+	</div>
+	<div class="index-bottom" style="padding:0px;">
+		<div class="sub-copyright" style="padding:45px 30px; width:auto">
+			<div class="left"><a href="#" class="img"><img src="images/list_left_icon2.jpg" class="s1 _30_30"/><img src="images/list_left_icon1.png" class="s2 _30_30"/></a></div>
+            
+			<div class="right">
+				<a href="#" class="img"><img src="images/n1.png" class="s1"/><img src="images/n3.png" class="s2"/></a>
+				<a href="#" class="img"><img src="images/f1.png" class="s1"/><img src="images/f3.png" class="s2"/></a>
+				<a href="#" class="img"><img src="images/g1.png" class="s1"/><img src="images/g3.png" class="s2"/></a>
+				
+			</div>
+		</div>
+	</div>
+    </div>
+</body>
+</html>

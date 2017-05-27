@@ -1,0 +1,144 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletImg(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="docmanger.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+function deletFontImg(id){
+
+  if(confirm("您确定要删除该文档吗?")){
+  
+    location.href="docmanger.php?act=deletefontimg&id="+id;
+  
+  }
+ 
+
+}
+
+</script>
+<div class="main-div">
+<form action="docmanger.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+       标题：</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+ 
+      </td>
+    </tr>
+
+	   
+		    <tr>
+      <td  class="label">是否发布：</td>
+      <td>
+       <select name="isshow">
+	    <option value="1" {if $ads.isshow eq 1} selected {/if}>发布</option>
+		 <option value="0" {if $ads.isshow eq 0} selected {/if}>暂不发布</option>
+	   </select>（前端页面只调用最新发布的一条记录）
+      </td>
+    </tr>
+    <tr>
+	 
+      <td  class="label">封面图片：</td>
+      <td>
+        <input type="file" name="file" size="35" />
+		{if $ads.images neq ''}
+		   <img src="../{$ads.thump_o}" />  <input type="button" value="删除图片" onclick="deletImg({$ads.id})" >
+		{/if}
+      </td>
+    </tr>
+	
+		    <tr>
+      <td  class="label">文档地址：</td>
+      <td>
+        <input type="text" name="url" value="{$ads.url}" size="35" />（文档目录存放地址，此项填写则不必要上传文档）
+      </td>
+    </tr>
+	    <tr>
+	 
+      <td  class="label">文档上传(请上传小于20MB)：</td>
+      <td>
+        <input type="file" name="docupload" size="35" />
+		{if $ads.doc neq ''}{$ads.doc}<input type="button" value="删除文档" onclick="deletFontImg({$ads.id})" >
+		{/if}      （文档地址未填写可以手动上传文档）
+      </td>
+    </tr>
+	
+
+	
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

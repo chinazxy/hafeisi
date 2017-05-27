@@ -1,0 +1,43 @@
+<div class="han">
+    <div class="daohan"><img src="themes/default/mobile/img/daohan.svg"/><div class="daohan2"><img src="themes/default/mobile/img/daohan2.svg"></div></div>
+    <div class="logo"><img src="themes/default/mobile/img/logo.svg"/><div class="hea_ing"><img src="themes/default/mobile/img/logo2.svg"></div></div>
+    <div class="w_deng">
+      <div class="w_dl"><a href="#">登录</a></div>
+      <span>/</span>
+      <div class="w_dl"><a href="#">注册</a></div>
+    </div>
+  </div>
+   
+    <div class="w_dao"><span class="w_tuca"><img src="themes/default/mobile/img/daohan_cha.svg"/></span>
+  <div class="heiren_s">
+    <ul>
+      <li><a href="index.php">首页</a></li>
+	  <li><a href="pinpaiwh.php">品牌文化</a></li>
+      <li><a href="brand.php">品牌</a></li>
+      <li><a href="gwzs.php">招商</a></li>
+      <li><a href="category.php">产品</a></li>
+      <li><a href="news.php">新闻</a></li>
+
+    <li><span class="daohan_kou"><img src="themes/default/mobile/img/daohan_kou.svg"/></span></li>
+    <li><span class="daohan_2 wu_xc"><a href="javaScript:void(0);">寻找销售店铺</a></span></li> 
+    <li><span class="daohan_2"><a href="daohang.php?act=faq">FAQ</a></span></li> 
+    <li><span class="daohan_2"><a href="daohang.php?act=falv">法律声明</a></span></li>  
+    <li><span class="daohan_2"><a href="daohang.php?act=zhengce">私隐政策</a></span></li> 
+    <li><span class="daohan_2"><a href="daohang.php?act=jihui">工作机会</a></span></li>   
+     <li><span class="daohan_kou2">闽ICP备14015909号-1</span></li>  
+    </ul> 
+  </div>
+  </div>
+  
+<div class="w_erweit bacj"><span class="w_erweima"><img src="themes/default/mobile/img/er_wma.png"/></span><span class="w_tuca"><img src="themes/default/mobile/img/daohan_cha.svg"/></span></div>
+  
+  <div class="gou_wu bacj"><span class="w_tuca2"><img src="themes/default/mobile/img/daohan_cha.svg"/></span>
+  <div class="gou_wb1">
+  <h3>购物功能暂未开放</h3>
+  <div class="gouwu_er">
+  <span class="gou_ertu sever" style="width:100%;"><img src="data/qrcode/xingou.png"/></span>
+  </div>
+  <h4 style="font-size: 17px;">请长按识别二维码，<br>或保存图片后用微信扫码进入</h4>
+  <p></p>
+  </div>
+  </div>

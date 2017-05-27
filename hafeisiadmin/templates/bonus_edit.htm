@@ -1,0 +1,108 @@
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+{include file="pageheader.htm"}
+<div class="list-div">
+<form name='theForm' method="post" action="bonus.php" >
+<table width="100%" cellpadding="3" cellspacing="1" >
+ 
+  <tr>
+    <td   class="label" >序列号：</td>
+    <td>{$bounsinfo.bonus_sn}</td>
+
+  </tr>
+  
+    <tr>
+    <td   class="label" >优惠卷状态：</td>
+    <td> {if $bounsinfo.used_time gt 0}已使用{else}未使用{/if}</td>
+
+  </tr>
+  {if $bounsinfo.used_time gt 0}
+    <tr>
+    <td   class="label" >使用会员：</td>
+    <td>
+	{if $bounsinfo.user_email neq ''}
+	{if $bounsinfo.email}<a href="mailto:{$bounsinfo.email}">{$bounsinfo.user_email}</a>{else}{$bounsinfo.user_email}{/if}
+	{else}
+	暂无数据
+	{/if}
+	</td>
+
+  </tr>
+  
+      <tr>
+    <td   class="label" >订单号：</td>
+    <td>
+	 {$bounsinfo.order_sn}
+	</td>
+
+  </tr>
+        <tr>
+    <td   class="label" >使用日期：</td>
+    <td>
+	 {$bounsinfo.use_time_formart}
+	</td>
+
+  </tr>
+  {/if}
+  <tr>
+    <td class="label">
+	  <a href="javascript:showNotice('Use_start_a');" title="{$lang.form_notice}">
+      <img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>
+	{$lang.use_startdate}</td>
+    <td>
+      <input name="use_start_date" type="text" id="use_start_date" size="22" value='{$bounsinfo.use_start_time}' readonly="readonly" />
+	  <input name="selbtn3" type="button" id="selbtn3" onclick="return showCalendar('use_start_date', '%Y-%m-%d', false, false, 'selbtn3');" value="{$lang.btn_select}" class="button"/>
+	  <br /><span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="Use_start_a">{$lang.use_startdate_notic}</span>    </td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.use_enddate}</td>
+    <td>
+      <input name="use_end_date" type="text" id="use_end_date" size="22" value='{$bounsinfo.use_end_time}' readonly="readonly" /><input name="selbtn4" type="button" id="selbtn4" onclick="return showCalendar('use_end_date', '%Y-%m-%d', false, false, 'selbtn4');" value="{$lang.btn_select}" class="button"/>    </td>
+  </tr>
+ 
+   <tr>
+    <td class="label">&nbsp;</td>
+    <td>
+      <input type="submit" value="{$lang.button_submit}" class="button" />
+      <input type="button" value="返回列表" onclick="backbtn({$bonus_type});"  id="bakcbtn" class="button" />
+      <input type="hidden" name="act" value="{$form_act}" />
+	     <input type="hidden" name="bonus_type" value="{$bonus_type}" />
+      <input type="hidden" name="bonus_id" value="{$bounsinfo.bonus_id}" />    </td>
+  </tr>
+ 
+</table>
+</form>
+
+
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+document.forms['theForm'].elements['dispose_note'].focus();
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("dispose_note", no_note);
+    return validator.passed();
+}
+
+
+function backbtn(tid){
+
+location.href="bonus.php?act=bonus_list&bonus_type="+tid;
+}
+
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

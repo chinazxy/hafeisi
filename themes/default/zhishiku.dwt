@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- #BeginLibraryItem "/library/content_header.lbi" --><!-- #EndLibraryItem -->
+<link type="text/css" rel="stylesheet" href="themes/default/css/style.css" />
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+ {insert_scripts files='minified/plugins/CSSPlugin.min.js,minified/TweenMax.min.js,jquery.easing.1.3.js,cos.js,zhishiku.js'}
+</head>
+
+<body>
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+
+
+<div class="shop_cont clearfix min_heig">
+	
+	<div class="shop_title">当前位置：<span><a href="index.php">首页</a></span>&nbsp;&gt;&nbsp;<a href="zhishiku.php">知识库</a></div>
+
+    
+     <div class="shop_imgbox clearfix">
+ 	  <div class="product_p clearfix">
+	    {foreach from=$zwtypelist item=zw}
+         <div class="knowledge_title">{$zw.cat_name}&nbsp;/&nbsp;<span>{$zw.cat_enname}</span></div>
+        	<div class="knowledge_box1">
+		{foreach from=$zw.children item=zws}
+        	<div {if $zws.position eq 1} class="knowledge_box1_l" {else} class="knowledge_box1_r" {/if}>
+            	<a href="{$zws.url}"><img src="{$zws.images}" /></a>
+                <div class="knowledge_tou"><a href="{$zws.url}">{$zws.title}</a></div>
+            </div>
+            
+		{/foreach}
+           </div> 
+       {/foreach}
+       
+    </div>
+</div>
+</div>
+<input type="hidden" value="4" class="nowpage" />
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>凤凰谷</title>
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<style>
+.page{
+	
+	color: white;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 0;
+
+	 position: relative;
+}
+
+
+.container{position:absolute;
+
+    color: #FFFFFF;
+    height: 290px;
+    left: 30px;
+    padding: 30px;
+
+    width: 260px;
+    z-index: 999;
+	bottom:62px;
+
+}
+html{overflow-y:hidden;overflow-x:hidden;}
+.wh{height:100%;width:100%;position:absolute}
+</style>
+
+<script>
+var app="__APP__";
+</script>
+<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing-1.3.pack.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/minified/plugins/CSSPlugin.min.js"></script>
+<script type="text/javascript" src="js/minified/TweenMax.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/drag.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/cos.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<style type="text/css">
+img, input {behavior:url("js/iepngfix.htc")};
+
+</style>
+
+
+</head>
+<body>
+  
+	<!--head start-->
+<div id="main">
+  <volist name="logolist" id="vo">
+	<div class="contaner_parent page" color="<if condition='$vo.colors eq ""'>black<else/>{$vo.colors}</if>">
+	<div class="wh"></div>
+		  <img src="Uploads/{$vo.product_plot}" class="hid_img" style="visibility:hidden" width="1px" height="1px">
+		<div class="container 1"  style="visibility:hidden">
+		  		<div class="moder ">
+<div class="moder_relative">
+<div class="moder_absolute">
+	<div class="num">{$vo.keys}</div>
+	<div class="line"></div>
+	<div class="title">{$vo.product_name}</div>
+	<div class="text">
+	<div class="left">{$vo.product_enname}</div>
+	<div class="btn"></div>
+	</div>
+	<div class="detail_box clearfix">
+		<ul>
+			<li style="margin-left:0px;"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="detail_text" >
+		{$vo.prief_content}
+		</div>
+	</div>
+	</div>
+	</div>
+	<div class="detail_b">
+    详情/Detaild
+	</div>
+	</div>
+	</div>
+	</div>
+	</volist>
+ </div>
+	
+  <include file="Public:header" />
+
+           <div class="contain">
+	  		<div class="moder ">
+<div class="moder_relative">
+<div class="moder_absolute">
+
+	<div class="num">01</div>
+	<div class="line"></div>
+	<div class="title">{$first.product_name}</div>
+	<div class="text">
+	<div class="left">{$first.product_enname}</div>
+	<div class="right selcet"></div>
+	</div>
+	<div class="detail_box clearfix" >
+
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		
+		
+		<div class="detail_text" >
+			{$first.prief_content}
+		</div>
+	
+	
+	
+	</div>
+	
+	
+	</div>
+	</div>
+	
+	<div class="detail_b" style="display:block;">
+详情/Detaild
+	</div>
+	</div>
+	<div class="moder_bg">
+		<div class="moder_bg_relative">
+			<div class="moder_bg_absolute"></div>
+	    </div>
+</div>
+	
+	</div>
+
+
+	
+	
+	
+<div class="down_arrow">
+<div class="arrow"></div>
+
+<div class="text"></div>
+</div>
+
+
+	<div class="dot_wrap" style="height:{$lens}px">
+		<div class="dot">
+			<ul id="nav" class="nav2">
+			  <volist name="logolist" id="vo">
+			  <if condition="$key eq 0">
+			<li class="cur"></li>
+			 <else/>
+			 	<li></li>
+			</if>
+			</volist>
+	   
+			</ul>
+
+		</div>
+	</div>
+
+
+
+<div class="up_arrow">
+<div class="text"></div>
+<div class="arrow"></div>
+
+
+</div>
+  <include file="Public:footer" />	
+
+<script>
+var pageLength = 0;
+var currentIndex = 0;
+var isScrolling = false;
+var fixHeight = 0;
+var windowWidth;
+var windowHeight;
+var pagesArr = [];
+var lastIndex = -1;
+var imgLoadedNum = 0;
+var imgCount;
+var $current=$(".contain");
+var params = {
+quality: "high",
+scale: "noscale",
+allowscriptaccess: "always",
+bgcolor: "",
+allowFullScreen:"true",
+wmode:'transparent'
+};
+var flashvars={
+rootPath:"",
+sslPath:"",
+imagePath:""
+};
+var attributes = {
+id: "flashcontentId",
+name: "flashcontentId"
+};
+$(document).ready(function(){
+imgCount = $("page").length;
+
+//timeHandle = window.setInterval(ontimego,10);
+webInit();
+var topval=($(window).height()-$(".dot_wrap").height())/2+35;
+
+	$(".dot_wrap").css("top",topval+"px");
+});
+	var detailHeight=0;
+	 var detailHeight=$(".container").eq(0).find(".detail_box").height();
+</script>
+	
+  <input type="hidden" value="2" class="nowpage"/>
+</body>
+</html>

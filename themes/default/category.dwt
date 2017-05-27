@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>韩菲诗-品牌页</title>
+    <meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+  <link type="text/css" rel="stylesheet" href="themes/default/css/css.css" />
+ <script type="text/javascript" src="js/2016/jquery-1.11.1.min.js"></script>
+    <script src="js/2016/w.js"></script>
+    <script src="js/2016/jquery.load.js"></script>
+    <script>
+
+        function loadAll(obj){
+            var cat_id = $(obj).attr("id");
+            var count = $(obj).attr("class");
+            var is_mobile = {$is_mobile};
+            var str;
+            var click = 1;
+            $.ajax({
+               type : "POST",
+                url : "ajaxcategory.php",
+                data: {cat_id : cat_id , click : click , is_mobile : is_mobile},
+                success : function(data){
+                    var goodsobj = eval(data);
+                    $.each(goodsobj, function(i,item){
+                        var price = goodsobj[i].price;
+                        var id = goodsobj[i].goods_id;
+                        var img = goodsobj[i].img;
+                        var name = goodsobj[i].name;
+                        var length = goodsobj[i].length;
+                        if (length < 9){
+                            $(obj).hide();
+                        }
+                        if ((i+1)%3 !== 0) {
+                            $("#goodslist" + cat_id).append('<li><a href="goods.php?id=' + id + '&cat=' + cat_id + '"><div class="chan_tu"><img class="loading" src="'+img+'"/></div>' +
+                                '<div class="chan_wenzi"><span class="cha_s1">'+item.goods_name+'</span><span class="cha_s1">￥'+price+' - '+name+'</span></div></a></li>');
+                        }else{
+                            $("#goodslist" + cat_id).append('<li class="sever"><a href="goods.php?id=' + id + '&cat=' + cat_id + '"><div class="chan_tu"><img class="loading" src="'+img+'"/></div>' +
+                                '<div class="chan_wenzi"><span class="cha_s1">'+item.goods_name+'</span><span class="cha_s1">￥'+price+' - '+name+'</span></div></a></li>');
+                        }
+                    })
+                    click++;
+                }
+            });
+        }
+    </script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e3ecdb5c097aa7bce45a4667f9470c7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+<body>
+<div class="header ">
+    <!--头部-->
+    <!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+    <!--/头部-->
+    <div class="nei_ye">
+    {foreach from=$category item=v key=kk}
+        <div class="header_center" style="position:relative;" id="cat_{$v.cat_id}">
+            <div class="inde_tu sever"><img class="loading" src="{$v.cat_plots}"/></div>
+            <div class="inde_h sever2">
+                <h2>{$v.cat_name}</h2>
+                <span class="ca"><img src="data/img/in_ca.png"/></span>
+                <div class="inde_p sever">{$v.cat_enname}</div>
+                
+                    <div class="fen_w">{$v.cat_endesc}</div>
+            </div>
+            <div class="nei_bottom sever">
+                <div class="chanping_nei">
+                    <ul id="goodslist{$v.cat_id}">
+                    {foreach from=$v.goods item=vv key=k}
+                    {if ($k + 1) % 3 neq 0}
+                        <li><a href="goods.php?id={$vv.goods_id}&cat={$v.cat_id}">
+                                <div class="chan_tu"><img class="loading" src="http://img.xingou.net.cn/{$vv.goodsinfo.data.pic}"/></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$vv.goods_name}</span><span class="cha_s1">￥{$vv.goodsinfo.data.price} - {$vv.goodsinfo.name}</span></div>
+                            </a></li>
+                            {else}
+                                
+                                <li class="sever"><a href="goods.php?id={$vv.goods_id}&cat={$v.cat_id}">
+                                <div class="chan_tu"><img class="loading" src="http://img.xingou.net.cn/{$vv.goodsinfo.data.pic}"/></div>
+                                <div class="chan_wenzi"><span class="cha_s1">{$vv.goods_name}</span><span class="cha_s1">￥{$vv.goodsinfo.data.price} - {$vv.goodsinfo.name}</span></div>
+                            </a></li>
+                                {/if}
+                        {/foreach}
+
+                    </ul>
+                </div>
+                {if $v.count > 3}
+                
+                <div style='position:absolute; top:98%; left:47.5%;'><a id='{$v.cat_id}' class='{$v.count}' href='javascript:;' onclick='loadAll(this)'>查看更多</a></div>
+                {/if}
+            </div>
+
+        </div>
+        
+        {/foreach}
+    </div></div>
+
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

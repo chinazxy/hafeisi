@@ -1,0 +1,50 @@
+.bran-lv {width:100%; height:auto; float:left;}
+.bran-bj { background:url(../img/b-1.jpg) no-repeat;}
+.bran-marb {width:100%; max-width:73.75em; margin:0 auto; position:relative;}
+.bran-lvdh {position:absolute; left:0; top:40px; width:90px; height:auto; border:1px solid #fff; padding:20px 0;  }
+.bran-lvdh1 {width:100%; height:32px; float:left; margin-top:4px; text-align:center; line-height:32px; font-size:12px;}
+.bran-lvdh1.mar0 {margin-top:0;}
+.bran-lvdh1 a {width:100%; height:100%; display:block; color:#999;}
+.bran-lvdh1 a:hover {color:#fff;}
+.bran-lvdh1 a.select{color:#fff;}
+.bran-centb {width:74%; height:auto; margin:0 auto; }
+.bran-pad1 {padding-top:100px; padding-bottom:90px;}
+.bran-pad2 {padding:80px 0;}
+.bran-lv-h {width:100%; height:auto; text-align:center; color:#fff; font-size:18px; padding-bottom:40px;}
+.bran-lv-h.color{color:#000;}
+.bran-lv-p {width:100%; height:auto; text-align:center; color:#fff; line-height:24px; font-size:12px;}
+
+.bran-lv-box {width:30%; height:auto; float:left; margin-right:5%;}
+.bran-lv-box.mar {margin-right:0;}
+.bran-lv-bimg {width:100%; height:60px; text-align:center; }
+.bran-lv-bimg img {max-height:100%;}
+.bran-lv-bt {width:100%; height:auto; text-align:center; font-size:14px; padding:45px; padding-bottom:20px; color:#000; }
+.bran-lv-bp {width:100%; height:auto; text-align:center; font-size:12px; line-height:18px;color:#000; }
+.bsckg {background:#f9f9f9;}
+
+.bran-lv-wb {width:49%; text-align:left; height:auto; float:left; padding:20px 2%; background:#fff; display:inline;}
+.bran-lv-wb.mar {float:right;}
+.bran-lv-wh {width:100%; height:auto; padding-bottom:20px; font-size:14px; color:#000;}
+.bran-lv-wp {width:100%; height:auto; font-size:12px; color:#000; line-height:18px;}
+.bran-lv-imgb {width:100%; height:auto;}
+.bran-lv-imgb img{max-width:100%;}
+.lv-bord {border-bottom:1px solid #e2e2e2;}
+
+
+.bran-lvdh.bor {border:1px solid #000;}
+.bran-lvdh2 {width:100%; height:32px; float:left; margin-top:4px; text-align:center; line-height:32px; font-size:12px;}
+.bran-lvdh2.mar0 {margin-top:0;}
+.bran-lvdh2 a {width:100%; height:100%; display:block; color:#999;}
+.bran-lvdh2 a:hover {color:#000;}
+.bran-lvdh2 a.select{color:#000;}
+
+.ppry_all{width:74%; height:auto; display:inline-block; *zoom:1;*display:inline;}
+.ppry_1{width:100%;height:auto;float:left;background:#f6f6f6;}
+.ppry_2{padding-top:64px;padding-bottom:64px;}
+.ppry_3{width:100%; height:auto; text-align:center; color:#000; line-height:24px; font-size:12px; padding-top:64px;}
+.ppry_4{width:100%; height:auto; margin-top:50px; float:left; margin-bottom:44px;}
+.ppry_5{width:30%;height:auto;float:left;background:#fff;margin-bottom:20px;margin-right:5%;padding:50px 0;}
+.ppry_5_1{margin-right:0;}
+.ppry_6{width:100%;height:auto;float:left;margin-bottom:20px;text-align:center;}
+.ppry_6 img {max-width:100%;}
+.ppry_7{width:100%; height:auto; text-align:center; color:#000; line-height:24px; font-size:14px;float:left;}

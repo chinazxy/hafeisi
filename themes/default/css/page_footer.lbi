@@ -1,0 +1,156 @@
+		
+ <?php
+	
+		 $asql="SELECT * from ".$GLOBALS['ecs']->table('article_cat')." where parent_id=4 order by sort_order asc";
+		
+ $actlist=$GLOBALS['db']->getAll($asql);
+
+ $counts=count($actlist);
+ for($i=0;$i<$counts;$i++){
+   
+   $csql="SELECT * from ".$GLOBALS['ecs']->table('article')." where  is_open=1 and cat_id=".$actlist[$i]['cat_id']." order by article_id asc";
+     
+     $actlist[$i]['article']=$GLOBALS['db']->getAll($csql);
+	 $actlist[$i]['key']=$i+1;
+	 $actlist[$i]['count']=count($actlist[$i]['article']);
+	
+ }
+
+	?>
+	
+<div class="foot_gai clearfix">
+	<div class="foot_g_mar">
+		<div class="foot_g_t">Copyright ⓒ 2015 BOLON. All Rights Reserved ICP-13010397</div>
+	</div>
+</div>	
+	
+	
+	
+	
+
+<div class="foot">
+	<div class="footer">
+    	<div class="footer_up"></div>
+        
+        <div class="footer_4 clearfix">
+		
+					  <?php
+	   
+	     for($i=0;$i<count($actlist);$i++){
+	   ?>
+        	<div class="footer_4_1_t clearfix">
+            <div class="footer_2_1 mb_foot"><?php echo $actlist[$i]['cat_name'];?><div class="triangle seke"></div></div>
+            <div class="footer_2_box1 f_nav">
+                	 <?php 
+			  for($t=0;$t<count($actlist[$i]['article']);$t++){
+			 ?>
+                	<a href="<?php echo $actlist[$i]['article'][$t]['author_email'];?>"><?php echo $actlist[$i]['article'][$t]['title'];?></a>
+                  
+				<?php }?>
+                </div>
+            </div>
+            
+     <?php } ?>
+			
+			
+            <div class="footer_4_6_t clearfix">
+            <div class="footer_2_6">Copyright ⓒ 2015 BOLON. All Rights Reserved ICP-13010397</div>
+            </div>
+            
+            
+            
+            
+        </div>
+        
+        
+    	<div class="footer_1">
+        	<div class="footer_1_1">
+            	<div class="footer_guan">关注我们</div>
+                <div class="footer_tu">
+                	<ul>
+                    	<li class="wb"><a href="javascript:void(0);" onclick="postToWb();" target="_blank;"><img alt="分享到腾讯微博" title="分享到腾讯微博" src="images/wb.png"/></a></li>
+                        <li class="xl"><a href="javascript:void(0);" onclick="sina();"> <img alt="分享到新浪微博" title="分享到新浪微博" src="images/xl.png"/></a></li>
+                        <li class="fenb"><a href="#"></a></li>
+                    </ul>
+                </div>
+                <div class="f_line"></div>
+                <div class="footer_ti">注册接收我们的最新公告></div>
+                <div class="shou_in">
+                <input type="text" class="footer_tijiao" id="user_email" value="在这里输入电子邮件" />
+                </div>
+                <div class="shou_ti">
+                <div class="footer_an" onclick="add_email_list();">提交</div>
+                </div>
+                <div class="footer_right">
+                    <div class="footer_guoming">
+                    	<input type="text" class="footer_guoin" value="简体中文" />
+                        <div class="footer_san"></div>
+                        <div class="footer_guobox">
+                        	<div class="footer_guobox1"><a href="#"></a></div>
+                        </div>
+                    </div>
+                    <div class="footer_guoqi"><img src="images/guoqi.png" /></div>
+                    <div class="footer_ri_1">其他语言</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <div class="footer_2">
+		  <?php
+	   
+	     for($i=0;$i<count($actlist);$i++){
+	   ?>
+        	<div class="footer_2_<?php echo ($i+1)?>_t clearfix">
+        	<div class="footer_2_<?php echo ($i+1)?>"><?php echo $actlist[$i]['cat_name'];?><div class="triangle seke"></div></div>
+			
+            <div class="footer_2_box<?php echo ($i+1)?> ">
+			<?php 
+			  for($t=0;$t<count($actlist[$i]['article']);$t++){
+			 ?>
+                	<a href="<?php echo $actlist[$i]['article'][$t]['author_email'];?>"><?php echo $actlist[$i]['article'][$t]['title'];?></a>
+                  
+			<?php } ?>
+                </div>
+           </div>
+	<?php } ?>
+        
+		 
+     
+            <div class="footer_2_6_t clearfix">
+            <div class="footer_2_6">Copyright <img src="images/xls.png" /> 2015 BOLON. All Rights Reserved ICP-13010397</div>
+            </div>
+        </div>
+        
+        
+		
+		 <div class="footer_3 clearfix">
+        	<div class="footer_3_til_box">
+				  <?php
+	   
+	     for($i=0;$i<count($actlist);$i++){
+	   ?>
+        	<div class="footer_3_<?php echo ($i+1)?> clearfix">
+            	<div class="footer_3_box<?php echo ($i+1)?>">
+			 <?php 
+			  for($t=0;$t<count($actlist[$i]['article']);$t++){
+			 ?>
+                	<a href="<?php if(empty($actlist[$i]['article'][$t]['author_email'])){ echo "details.php?id=".$actlist[$i]['article'][$t]['article_id'];}else{ echo $actlist[$i]['article'][$t]['author_email'];} ?>"><?php echo $actlist[$i]['article'][$t]['title'];?></a>
+                  
+				<?php }?>
+                </div>
+            </div>                           
+			<?php }?>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+

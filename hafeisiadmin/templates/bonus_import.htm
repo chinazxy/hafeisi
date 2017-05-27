@@ -1,0 +1,60 @@
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+{include file="pageheader.htm"}
+<div class="list-div">
+<form name='theForm' method="post" action="bonus.php" enctype="multipart/form-data" >
+<table width="100%" cellpadding="3" cellspacing="1" >
+ 
+ 
+ 
+  <tr>
+    <td class="label">请上传Excel文件</td>
+    <td><input type="file" name="file" /></td>
+  </tr>
+ 
+   <tr>
+    <td class="label">&nbsp;</td>
+    <td>
+      <input type="submit" value="{$lang.button_submit}" class="button" />
+      <input type="button" value="返回列表" onclick="backbtn({$bonus_type});"  id="bakcbtn" class="button" />
+      <input type="hidden" name="act" value="{$form_act}" />
+	     <input type="hidden" name="bonus_type" value="{$bonus_type}" />
+       </td>
+  </tr>
+ 
+</table>
+</form>
+
+
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+document.forms['theForm'].elements['dispose_note'].focus();
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("dispose_note", no_note);
+    return validator.passed();
+}
+
+
+function backbtn(tid){
+
+location.href="bonus.php?act=bonus_list&bonus_type="+tid;
+}
+
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

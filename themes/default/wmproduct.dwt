@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<title>{$page_title}</title>
+
+<link rel="stylesheet" type="text/css" href="themes/default/css/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+ {insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,jquery-picture-min.js,bl_common.js,product.js'} 
+
+	  <script>
+	  $(function(){
+	    $('figure, picture').picture();
+	  
+	  });
+
+  </script>
+<style type="text/css"> 
+.footer_up{display:none;}
+</style> 
+
+</head>
+
+<body>
+
+<div data-role="page" id="pageone" class="page clearfix">
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+
+<div class="cont_box clearfix pad_b208">
+{if $ismobile eq 0}
+	<div class="pro_content clearfix dis_n">
+    	<div class="pro_img">
+        	
+        		<figure data-media220="{$cat.cat_plots}" data-media320="{$cat.cat_plots}" data-media480="{$cat.cat_plots}"  data-media960="{$cat.cat_plot}"  title="">
+           	<img src="{$cat.cat_plot}" />
+			
+              <noscript>
+              <img src="" data-src="{$cat.cat_plot}"  style="visibility:hidden;" />
+            </noscript>
+            <div class="pro_box1_tbox">
+            	<div class="pro_box1_txt"><a href="#">{$cat.cat_enname}</a></div>
+            </div>
+        </div>
+    </div>
+	{else}
+		<div class="pro_content clearfix dis_n">
+    	<div class="pro_img">
+        	<img src="{$cat.cat_plots}" />
+        
+            <div class="pro_box1_tbox">
+            	<div class="pro_box1_txt"><a href="#">{$cat.cat_enname}</a></div>
+            </div>
+        </div>
+    </div>
+	{/if}
+    <div class="pro_main clearfix pad_b178">
+	<div class="pro_titlew clearfix">
+    	<div class="pro_til">
+        	<div class="pro_til_left">{$cat.cat_name}<span>{$count}产品</span></div>
+            <div class="pro_til_chongzhi"><div class="pro_til_close"></div><a href="#">重置所有筛选器</a></div>
+           
+			<div class="pro_til_right">
+            	<div class="pro_til_san {if $ismobile eq 0} {if $statea eq 'on'} select {/if} {/if} "></div>
+            	<div  class="pro_til_in">{if $ismobile eq 0}{if $statea eq 'on'} 隐藏筛选器 {else} 显示筛选器 {/if} {else}显示筛选器 {/if}</div>
+                <div class="pro_til_box" style="display:none;">
+                	<div class="pro_til_box1"><a href="#"></a></div>
+                </div>
+            </div>
+		
+		</div>
+      {if $ismobile eq 0}  
+      <div class="shaixuan {if $ismobile eq 0} {if $statea eq 'on'} shaixuan_on state {else} shaixuan_off {/if} {else} shaixuan_off {/if}" {if $ismobile eq 0}  {if $statea eq "on"} style="display:block" {else} style="display:none" {/if} {else} style="display:none" {/if}>
+        	<div class="shai_box ">
+            	<div class="shai_box1" style="border-left:none; display:none;" >
+                	<div class="shai_box1_t">
+                    	<div class="shai_box1_t1">按照分类查看</div>
+                        <div class="shai_box1_t2"><a href="woman.php?id={$pid}">重置</a><div class="pro_til_close"></div></div>
+                    </div>
+				
+				
+                    <div class="shai_box1_tbox" >
+						 {foreach from=$catelist item=vo name=itemattr  }
+						 
+						 
+						
+				
+                    	<div class="shai_box1_tbox1  {if $$smarty.foreach.itemattr.index eq 0} bor_leftnone {/if} {if $id eq $vo.cat_id} select {/if}" >
+                        	<div class="shai_box1_yuan {if $id eq $vo.cat_id} select {/if}"></div>
+                            <div class="shai_box1_yuan_t"><a href="woman.php?id={$vo.cat_id}">{$vo.cat_name}</a></div>
+                            <div class="pro_til_close dis_no"></div>
+                        </div>
+                   
+                  {/foreach}   
+                    </div>
+				  
+                   
+					 
+                </div>
+                
+               
+				 <!--{foreach from=$filter_attr_list item=attr name=attribute}--> 
+				 
+				  {if $attr.filter_attr_name neq "颜色"}	 
+				
+                <div class="shai_box1  {if $smarty.foreach.attribute.index eq 0} bor_leftnone {/if}">
+                	<div class="shai_box1_t">
+                    	<div class="shai_box1_t1">{$attr.filter_attr_name}</div>
+                        <div class="shai_box1_t2"><a href="	{foreach from=$attr.attr_list item=attrs name=attkey} {if $smarty.foreach.attkey.index eq 0}{$attrs.url}{/if}{/foreach}">重置</a><!--<div class="pro_til_close"></div>--></div>
+                    </div>
+
+
+                	
+                    <div class="shai_box1_tbox" >
+				
+				 {foreach from=$attr.attr_list item=attrs name=attkey}
+{if $smarty.foreach.attkey.index gt 0}		
+						
+								{if $attrs.gcount gt 0}
+                    	<div attr_id="{$attrs.goods_id}" class="shai_box1_tbox1 <!-- {if $attrs.selected} --> select <!-- {/if} -->" 	>
+                        	<div class="shai_box1_yuan <!-- {if $attrs.selected} --> select <!-- {/if} -->"></div>
+					
+                            <div class="shai_box1_yuan_t"><a href="{$attrs.url}">{$attrs.attr_value}</a></div>
+						
+						
+                            <div class="pro_til_close dis_no "></div>
+                        </div>
+						{else}
+						   <div attr_id="{$attrs.goods_id}" class="shai_box1_tbox1 select2">
+                        	<div class="shai_box1_yuan select2"></div>
+	
+						    <div class="shai_box1_yuan_t">{$attrs.attr_value}</div>
+							
+                            <div class="pro_til_close dis_no "></div>
+                        </div>
+                       {/if}
+               		 {/if}
+					<!--{/foreach}-->
+                        
+              
+                    </div>
+				
+			
+                </div>
+                     {/if}
+              {/foreach}  
+					 <!--{foreach from=$filter_attr_list item=attr name=attribute}--> 
+				  {if $attr.filter_attr_name eq "颜色"}
+                <div class="shai_box1">
+                	<div class="shai_box1_t">
+                    	<div class="shai_box1_t1">按{$attr.filter_attr_name} <span class="yanse"></span></div>
+                        <div class="shai_box1_t2"><a href=" {foreach from=$attr.attr_list item=attrs name=attkey} {if $smarty.foreach.attkey.index eq 0}{$attrs.url}{/if}{/foreach}">重置</a><!--<div class="pro_til_close"></div>--></div>
+                    </div>
+              
+                    <div class="shai_box1_tbox">
+                    <ul>
+				
+					 <!--{foreach from=$attr.attr_list item=attrs name=attkey}-->	
+					 	 {if $smarty.foreach.attkey.index gt 0}
+						 {if $attrs.gcount gt 0}
+                    	<li  alt="{$attrs.attr_value}" title="{$attrs.attr_value}" class="{if $attrs.selected}select{/if}" ><div style="background-color:{$attrs.color}"><a href="{$attrs.url}"></a></div></li>
+						{else}
+					    <li  alt="{$attrs.attr_value}" title="{$attrs.attr_value}" class="no_choice" ><div class="select2" style="background-color:{$attrs.color}"><a href="javaScript:void(0);"></a></div></li>
+						{/if}
+							{/if}
+					<!--{/foreach}-->	
+				
+                    </ul>
+                    </div>
+                </div>
+                {/if}
+              {/foreach}  
+                
+            </div>
+        </div> 
+		{else}
+		      <div class="shaixuan mb_sx {if $ismobile eq 1}  shaixuan_off {/if}" {if $ismobile eq 1}  style="display:none"  {/if}>
+     <div class="shai_box">
+                
+               
+				 <!--{foreach from=$filter_attr_list item=attr name=attribute}--> 
+			
+				  {if $attr.filter_attr_name neq "颜色"}	 
+				
+                <div class="shai_box1" >
+                	<div class="shai_box1_t">
+                    	<div class="shai_box1_t1">{$attr.filter_attr_name}</div>
+                        <div class="shai_box1_t2" attr_id="0">
+						{if $smarty.foreach.attribute.index eq 0}
+						<a href="javaScript:void(0);" class="chonzi">重置</a>
+						{/if}
+						<!--<div class="pro_til_close"></div>--></div>
+                    </div>
+
+
+            
+                    <div class="shai_box1_tbox " >
+				 {foreach from=$attr.attr_list item=attrs name=attkey}
+{if $smarty.foreach.attkey.index gt 0}	
+						
+						
+							{if $attrs.gcount gt 0}
+                    	<div  attr_id="{$attrs.goods_id}" class="attr_val shai_box1_tbox1 <!-- {if $attrs.selected} --> select <!-- {/if} -->" 	>
+                        	<div class="shai_box1_yuan <!-- {if $attrs.selected} --> select <!-- {/if} -->"></div>
+                            <div class="shai_box1_yuan_t " ><a href="javaScript:void(0);">{$attrs.attr_value}</a></div>
+                            <div class="pro_til_close {if $attrs.selected}dis_no{/if} "></div>
+                        </div>
+					
+					  {else}
+					  
+					      	<div  attr_id="{$attrs.goods_id}" class="attr_val shai_box1_tbox1  select2 <!-- {if $attrs.selected} --> select <!-- {/if} -->" 	>
+                        	<div class="shai_box1_yuan  select2"></div>
+                            <div class="shai_box1_yuan_t " ><a href="javaScript:void(0);">{$attrs.attr_value}</a></div>
+                            <div class="pro_til_close {if $attrs.selected}dis_no{/if} "></div>
+                        </div>
+					   {/if}
+                       	
+					 {/if}
+					<!--{/foreach}-->
+               
+           
+                    </div>
+				
+                </div>
+                     {/if}
+              {/foreach}  
+					 <!--{foreach from=$filter_attr_list item=attr name=attribute}--> 
+				  {if $attr.filter_attr_name eq "颜色"}
+                <div class="shai_box1">
+                	<div class="shai_box1_t">
+                    	<div class="shai_box1_t1">按{$attr.filter_attr_name} <span class="yanse"></span></div>
+                        <div class="shai_box1_t2 " attr_id="0"><a href="javaScript:void(0);"></a><div class="pro_til_close color_close" style="display:block;"></div></div>
+                    </div>
+                 
+                    <div class="shai_box1_tbox ">
+                    <ul>
+				
+					 <!--{foreach from=$attr.attr_list item=attrs name=attkey}-->	
+					 	 {if $smarty.foreach.attkey.index gt 0}
+						 	{if $attrs.gcount gt 0}
+                    	<li  alt="{$attrs.attr_value}" title="{$attrs.attr_value}" class=" {if $attrs.selected}select{/if}"  attr_id="{$attrs.goods_id}" ><div style="background-color:{$attrs.color}"><a href="javaScript:void(0);"></a></div></li>
+						{else}
+						<li  alt="{$attrs.attr_value}" title="{$attrs.attr_value}" class=" no_choice"  attr_id="{$attrs.goods_id}" ><div class="select2" style="background-color:{$attrs.color}"><a href="javaScript:void(0);"></a></div></li>
+						{/if}
+							{/if}
+					<!--{/foreach}-->	
+				
+                    </ul>
+                    </div>
+                </div>
+
+
+                {/if}
+              {/foreach}  
+                
+            </div>
+							<div class="qued">
+<div class="qued_img">确定</div>
+</div>
+        </div> 
+		
+		{/if}
+
+		</div>
+        
+        
+         {if $count neq 0}
+        <div class="product_wrap clearfix">
+        	<div class="product_box clearfix">
+            	<ul>
+                					 {foreach from=$goods_list item=vo name=brands}
+				 
+				     {if ($smarty.foreach.brands.index+1)%3 eq 0}
+                	<li class="ma_r0">
+                    	<div class="p_boximg has_opacity"><a href="{$vo.url}"><img data-src="{$vo.goods_thumb}" src="" style="display:none" /></a></div>
+                        <div class="p_txt">
+                        	<div class="p_txt1"><a href="{$vo.url}">{$vo.goods_name}</a></div>
+                            <div class="p_txt2"><a href="{$vo.url}">{if $vo.no_farmart_shop_price eq 0}暂无商品{else} {$vo.shop_price} {/if}</a></div>
+                        </div>
+						  <div class="bot_line"></div>
+						<div class="loadding "></div>
+                    </li>
+					 {else}
+					     <li >
+                    	<div class="p_boximg has_opacity"><a href="{$vo.url}"><img  data-src="{$vo.goods_thumb}" src="" style="display:none" /></a></div>
+                        <div class="p_txt">
+                        	<div class="p_txt1"><a href="{$vo.url}">{$vo.goods_name}</a></div>
+                            <div class="p_txt2"><a href="{$vo.url}">{if $vo.no_farmart_shop_price eq 0} 暂无商品 {else} {$vo.shop_price} {/if}</a></div>
+                        </div>
+						  <div class="bot_line"></div>
+							<div class="loadding "></div>
+                        </li>
+					
+					
+					{/if}
+            
+                  {/foreach}
+		
+			
+	
+                </ul>
+            </div>
+        </div>
+		{else}
+		<div class="wan_chan"><img src="themes/default/images/jjqd.jpg"/></div>
+		{/if}
+    {if $max_page gt 1}
+		<div class="product_gengduo " style="display:none;"><a href="javaScript:void(0);">更多</a>
+        	<div class="product_sanjiao"></div>
+			<input type="hidden" class="filter" f="{$filter_attr_str}"  p="{$nowpage}"  c="{$id}" />
+			<div class="return_val" style="display:none;"></div>
+        </div>
+{/if}
+    </div>
+</div>
+ <input type="hidden" value="{$id}" class="cat_id"  />
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+	<div class="fan_top"></div>
+<div class="heibei">
+	<div class="h_loading"></div>
+</div>
+</div>
+</body>
+</html>

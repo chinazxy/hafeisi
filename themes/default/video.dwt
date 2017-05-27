@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="text/html; charset=iso-8859-1" http-equiv="content-type">
+<meta content="webkit" name="renderer">
+<meta name="viewport" content=" initial-scale=1.0, minimum-scale = 1, maximum-scale = 1" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+    		 <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/> 
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/css.css" />
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/auto.css" />
+<link type="text/css" rel="stylesheet" href="js/video-js.css" />
+ <script type="text/javascript" src="js/2016/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/2016/video.js"></script>
+
+   <script>
+	   $(function() {
+	   var myPlayer=null;
+	       videojs("#example_video_1").ready(function() {
+      // alert(1);
+        myPlayer = this;
+
+        // EXAMPLE: Start playing the video.
+    // this.play();
+
+    });
+myPlayer.play();
+       });
+	</script>
+</head>
+<body>
+		<div class="v_tan" style="display:block;">
+	<div class="v_ca"><img date-src="images/v_ca.png" src="images/v_ca.svg" class="svg_class"/></div>
+  <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="100%" height="100%"
+      poster=""
+      data-setup='{"autoplay":false}'>
+    <source src="video/bolon.mp4" type='video/mp4' />
+    <source src="video/bolon.webm" type='video/webm' />
+    <source src="video/bolon.ogv" type='video/ogg' />
+    <track kind="captions" src="../shared/example-captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <track kind="subtitles" src="../shared/example-captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+  </video>
+	</div>
+</html>

@@ -1,0 +1,153 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+
+</script>
+<div class="main-div">
+
+  <table width="100%" id="general-table">
+
+     	 <tr><td  class="label" style="padding-right:20px;font-size:18px">产品信息</td><td></td></tr>
+     <tr>
+      <td  class="label">
+       产品类型：</td>
+      <td>
+         {$ads.goods_name1}  {$ads.goods_name2}  {$ads.goods_name3}
+      </td>
+    </tr>
+	
+	    <tr>
+      <td  class="label">联系服务时间：</td>
+      <td>
+        {$ads.server_time}
+      </td>
+    </tr>
+	
+		    <tr>
+      <td  class="label">购买时间：</td>
+      <td>
+        {$ads.buy_time}
+      </td>
+    </tr>
+	
+			    <tr>
+      <td  class="label">保修状态：</td>
+      <td>
+      {if $ads.paoxiutime eq '过保修期'}<font color="red">过保修期</font>{else}保修期内{/if}
+      </td>
+    </tr>
+			    <tr>
+      <td  class="label">眼镜损坏描述：</td>
+      <td>
+        {$ads.bao_txt}
+      </td>
+    </tr>
+	
+	 <tr><td  class="label" style="padding-right:20px;font-size:18px">用户信息</td> <td></td></tr>
+	    <tr>
+      <td  class="label">
+      用户姓名：</td>
+      <td> 
+         {$ads.name}
+      </td>
+    </tr>
+	
+		    <tr>
+      <td  class="label">
+       联系地址：</td>
+      <td>
+         {$ads.province_name} {$ads.city_name} {$ads.districts_name} {$ads.address}
+      </td>
+    </tr>
+
+    <tr>
+      <td  class="label">手机：</td>
+      <td>
+      {$ads.telephone}
+      </td>
+    </tr>
+	
+	    <tr>
+      <td  class="label">座机：</td>
+      <td>
+         {if $ads.phones eq "-"}无数据{else}{$ads.phones}{/if}
+      </td>
+    </tr>
+	
+		
+	
+	   
+		    <tr>
+      <td  class="label">邮政编码：</td>
+      <td>
+        {$ads.post}
+      </td>
+    </tr>	
+
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="返回列表" onclick="location.href='baoxiu.php?act=list'" class="button" />
+
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</div>
+
+{include file="pagefooter.htm"}

@@ -1,0 +1,12 @@
+$(function(){
+
+var usrname="",password='';
+
+
+
+
+
+
+
+
+})

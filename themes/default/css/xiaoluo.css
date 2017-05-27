@@ -1,0 +1,71 @@
+
+
+
+.menu{width:33px;height:24px;background:url(../image/icon.png) no-repeat 0 -14px; cursor:pointer; position:absolute; top:4px; left:5px;display:none ;
+
+
+ background-position: 0 -2938px;
+    background-repeat: no-repeat;
+    display: none;
+    float: left;
+    height: 43px;
+    width: 37px;
+
+}
+.m_box_wrapper {width:80%; height:auto; margin:auto 10%; position:relative; top:0px; background:url(../image/bai.png) repeat; padding-bottom:10px; z-index:699;}
+.m_box_wrapper .m_box_contevt {text-align:centerp; padding:15px; display:block; position:relative;text-align:center}
+.m_box_wrapper .m_box_contevt a { padding-top:0px;}
+.m_box_wrapper .m_box_contevt a h2 { color: #000000;
+    display: block;
+    letter-spacing: 1px;
+    text-transform: uppercase; font-size: 1.625em;}
+.m_box_wrapper .m_box_contevt a h3 { color: #5e5e60;
+    display: block;
+    letter-spacing: 1px; margin: 10px 0 20px;font-size: 1em;}
+.m_box_wrapper .m_box_contevt a span {background:url(../image/arrow_right_white.png) no-repeat 10px 50% #533f34;
+    color: #ffffff;
+    line-height: 35px;
+    margin: auto;
+    padding: 8px 15px 8px 30px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all 0.5s ease 0s;
+    width: auto;   font-size: 0.9375em;}
+
+    .m_box_wrapper{display:none;}
+	
+	
+	
+	.menu_div{position:relative;  left:0px; width:100%; height:auto;display:none;top:50px}
+	.menu_div li{border-bottom:1px solid #e2e2e2; line-height:50px;text-indent:20px;width:100%; min-height:50px; position:relative;color:#372d2a;background:#fff; display:block; float:left; line-height:50px; }
+	.menu_div li a{ height:50px;text-indent:20px;width:100%; float:left;  display:block; color:#372d2a; float:left; line-height:45px;}
+	.menu_div li .deng_box3  a{ color:#fff; }
+	.menu_div li a.mybolon{ position:relative;z-index:2; }
+
+    
+.zezao{display:none;}
+.m_prode_right{display:none}
+
+
+.register_le{background:#fff}
+.register{background:#f0f0f0}
+.header_nav2{right:0px; display:none}
+.header_nav ul.head_right .juxing{display:none}
+.menu_div .deng_box .deng_san{width:28px; height:14px; position:absolute; top:0px; left:50px; background:url(../image/sanjiaobiao2.png) no-repeat;}
+.menu_div .deng_box { float:left;text-indent:0px;width:100%;top:0px; cursor:pointer; position:relative; }
+.menu_div .deng_box .deng_box{height:auto; box-shadow: none;margin-bottom:20px;position: relative;padding-bottom:50px; visibility: hidden;} 
+.menu_div .deng_box .deng_right{margin-top:30px; border-top:1px solid #949494;padding-top:20px;width:96%;padding-left:0px;}
+.menu_div .deng_box .deng_title2_right{width:96%;text-indent:0px;}
+.menu_div .deng_box .deng_anniu2{margin-left:0px}
+.menu_div .deng_box .deng_title{padding-top:10px;}
+.loginPlace_left{width:22%;line-height:40px;}
+
+
+.header{background:#262626; z-index: 9999;}
+
+
+
+
+
+
+

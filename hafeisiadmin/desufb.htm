@@ -1,0 +1,151 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\+)/i, "$1removeImg$3$4-");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletImg(id,din){
+
+  if(confirm("您确定要删除该图片吗?")){
+
+	 location.href="desufb.php?act=deleteimg&id="+id+'&din='+din;
+	}
+ 
+
+}
+
+function deletImg2(id,din){
+
+  if(confirm("您确定要删除该图片吗?")){
+
+	 location.href="desufb.php?act=deleteimg&id="+id+'&din='+din;
+	}
+ 
+
+}
+</script>
+<div class="main-div">
+<form action="desufb.php" method="post" name="theForm" enctype="multipart/form-data">
+  <table width="100%" id="general-table">
+    <tr>
+      <td  class="label">
+       标题：</td>
+      <td>
+        <input type="text" name="title" value="{$ads.title}" size="35" />
+ 
+      </td>
+    </tr>
+	
+	<tr>
+	      <td  class="label">
+       英文标题：</td>
+      <td>
+        <input type="text" name="entitle" value="{$ads.entitle}" size="35" />
+ 
+      </td>
+    </tr>
+
+	
+	<tr >
+      <td  class="label">
+       描述：</td>
+      <td>
+	     <textarea name="descript" cols="60" rows="5">{$ads.url}</textarea><br/>
+
+      </td>
+    </tr>
+	<tr>
+      <td  class="label">
+       英文描述：</td>
+      <td>
+	     <textarea name="endescript" cols="60" rows="5">{$ads.endescript}</textarea><br/>
+
+      </td>
+    </tr>	
+	   
+	
+    <tr>
+	 
+      <td  class="label">工艺图片：</td>
+      <td>
+        <input type="file" name="file" size="35" /><span style="color:#FF0000">宽1920*高440</span>
+		{if $ads.images neq ''}
+		   <img src="../{$ads.thump_o}" />  <input type="button" value="删除图片" onclick="deletImg({$ads.id},'p')" >
+		{/if}
+      </td>
+    </tr>
+	    <tr>
+	 
+      <td  class="label">工艺手机图片：</td>
+      <td>
+        <input type="file" name="file_s" size="35" /><span style="color:#FF0000">宽960*高600</span>
+		{if $ads.images_s neq ''}
+		   <img src="../{$ads.thump_o_s}" />  <input type="button" value="删除图片" onclick="deletImg2({$ads.id},'s')">
+		{/if}
+      </td>
+    </tr>
+	
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.id}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+
+{include file="pagefooter.htm"}

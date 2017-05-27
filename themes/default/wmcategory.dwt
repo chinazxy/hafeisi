@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="text/html; charset=iso-8859-1" http-equiv="content-type">
+<meta content="webkit" name="renderer">
+<meta name="viewport" content=" initial-scale=1.0, minimum-scale = 1, maximum-scale = 1" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+    		 <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/> 
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/css.css" />
+<link type="text/css" rel="stylesheet" href="themes/default/css/2016/auto.css" />
+<link type="text/css" rel="stylesheet" href="js/video-js.css" />
+ <script type="text/javascript" src="js/2016/jquery-1.9.0.min.js"></script>
+   <script type="text/javascript">
+var lang_search='{$lang.l_search}';
+<?php $timestame=time();?>
+var timestamp='<?php echo $timestame;?>';
+var lang_search='{$lang.l_search}';
+var token='<?php $mdstr=$GLOBALS['_CFG']['md5str'].$timestame; echo md5($mdstr);?>';
+</script>
+</script>
+  <script type="text/javascript" src="js/2016/jquery-easing-1.3.js"></script>
+  <script type="text/javascript" src="js/2016/video.js"></script>
+   <script type="text/javascript" src="js/2016/jquery.flexslider-min.js"></script>
+   <script type="text/javascript" src="js/2016/common.js"></script>  
+<script type="text/javascript" src="js/2016/brand.js"></script>   
+</head>
+<body>
+<div class="gpage  {if $states eq 1} mpgpage {/if} clearfix">
+<div class="gb clearfix">
+		<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+<div class="dapa clearfix">
+	<div class="daze"></div>
+	<div class="gz_m pad clearfix">
+			<div class="gz_con w_gw w_ylu clearfix">
+            <div class="w_js">
+	
+            <div class="w_jq wz_con">
+            <div class="w_jqzhi bbg_img img1" data-img="data/pinpai/1451271668317715353.jpg" >
+              <div class="dloadding" style="position:absolute;"></div>
+              <a  href="#">
+			   
+              <span class="w_lao">
+              <img class="w_oo" src="{$bs.first_p}" style="visibility:hidden;" /></span>
+            <h2>{$cat.cat_name}</h2>
+            </a></div>
+            
+            
+            
+            
+            </div>
+
+            <div class="w_col bbvideo img4">
+          
+              <video id="example_video_2" class="video-js vjs-default-skin" controls preload="none" width="100%" height="100%"
+      poster="{$cinfo.cat_video}"
+      data-setup='{"autoplay":false}'>
+    <source src="{$cinfo.des_mp4}" type='video/mp4' />
+    <source src="{$cinfo.des_wemb}" type='video/webm' />
+    <source src="{$cinfo.des_ogv}" type='video/ogg' />
+    <track kind="captions" src="../shared/example-captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <track kind="subtitles" src="../shared/example-captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+  </video>
+            
+            
+            </div>
+        
+            </div>
+            <div class="w_zuobao">
+	     {foreach from=$products item=vo name=ks}
+		 {if $smarty.foreach.ks.index%2 eq 1} 
+           <div class="w_zuoone  bgcon">
+		   <div class="w_zuoonec">
+           <div class="w_zone  bbg_img img2"  data-media="{$vo.cat_plotsx}" data-img="{$vo.cat_plots}">
+		   <div class="dloadding"></div>
+           <a href="woman.php?id={$vo.cat_id}" target="_self">
+           <span class="w_lao">
+		    {if $states eq 0}
+	           <img class="w_oo bgimg" src="{$vo.cat_plots}"  style="visibility:hidden;" />
+			 {else}
+			      <img  class="w_oo bgimg"  src="{$vo.cat_plotsx}"   style="visibility:hidden;" />
+			{/if}
+          
+           </a>
+           </div>
+		   </div>
+         <div class="w_row" >
+             <a class="w_rooz" href="woman.php?id={$vo.cat_id}">
+           <span class="w_cheng">{$vo.yd_entitle}</span>
+                 <span class="w_chengw">{$vo.yd_title}</span>
+           
+           </a>
+           </div>
+		   {foreach from=$products item=vof name=ksf}
+		   {if $smarty.foreach.ksf.index%2 eq 0} 
+		     <div class="w_zuoonec">
+            <div class="w_row w_meim bbg_img img3 lvimgy" data-img="{$vof.cat_photo}">
+            <div class="dloadding"></div>
+              <a  href="woman.php?id={$vof.cat_id}">
+              <span class="w_lao">
+              <img class="w_oo" src="{$vof.cat_photo}" style="visibility:hidden;*visibility:inherit;_visibility:inherit;"     /></span>
+            
+            </a>
+            </div>
+			</div>
+					        <div class="w_row lvimgy">
+           <a class="w_rooz" href="woman.php?id={$vof.cat_id}">
+                  <span class="w_cheng">{$vof.syd_entitle}</span>
+                 <span class="w_chengw">{$vof.syd_title}</span>
+         
+           </a>
+            </div>
+			{/if}
+			{/foreach}
+           <div class="w_zuoonec">
+            <div class="w_row w_meim bbg_img img3 lvimgt" data-img="{$vo.cat_photo}">
+            <div class="dloadding"></div>
+              <a  href="woman.php?id={$vo.cat_id}">
+              <span class="w_lao">
+              <img class="w_oo" src="{$vo.cat_photo}" style="visibility:hidden;"   /></span>
+           
+            </a>
+            </div></div>
+				<div class="w_row lvimgt">
+           <a class="w_rooz" href="woman.php?id={$vo.cat_id}">
+                  <span class="w_cheng">{$vo.syd_entitle}</span>
+                 <span class="w_chengw">{$vo.syd_title}</span>
+         
+           </a>
+            </div>
+	
+     
+            </div>
+			{else}
+			<div class="w_youone bgcon">
+			  {foreach from=$products item=vof name=ksg}
+		   {if $smarty.foreach.ksg.index%2 eq 1} 
+		   <div class="w_zuoonec">
+              <div class="bbg_img img3 lvimgy" data-img="{$vof.cat_photo}">
+			  <div class="dloadding"></div>
+              <a href="woman.php?id={$vof.cat_id}" target="_self">
+              <span class="w_lao">
+           <img class="w_oo" alt=""  src="{$vof.cat_photo}" style="visibility:hidden;" /></span>
+           </a>
+            </div> </div>
+			        <div class="w_row lvimgy">
+           <a class="w_rooz" href="woman.php?id={$vof.cat_id}">
+                  <span class="w_cheng">{$vof.syd_entitle}</span>
+                 <span class="w_chengw">{$vof.syd_title}</span>
+         
+           </a>
+            </div>
+			{/if}
+			{/foreach}
+	
+			
+    
+		   <div class="w_zuoonec">
+            <div class="w_row w_meim bbg_img img2"  data-media="{$vo.cat_plotsx}" data-img="{$vo.cat_plots}">
+                 <div class="dloadding"></div>
+              <a  href="woman.php?id={$vo.cat_id}">
+              <span class="w_lao">
+                 {if $states eq 0}
+	              <img class="w_oo bgimg" src="{$vo.cat_plots}"  style="visibility:hidden;" />
+			     {else}
+			      <img  class="w_oo bgimg"  src="{$vo.cat_plotsx}"   style="visibility:hidden;" />
+			     {/if}
+				 </span>
+            </a>
+            </div></div>
+					<div class="w_row">
+           <a class="w_rooz" href="woman.php?id={$vo.cat_id}">
+                  <span class="w_cheng">{$vo.yd_entitle}</span>
+                 <span class="w_chengw">{$vo.yd_title}</span>
+         
+           </a>
+            </div>
+         
+					 <div class="w_zuoonec">
+			       <div class="bbg_img img3 lvimgt" data-img="{$vo.cat_photo}">
+			  <div class="dloadding"></div>
+              <a href="woman.php?id={$vo.cat_id}" target="_self">
+              <span class="w_lao">
+           <img class="w_oo" alt=""  src="{$vo.cat_photo}" style="visibility:hidden;" /></span>
+           </a>
+            </div> </div>
+							<div class="w_row lvimgt">
+           <a class="w_rooz" href="woman.php?id={$vof.cat_id}">
+                 <span class="w_cheng">{$vo.syd_entitle}</span>
+                 <span class="w_chengw">{$vo.syd_title}</span>
+         
+           </a>
+            </div>
+         
+               </div>
+			{/if}
+          {/foreach}    
+            </div>
+    <div class="w_gri">
+            <hr>
+            <div class="w_tuq">
+            <a  href="{$cinfo.b_url1}"><span class="w_lao bibi">{$cinfo.b_title1}</span></a>
+             <div class="w_zuoonec"> <div class=" bbg_img img5"   data-img="{$cinfo.b_img1}"> 
+			 <div class="dloadding"></div>
+			 <a  href="{$cinfo.b_url1}">
+			 <span class="w_lao"><img class="w_oo" src="{$cinfo.b_img1}"  style="visibility:hidden;" /></span></a></div></div>
+             <div class="w_row">
+           <a class="w_rooz" href="{$cinfo.b_url1}">
+           <span class="w_cheng">{$cinfo.b_entitle1}</span>
+          
+           
+           </a>
+            
+            
+            
+            
+            
+            </div>
+            
+            </div>
+            <div class="w_tuw">
+            <a  href="{$cinfo.b_url2}"><span class="w_lao bibi">{$cinfo.b_title2}</span></a>
+            <div class="w_zuoonec">   <div class=" bbg_img img5"   data-img="{$cinfo.b_img2}">     <div class="dloadding"></div><a  href="{$cinfo.b_url2}"><span class="w_lao">
+			<img class="w_oo" src="{$cinfo.b_img2}"  style="visibility:hidden;" /></span></a></div></div>
+             <div class="w_row">
+           <a class="w_rooz" href="{$cinfo.b_url2}">
+           <span class="w_cheng">{$cinfo.b_entitle2}</span>
+           </a>
+            </div>
+            
+            </div>
+            <div class="w_tuw">
+            <a  href="{$cinfo.b_url3}"><span class="w_lao bibi">{$cinfo.b_title3}</span></a>
+             <div class="w_zuoonec"> <div class=" bbg_img img5"   data-img="{$cinfo.b_img3}">     <div class="dloadding"></div><a  href="{$cinfo.b_url3}">
+			 <span class="w_lao"><img class="w_oo" src="{$cinfo.b_img3}"  style="visibility:hidden;" /></span></a></div></div>
+             <div class="w_row">
+           <a class="w_rooz" href="{$cinfo.b_url3}">
+           <span class="w_cheng">{$cinfo.b_entitle3}</span>
+          
+           
+           </a>
+
+            </div>
+            
+            </div>
+
+            </div>     
+            
+			</div>
+				
+
+	
+	</div>
+	<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+    </div></div>
+    <!-- #BeginLibraryItem "/library/page_botter.lbi" --><!-- #EndLibraryItem -->
+</div>
+
+</body>
+</html>

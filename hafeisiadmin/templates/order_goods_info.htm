@@ -1,0 +1,70 @@
+<table width="100%" cellpadding="3" cellspacing="1">
+  <tr>
+    <td scope="col"><div align="center"><strong>{$lang.goods_name_brand}</strong></div></td>
+    <td scope="col"><div align="center"><strong>{$lang.goods_sn}</strong></div></td>
+    <td scope="col"><div align="center"><strong>{$lang.goods_price}</strong></div></td>
+    <td scope="col"><div align="center"><strong>{$lang.goods_number}</strong></div></td>
+    <td scope="col"><div align="center"><strong>{$lang.goods_attr}</strong></div></td>
+    <td scope="col"><div align="center"><strong>{$lang.storage}</strong></div></td>
+    <td scope="col"><div align="center"><strong>{$lang.subtotal}</strong></div></td>
+  </tr>
+  {foreach from=$goods_list item=goods}
+  <tr>
+    {if $goods.goods_id gt 0 && $goods.extension_code neq 'package_buy'}
+    <td><img src="{$goods.goods_thumb}" /><br /><a href="../goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name} {if $goods.brand_name}[ {$goods.brand_name} ]{/if}
+    {if $goods.is_gift}{if $goods.goods_price > 0}{$lang.remark_favourable}{else}{$lang.remark_gift}{/if}{/if}
+    {if $goods.parent_id > 0}{$lang.remark_fittings}{/if}</a></td>
+    {elseif $goods.extension_code eq 'dingzhi'}
+	<td><img src="../{$goods.dingzhi_thumb}" /><br /><a href="../{$goods.dingzhi_img}" target="_blank">{$goods.goods_name} {if $goods.brand_name}[ {$goods.brand_name} ]{/if}
+	{else}
+    <td>{$goods.goods_name}{$lang.remark_package}</td>
+    {/if}
+	{if $goods.extension_code eq 'dingzhi'}
+	<td>[定制产品]暂无货号</td>
+	{else}
+    <td>{$goods.goods_sn}</td>
+	{/if}
+    <td><div align="right">{$goods.formated_goods_price}</div></td>
+    <td><div align="right">{$goods.goods_number}
+    </div></td>
+	{if $goods.extension_code eq 'dingzhi'}
+	<td>
+	                <span><strong>外部订单号：</strong>{$goods.order_d_sn}</span><br/>
+					
+					<span><strong>镜框</strong></span><br/>
+
+					镜框：{if $goods.dingzhi_attr_list_str.jk neq ""}{$goods.dingzhi_attr_list_str.jk }{else}无{/if}&nbsp;&nbsp;<br/>
+					镜片：{if $goods.dingzhi_attr_list_str.jp neq ""}{$goods.dingzhi_attr_list_str.jp_cat_name } {$goods.dingzhi_attr_list_str.jp}{else}无{/if}&nbsp;&nbsp;<br/>
+					饰布：{if $goods.dingzhi_attr_list_str.qk neq ""}{$goods.dingzhi_attr_list_str.qk}{else}无{/if}&nbsp;&nbsp;<br/>
+					饰件：{if $goods.dingzhi_attr_list_str.sj neq ""}{$goods.dingzhi_attr_list_str.sj}{else}无{/if}&nbsp;&nbsp;<br/>
+					镜腿：{if $goods.dingzhi_attr_list_str.jt neq ""}{$goods.dingzhi_attr_list_str.jt}{else}无{/if}<br/>
+					脚套：{if $goods.dingzhi_attr_list_str.jtt neq ""}{$goods.dingzhi_attr_list_str.jtt}{else}无{/if}<br/>
+					镌刻：{if $goods.dingzhi_attr_list_str.type_w_text neq "" || $goods.dingzhi_attr_list_str.type_n_text neq "" } {if $goods.dingzhi_attr_list_str.type_w_text neq "" }镜腿外侧{if  $goods.dingzhi_attr_list_str.type_w  eq 0}左边{/if} {if $goods.dingzhi_attr_list_str.type_w eq 1}右边{/if}{if $goods.dingzhi_attr_list_str.type_w eq 2}两边{/if} 镌刻内容：{$goods.dingzhi_attr_list_str.type_w_text}{/if} {if $goods.dingzhi_attr_list_str.type_n_text neq "" }镜腿内侧{if  $goods.dingzhi_attr_list_str.type_n  eq 0}左边{/if} {if $goods.dingzhi_attr_list_str.type_n eq 1}右边{/if}{if $goods.dingzhi_attr_list_str.type_n eq 2}两边{/if} 镌刻内容：{$goods.dingzhi_attr_list_str.type_n_text}{/if} {else} 无 {/if}<br/>
+				
+				{if $goods.dingzhi_attr_list_str.jp_type eq 1}	
+				
+					<span><strong>处方信息</strong></span><br/>
+                    左眼：{if $goods.dingzhi_attr_list_str.l_eye_s neq ""}{$goods.dingzhi_attr_list_str.l_eye_s}{else}无{/if}/s {if $goods.dingzhi_attr_list_str.l_eye_c neq ""}{$goods.dingzhi_attr_list_str.l_eye_c}{else}无{/if}/c {if $goods.dingzhi_attr_list_str.l_eye_a neq ""}{$goods.dingzhi_attr_list_str.l_eye_a}{else}无{/if}/A {if $goods.dingzhi_attr_list_str.l_eye_t neq ""}{$goods.dingzhi_attr_list_str.l_eye_t}{else}无{/if}/MPD&nbsp;<br/>
+					右眼：{if $goods.dingzhi_attr_list_str.r_eye_s neq ""}{$goods.dingzhi_attr_list_str.r_eye_s}{else}无{/if}/s {if $goods.dingzhi_attr_list_str.r_eye_c neq ""}{$goods.dingzhi_attr_list_str.r_eye_c}{else}无{/if}/c {if $goods.dingzhi_attr_list_str.r_eye_a neq ""}{$goods.dingzhi_attr_list_str.r_eye_a}{else}无{/if}/A {if $goods.dingzhi_attr_list_str.r_eye_t neq ""}{$goods.dingzhi_attr_list_str.r_eye_t}{else}无{/if}/MPD&nbsp;<br/>
+					瞳距：{if $goods.dingzhi_attr_list_str.pd_eye_t neq ""}{$goods.dingzhi_attr_list_str.pd_eye_t}{else}无{/if}/FD<br/>
+				
+				{/if}
+				
+					<span><strong>镜盒信息</strong></span><br/>
+                    镜盒系列：{if $goods.dingzhi_attr_list_str.jh neq ""}{$goods.dingzhi_attr_list_str.jh} {else} 默认 {/if}&nbsp;
+					镜盒材质：{if $goods.dingzhi_attr_list_str.cz neq ""}{$goods.dingzhi_attr_list_str.cz} {else} 默认 {/if}&nbsp;<br/>
+					镜盒定制文字一：{if $goods.dingzhi_attr_list_str.jh_line_one neq ""}{$goods.dingzhi_attr_list_str.jh_line_one} {else} 无文字 {/if}&nbsp;
+					镜盒定制文字二：{if $goods.dingzhi_attr_list_str.jh_line_two neq ""}{$goods.dingzhi_attr_list_str.jh_line_two} {else} 无文字 {/if}&nbsp;
+					
+					
+			
+				
+		</td>
+	{else}
+    <td>{$goods.goods_attr|nl2br}</td>
+	{/if}
+    <td><div align="right">{$goods.storage}</div></td>
+    <td><div align="right">{$goods.formated_subtotal}</div></td>
+  </tr>
+  {/foreach}
+</table>

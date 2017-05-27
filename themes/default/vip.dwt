@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<title>{$page_title}</title>
+
+<link rel="stylesheet" type="text/css" href="themes/default/css/2016/css.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/xiaoluo.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/auto.css" />
+   <script type="text/javascript">
+var lang_search='{$lang.l_search}';
+</script>
+ {insert_scripts files='jquery-1.9.0.min.js,jquery.easing.1.3.js,2016/common.js'} 
+
+
+<style type="text/css"> 
+
+.footer_up{display:none;}
+</style> 
+
+</head>
+
+<body>
+<div class="gpage clearfix">
+<div class="gb clearfix">
+<!-- #BeginLibraryItem "/library/header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="dapa clearfix">
+	<div class="daze"></div>
+	<div class="gz_m pad clearfix">
+<div class="cont_box clearfix">
+<div class="content clearfix">
+	<div class="login-box-wrap">
+	<div class="login-title no_marb">BOLON VIP</div>
+	<div class="register_til1">VIP会员服务长期有效</div>
+	<div class="register_wrap">
+	
+	<div class="register_box mar_bot80">
+	<div class="box">
+	<div class="h1 h1_sty">暴龙VIP会员服务</div>
+
+	</div>
+    
+    <div class="vip_box clearfix">
+    
+    <p>1、购满599即可受享免费包邮服务特权！</p><br /><br />
+       <p>2、免费维修-.暴龙眼镜向顾客承诺：自购买日期起，一年内免费维修、更换配件服务。在保修期内，由于产品自身的缺陷，均在免费维修范围。镜片的磨损、其他原因造成的损坏或购买超过一年的，不在免费维修范围内。</p><br /><br />
+       <p>3、等价替换-每件经暴龙眼镜专业的技术人员鉴定为有缺陷的产品，均会由暴龙眼镜专业技术人员维修更换配件，或以同等价值的产品替代。若产品替代谁。
+由于产品更新等原因，可能替代产品不是原款式产品，我们将提供价值相等的产品作为替换。</p><br /><br />
+       <p>4、享受预约电话服务 400-885-8586</p>
+    </div>
+	</div>
+	
+	</div>
+
+	</div>	
+    
+
+    
+    
+     
+</div>
+</div></div>
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div>
+</div>
+    <!-- #BeginLibraryItem "/library/page_botter.lbi" --><!-- #EndLibraryItem -->
+</div>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+  {insert_scripts files='../js/utils.js,../js/region.js,../js/shopping_flow.js'}
+  <script type="text/javascript">
+              region.isAdmin = true;
+       
+            </script>
+<script>
+function getRandomString(len) {
+    len = len || 32;
+    var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var maxPos = $chars.length;
+    var str = '';
+    for (i = 0; i < len; i++) {
+        str += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return str;
+}
+function addOrder(obj)
+
+{
+
+var src = obj.parentNode.parentNode;
+
+var idx = rowindex(src);
+
+var tbl = document.getElementById('gallery-table');
+
+var row = tbl.insertRow(idx + 1);
+
+var cell = row.insertCell(-1);
+cell.innerHTML = src.cells[0].innerHTML.replace(/(.*)(addOrder)(.*)(\[)(\添加)/i, "$1removeImg$3$4移除");
+
+}
+
+
+/**
+
+* 删除图片上传
+
+*/
+
+function removeImg(obj)
+
+{
+
+var row = rowindex(obj.parentNode.parentNode);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+
+}
+
+function deletItem(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+     Ajax.call('jk.php', 'id=' + id+'&act=deleteitem', removeItem, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+function checkDefault(obj){
+
+if(obj.checked==true){
+obj.checked=true;
+obj.value=1;
+
+}else{
+obj.checked=false;
+obj.value=0;
+
+}
+}
+function removeItem(result){
+
+    if(result.err==0){
+	
+	  alert("删除失败!");
+	
+	}else{
+	
+	 if(result.id>0){
+	
+	 	 var obj=document.getElementById("item_"+result.id);
+	
+	var row = rowindex(obj);
+
+var tbl = document.getElementById('gallery-table');
+
+tbl.deleteRow(row);
+	 }
+
+	}
+
+
+}
+
+
+
+function deletImg2(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg2&id="+id;
+  
+  }
+ 
+
+}
+function deletImg3(id){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+    location.href="home.php?act=deleteimg3&id="+id;
+  
+  }
+ 
+
+}
+
+
+function vi_show(obj){
+    if(obj.value==0){
+	  dc('vi_url1').style.visibility='collapse';
+	  dc('vi_url2').style.visibility='collapse';
+	  dc('vi_url3').style.visibility='collapse';
+
+	}else{
+
+	    dc('vi_url3').style.visibility='visible';
+		dc('vi_url1').style.visibility='visible';
+		dc('vi_url2').style.visibility='visible';
+
+	}
+}
+function dc(id){
+    return document.getElementById(id);
+}
+
+
+function removeDz(id,tid,tc){
+
+  if(confirm("您确定要删除该图片吗?")){
+  
+  var args = "act=remove&id=" + id +"&ids=" + tid;
+     Ajax.call('jp.php', args, removeCate, 'POST', 'JSON');
+    //location.href="home.php?act=deleteimg&id="+id;
+  
+  }
+ 
+
+}
+
+function removeCate(result){
+
+ window.parent.frames["main-frame"].location="jp.php?act=add&id="+result.id;
+
+}
+
+
+function checkAll(obj){
+var names=obj.name+"_c";
+ var checkboxs=document.getElementsByName(""+names);
+if(obj.checked==false){
+
+
+ for (var i=0;i<checkboxs.length;i++) {
+  var e=checkboxs[i];
+  if(e.checked==true){
+  e.nextSibling.value="";
+  e.checked=false
+  }else{
+  e.nextSibling.value=e.value;
+   e.checked=true
+  }
+ }
+}else{
+
+
+ for (var i=0;i<checkboxs.length;i++) {
+  var e=checkboxs[i];
+  if(e.checked==false){
+    e.nextSibling.value=e.value;
+  e.checked=true
+  }else{
+  e.nextSibling.value="";
+   e.checked=false
+  }
+ }
+
+}
+
+}
+function checkItem(obj){
+
+ if(obj.checked==true){
+obj.checked=true;
+obj.nextSibling.value=obj.value;
+}else{
+obj.checked=false;
+obj.nextSibling.value="";
+if(obj.nextSibling.nextSibling.checked==true){
+obj.nextSibling.nextSibling.checked=false;
+document.getElementById("defaultid").value="";
+}
+}
+
+}
+function checkDefault(obj){
+ var defautbox=document.getElementsByName("default_show[]");
+ for(var i=0;i<defautbox.length;i++){
+     if(obj!==defautbox[i]){
+     if(defautbox[i].checked==true){
+	 
+	   defautbox[i].checked=false;
+	   
+	 }
+	 }
+ 
+ }
+ if(obj.checked==true){
+ var nams="item_"+obj.value+"_c";
+
+ var nobjs=document.getElementById(nams);
+ if(nobjs.checked==false){
+ 
+    alert("改镜片未设置成该镜框的配置镜片，默认设置失败!");
+	obj.checked=false;
+ }else{
+obj.checked=true;
+document.getElementById("defaultid").value=obj.value;
+}
+
+}else{
+obj.checked=false;
+document.getElementById("defaultid").value="";
+
+}
+
+}
+</script>
+<div class="list-div" id="listDiv">
+ <form action="recommSet.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+ 
+   {if $jklist}
+    <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">镜框属性</caption>
+     <tr>
+      <th>镜框代码</th>
+      <th>镜框标题</th>
+	  <th>镜框颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+
+ {foreach from=$jklist item=vo}
+   <tr>
+     <td colspan="5" align="left">{$vo.cat_name}</td>
+	 <td align="center">镜框属性选择</td>
+   </tr>
+   {if $vo.attr_len eq 0}
+    <tr>
+	 <td colspan="6" align="center">此分类暂无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$vo.attr item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.title}</td>
+     <td align="center">{if $list.color_img neq ""}<img src="../{$list.color_img}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.img_c neq ""}<img src="../{$list.img_c}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio" {if $list.id eq  $dingzhi_id.jk_id} checked="checked" {/if}  value="{$list.id}"  name="item_jk_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  {/foreach}
+  </table>
+  
+   {/if}
+      <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">尺寸选择</caption>
+     <tr>
+      <th colspan="2">尺寸标题</th>
+      <th>尺寸大小</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+
+
+   {if $sizelen eq 0}
+    <tr>
+	 <td colspan="5" align="center">尺寸无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$sizelist item=list}
+    <tr align="center">
+	 <td align="center" colspan="2" >{$list.title}</td>
+      <td align="center">{$list.size}</td>
+	   <td align="center">{if $list.thumb neq ""}<img src="../{$list.thumb}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio" {if $list.id eq $attrlist.size_id} checked="checked" {/if} value="{$list.id}" name="item_size_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  </table>
+  
+       {if $wjlist}
+      <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">属性</caption>
+     <tr>
+      <th>饰布代码</th>
+      <th>饰布标题</th>
+	  <th>饰布颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+ {foreach from=$wjlist item=vo}
+   <tr>
+     <td colspan="5" align="left">{$vo.cat_name}</td>
+	 <td align="center">前框饰布属性选择</td>
+   </tr>
+   {if $vo.attr_len eq 0}
+    <tr>
+	 <td colspan="6" align="center">此分类暂无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$vo.attr item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.title}</td>
+     <td align="center">{if $list.color_img neq ""}<img src="../{$list.color_img}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.img_c neq ""}<img src="../{$list.img_c}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio" {if $list.id eq $dingzhi_id.wj_id} checked="checked" {/if}  value="{$list.id}"  name="item_wj_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  {/foreach}
+  </table>
+  {/if}
+     {if $splist}
+      <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">前框饰布属性</caption>
+     <tr>
+      <th>饰布代码</th>
+      <th>饰布标题</th>
+	  <th>饰布颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+ {foreach from=$splist item=vo}
+   <tr>
+     <td colspan="5" align="left">{$vo.cat_name}</td>
+	 <td align="center">前框饰布属性选择</td>
+   </tr>
+   {if $vo.attr_len eq 0}
+    <tr>
+	 <td colspan="6" align="center">此分类暂无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$vo.attr item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.title}</td>
+     <td align="center">{if $list.color_img neq ""}<img src="../{$list.color_img}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.img_c neq ""}<img src="../{$list.img_c}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio" {if $list.id eq $dingzhi_id.qk_id} checked="checked" {/if}  value="{$list.id}"  name="item_sp_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  {/foreach}
+  </table>
+  {/if}
+    {if $sjlist}
+        <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">前框饰件属性</caption>
+     <tr>
+      <th>饰件代码</th>
+      <th>饰件标题</th>
+	  <th>饰件颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+ {foreach from=$sjlist item=vo}
+   <tr>
+     <td colspan="5" align="left">{$vo.cat_name}</td>
+	 <td align="center">前框饰件属性选择</td>
+   </tr>
+   {if $vo.attr_len eq 0}
+    <tr>
+	 <td colspan="6" align="center">此分类暂无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$vo.attr item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.title}</td>
+     <td align="center">{if $list.color_img neq ""}<img src="../{$list.color_img}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.img_c neq ""}<img src="../{$list.img_c}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio"  {if $list.id eq $dingzhi_id.sj_id} checked="checked" {/if} value="{$list.id}" name="item_sj_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  {/foreach}
+  </table>
+ {/if}
+  {if $glarrays}
+  {foreach from=$glarrays item=vo}
+  <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">{$vo.cat_info.cat_name}</caption>
+     <tr>
+      <th>镜片代码</th>
+      <th>镜片标题</th>
+	  <th>镜片颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+  {foreach from=$vo.cat_info.child_c item=vb}
+   <tr>
+     <td colspan="5" align="left">{$vb.cat_name}</td>
+	 <td align="center">镜片选择</td>
+   </tr>
+    {foreach from=$vb.items item=vit}
+	   <tr>
+     <td colspan="5" align="left">&nbsp;&nbsp;&nbsp;&nbsp;{$vit.cat_name}</td>
+	 <td align="center"></td>
+   </tr>
+	
+      {foreach from=$vit.childrem item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.title}</td>
+     <td align="center">{if $list.color_img neq ""}<img src="../{$list.color_img}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.img_c neq ""}<img src="../{$list.img_c}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio"  {if $list.id eq $dingzhi_id.jp_id} checked="checked" {/if} value="{$vo.cat_info.cat_id}-{$list.id}" name="item_jp_c" />
+         </td>
+    </tr>
+		{/foreach}
+      {/foreach}
+  {/foreach}
+  </table>
+  {/foreach}
+   {/if}
+   
+     {if $jtlist}
+          <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">镜腿属性</caption>
+     <tr>
+      <th>镜腿代码</th>
+      <th>镜腿标题</th>
+	  <th>镜腿颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+ {foreach from=$jtlist item=vo}
+   <tr>
+     <td colspan="5" align="left">{$vo.cat_name}</td>
+	 <td align="center">镜腿属性选择</td>
+   </tr>
+   {if $vo.attr_len eq 0}
+    <tr>
+	 <td colspan="6" align="center">此分类暂无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$vo.attr item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.title}</td>
+     <td align="center">{if $list.color_img neq ""}<img src="../{$list.color_img}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.img_l neq ""}<img src="../{$list.img_l}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio"  {if $list.id eq $dingzhi_id.jt_id} checked="checked" {/if}   value="{$list.id}"  name="item_jt_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  {/foreach}
+  </table>
+  {/if}
+  
+       {if $jttlist}
+          <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">脚套属性</caption>
+     <tr>
+      <th>脚套代码</th>
+      <th>脚套标题</th>
+	  <th>脚套颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+ {foreach from=$jttlist item=vo}
+   <tr>
+     <td colspan="5" align="left">{$vo.cat_name}</td>
+	 <td align="center">脚套属性选择</td>
+   </tr>
+   {if $vo.attr_len eq 0}
+    <tr>
+	 <td colspan="6" align="center">此分类暂无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$vo.attr item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.title}</td>
+     <td align="center">{if $list.color_img neq ""}<img src="../{$list.color_img}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.img_l neq ""}<img src="../{$list.img_l}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio"  {if $list.id eq $dingzhi_id.jtt_id} checked="checked" {/if}   value="{$list.id}"  name="item_jtt_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  {/foreach}
+  </table>
+  {/if}
+   {if $jhlist}
+            <table width="100%" cellspacing="1" cellpadding="3">
+  <caption style="font-size:16px">镜盒属性</caption>
+     <tr>
+      <th>镜盒代码</th>
+      <th>镜盒标题</th>
+	  <th>镜盒颜色</th>
+	  <th>缩略图</th>
+	  <th>排序</th>
+	  <th>操作</th>
+    </tr>
+ {foreach from=$jhlist item=vo}
+   <tr>
+     <td colspan="5" align="left">{$vo.title}</td>
+	 <td align="center">镜盒属性选择</td>
+   </tr>
+   {if $vo.attr_len eq 0}
+    <tr>
+	 <td colspan="6" align="center">此分类暂无可选择的属性</td>
+	</tr>
+   
+   {else}
+    {foreach from=$vo.attr item=list}
+    <tr align="center">
+	 <td align="center">{$list.number}</td>
+      <td align="center">{$list.child_title}</td>
+     <td align="center">{if $list.image neq ""}<img src="../{$list.image}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	   <td align="center">{if $list.s_image neq ""}<img src="../{$list.s_image}" width="50px" height="50px" />{else}暂无颜色{/if}</td>
+	     
+      <td align="center">{$list.resort}</td>
+	      <td align="center">
+          <input type="radio" {if $list.id eq $attrlist.cz_id} checked="checked" {/if}value="{$vo.id}-{$list.id}" name="item_jh_c" />
+         </td>
+    </tr>
+      {/foreach}
+	  
+	  {/if}
+  {/foreach}
+  </table>
+  {/if}
+  <table>
+    <tr>
+	  <td align="center"> 
+	  	    <input type="hidden" id="defaultid" name="defaultid" value="{$defaultid}" />
+	    <input type="hidden" name="id" value="{$ids}" />
+		 <input type="hidden" name="pid" value="{$pid}" />
+		      <input type="hidden" name="act" value="{$form_act}" />
+        <input type="submit" value="添加默认" class="button" />
+        <input type="reset" value="{$lang.button_reset}" class="button" /></td>
+		
+	</tr>
+  </table>
+  
+  </form>
+</div>
+
+
+
+
+
+
+{include file="pagefooter.htm"}
